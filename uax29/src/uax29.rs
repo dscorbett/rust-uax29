@@ -20,35 +20,18 @@ use rustc::plugin::Registry;
 #[plugin_registrar]
 #[doc(hidden)]
 pub fn plugin_registrar(registrar: &mut Registry) {
-    registrar.register_macro("brainfuck", brainfuck)
+    registrar.register_macro("brainfuck", brainfuck);
+//    registrar.register_macro("breaks", make_breaks);
 }
 
-fn brainfuckx(cx: &mut ExtCtxt, sp: codemap::Span, tts: &[ast::TokenTree]) -> Box<MacResult+'static> {
-    let bf = BF {
-        array: quote_expr!(&mut *cx, _array),
-        idx: quote_expr!(&mut *cx, _i),
-        rdr: quote_expr!(&mut *cx, _r),
-        wtr: quote_expr!(&mut *cx, _w),
-        cx: cx,
-    };
-    let core_code = bf.tts_to_expr(sp, tts);
-
-    MacExpr::new(quote_expr!(cx, {
 /*
-        |_r: &mut Reader, _w: &mut Writer| -> ::std::io::IoResult<Vec<u8>> {
-            let mut _array = vec![0u8; 30_000];
-            let mut _i = 0;
-            $core_code;
-            Ok(_array)
-        }
-*/
-        |: _r: &mut Reader, _w: &mut Writer| {
-            let mut _array = vec![0u8, 30_000];
-            Some(_array[0])
-        }
+fn make_breaks(cx: &mut ExtCtxt, sp: codemap::Span, tts: &[ast::TokenTree]) -> Box<MacResult+'static> {
+    let code = tts_to_expr(sp, tts);
+    MacExpr::new(quote_expr!(cx, {
+        $code
     }))
 }
-
+*/
 
 // This essentially translates token-wise, using the symbol mappings
 // given in the table at:
@@ -81,6 +64,32 @@ struct BF<'a> {
     rdr: P<ast::Expr>,
     wtr: P<ast::Expr>
 }
+
+/*
+struct Uax29<'a> {
+    cx: &'a ExtCtxt<'a>,
+    tree: Node,
+    rewrites: TODO,
+}
+
+impl<'a> Uax29<'a> {
+    fn add_rules(&mut self, sp: codemap::Span, tts: &[ast::TokenTree]) {
+        match tts {
+            [ast::Delimited(sp, toks), rules..] => {
+                self.add_rule(sp, toks);
+                self.add_rules(sp, rules);
+            },
+            _ =>
+        }
+    }
+
+    fn add_rule(&mut self, sp: codemap::Span, tts: &[ast::TokenTree]) {
+        match tts {
+            [token::X, 
+        }
+    }
+}
+*/
 
 impl<'a> BF<'a> {
     fn tts_to_expr(&self, sp: codemap::Span, tts: &[ast::TokenTree]) -> P<ast::Expr> {

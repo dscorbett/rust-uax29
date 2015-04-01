@@ -1,0 +1,9 @@
+[package]
+
+name = "uax29"
+version = "0.0.1"
+authors = ["David Corbett <corbett.dav@husky.neu.edu>"]
+
+[lib]
+name = "uax29"
+plugin = true

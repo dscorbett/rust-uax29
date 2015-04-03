@@ -26,10 +26,11 @@ pub mod word_break {
         CR,
         Katakana,
         Single_Quote,
+        Other,
     }
 
     fn bsearch_range_value_table(c: char, r: &'static [(char, char, Category)])
-        -> Option<Category>
+        -> Category
     {
         use std::cmp::Ordering::{Equal, Less, Greater};
         match r.binary_search_by(|&(lo, hi, _)| {
@@ -37,11 +38,11 @@ pub mod word_break {
             else if hi < c { Less }
             else { Greater }
         }) {
-            Ok(idx) => Some(r[idx].2),
-            Err(_) => None,
+            Ok(idx) => r[idx].2,
+            Err(_) => Other,
         }
     }
-    pub fn category(c: char) -> Option<Category> {
+    pub fn category(c: char) -> Category {
         bsearch_range_value_table(c, cat_table)
     }
 
@@ -652,10 +653,11 @@ pub mod sentence_break {
         SContinue,
         CR,
         ATerm,
+        Other,
     }
 
     fn bsearch_range_value_table(c: char, r: &'static [(char, char, Category)])
-        -> Option<Category>
+        -> Category
     {
         use std::cmp::Ordering::{Equal, Less, Greater};
         match r.binary_search_by(|&(lo, hi, _)| {
@@ -663,11 +665,11 @@ pub mod sentence_break {
             else if hi < c { Less }
             else { Greater }
         }) {
-            Ok(idx) => Some(r[idx].2),
-            Err(_) => None,
+            Ok(idx) => r[idx].2,
+            Err(_) => Other,
         }
     }
-    pub fn category(c: char) -> Option<Category> {
+    pub fn category(c: char) -> Category {
         bsearch_range_value_table(c, cat_table)
     }
 

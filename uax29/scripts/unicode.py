@@ -146,13 +146,15 @@ def format_table_content(f, content, indent):
 def load_properties(f, interestingprops):
     fetch(f)
     props = {}
-    re1 = re.compile("^ *([0-9A-F]+) *; *(\w+)")
-    re2 = re.compile("^ *([0-9A-F]+)\.\.([0-9A-F]+) *; *(\w+)")
+    missing = None
+    re1 = re.compile(r'^ *([0-9A-F]+) *; *(\w+)')
+    re2 = re.compile(r'^ *([0-9A-F]+)\.\.([0-9A-F]+) *; *(\w+)')
+    re3 = re.compile(r'^ *# *@missing: *[0-9A-F]+\.\.[0-9A-F]+ *; *(\w+)')
 
     for line in fileinput.input(f):
         prop = None
-        d_lo = 0
-        d_hi = 0
+        d_lo = None
+        d_hi = None
         m = re1.match(line)
         if m:
             d_lo = m.group(1)
@@ -165,15 +167,20 @@ def load_properties(f, interestingprops):
                 d_hi = m.group(2)
                 prop = m.group(3)
             else:
-                continue
+                m = re3.match(line)
+                if m:
+                    missing = m.group(1)
+                else:
+                    continue
         if interestingprops and prop not in interestingprops:
             continue
-        d_lo = int(d_lo, 16)
-        d_hi = int(d_hi, 16)
-        if prop not in props:
-            props[prop] = []
-        props[prop].append((d_lo, d_hi))
-    return props
+        if prop is not None:
+            d_lo = int(d_lo, 16)
+            d_hi = int(d_hi, 16)
+            if prop not in props:
+                props[prop] = []
+            props[prop].append((d_lo, d_hi))
+    return props, missing
 
 # load all widths of want_widths, except those in except_cats
 def load_east_asian_width(want_widths, except_cats):
@@ -231,7 +238,7 @@ def emit_table(f, name, t_data, t_type = "&'static [(char, char)]", is_pub=True,
     format_table_content(f, data, 8)
     f.write("\n    ];\n\n")
 
-def emit_property_module(f, name, cat, _):
+def emit_property_module(f, name, cat, missing):
     f.write("""pub mod %s {
     use std::slice::SliceExt;
     pub use self::Category::*;
@@ -241,11 +248,13 @@ def emit_property_module(f, name, cat, _):
     pub enum Category {
 """ % name)
     for cat_name in cat:
-        f.write("        " + cat_name + ",\n")
+        f.write('        ' + cat_name + ',\n')
+    if missing not in cat:
+        f.write('        ' + missing + ',\n')
     f.write('''    }
 
     fn bsearch_range_value_table(c: char, r: &'static [(char, char, Category)])
-        -> Option<Category>
+        -> Category
     {
         use std::cmp::Ordering::{Equal, Less, Greater};
         match r.binary_search_by(|&(lo, hi, _)| {
@@ -253,15 +262,15 @@ def emit_property_module(f, name, cat, _):
             else if hi < c { Less }
             else { Greater }
         }) {
-            Ok(idx) => Some(r[idx].2),
-            Err(_) => None,
+            Ok(idx) => r[idx].2,
+            Err(_) => %s,
         }
     }
-    pub fn category(c: char) -> Option<Category> {
+    pub fn category(c: char) -> Category {
         bsearch_range_value_table(c, cat_table)
     }
 
-''')
+''' % missing)
     data = []
     for (k, v) in cat.iteritems():
         for rng in v:
@@ -341,11 +350,15 @@ if __name__ == "__main__":
         rf.write(preamble)
 
         # download and parse all the data
-        wb = load_properties('WordBreakProperty.txt', [])
-        sb = load_properties('SentenceBreakProperty.txt', [])
+        wb, wb_missing = load_properties('WordBreakProperty.txt', [])
+        sb, sb_missing = load_properties('SentenceBreakProperty.txt', [])
+        if wb_missing is None or sb_missing is None:
+            sys.stderr.write(
+                'There must be an @missing line in each property file')
+            exit(1)
 
         allcats = []
-        for (name, cat, pfuns) in ("word_break", wb, []), \
-                                  ('sentence_break', sb, []):
-            emit_property_module(rf, name, cat, pfuns)
+        for (name, cat, missing) in [("word_break", wb, wb_missing),
+                                     ('sentence_break', sb, sb_missing)]:
+            emit_property_module(rf, name, cat, missing)
             allcats.extend(map(lambda x: (x, name), cat))

@@ -34,6 +34,7 @@ struct FutureInfo<Category> {
 #[derive(Show)]
 struct CharInfo<Category> {
     char_offset: usize,
+    ch: char,  // TODO: Remove this: it is just for debugging.
     category: Category,
 }
 
@@ -59,6 +60,7 @@ impl<'a> Iterator for WordBreaks<'a> {
         } else {
             let mut start_of_word = true;
             while {
+//                println!("\nfut: {:?}", self.inner.future);
                 let (boundary, char_offset): (Boundary, usize) =
                     match self.inner.front(&self.tree) {
                         None => (Boundary::Break, self.index + 1),
@@ -79,7 +81,7 @@ impl<'a> Iterator for WordBreaks<'a> {
             if old_index == self.index {
                 None
             } else {
-                Some(self.inner.string.slice_chars(old_index, self.index))
+                Some(self.inner.string.slice(old_index, self.index))
             }
         }
     }
@@ -97,23 +99,6 @@ impl<'a> WordBreaks<'a> {
             },
         }
     }
-
-/*
-    fn bk(&mut self) -> Boundary {
-println!("bk {} {:?}", self.index, self.inner.string.char_at(self.index));
-        self.inner.find_breaks(&self.tree, 0);
-println!("future: {:?}", self.inner.future);
-let rv =
-        match self.inner.future.pop_front() {
-            None => Boundary::Break,
-            Some(fut) => match fut.rule_info {
-                None => Boundary::Break,
-                Some(rule_info) => rule_info.boundary,
-            },
-        }
-;println!("   {:?}", rv);rv
-    }
-*/
 }
 
 impl<'a> WordBreaksInner<'a> {
@@ -137,15 +122,18 @@ impl<'a> WordBreaksInner<'a> {
         println!("kids: {:?}", node.children);
         println!("offset: {}", offset);
         println!("future: {:?}", self.future);
+        println!("offset: {}", offset);
 */
         for &(rule_number, position, boundary) in node.rules.iter() {
-            while self.future.len() < position {
+//            println!("rule: {}\npos: {}\nbnd: {:?}", rule_number, position, boundary);
+            while self.future.len() <= position {
                 match self.char_indices.next() {
                     None => break,
                     Some((char_offset, char)) =>
                         self.future.push_back(FutureInfo {
                             char_info: Some(CharInfo {
                                 char_offset: char_offset,
+                                ch: char,
                                 category: breaks::word_break::category(char),
                             }),
                             rule_info: None,
@@ -175,9 +163,11 @@ impl<'a> WordBreaksInner<'a> {
         while self.future.len() <= offset {
             self.future.push_back(FutureInfo {
                 char_info: match self.char_indices.next() {
-                    None => None,
+                    None => {
+None},
                     Some((char_offset, char)) => Some(CharInfo {
                         char_offset: char_offset,
+                        ch: char,
                         category: breaks::word_break::category(char),
                     }),
                 },
@@ -205,15 +195,70 @@ fn main() {
     use uax29::breaks::word_break;
     use uax29::breaks::word_break::Category::*;
     use Boundary::*;
-    let mut breaks = WordBreaks::new("a1\r\nz234567\r\n", Node {
+    let mut breaks = WordBreaks::new("ab\r\ncd\n\u{e9}f\r", Node {
         rules: vec![],
-        children: vec![(CR, Node {
-            rules: vec![],
-            children: vec![(LF, Node {
-                rules: vec![(30, 1, NoBreak)],
+        children: vec![
+            (CR, Node {
+                rules: vec![],
+                children: vec![(LF, Node {
+                    rules: vec![(300, 1, NoBreak)],
+                    children: vec![],
+                })],
+            }),
+            (Newline, Node {
+                rules: vec![(310, 1, Break)],
                 children: vec![],
-            })],
-        })],
+            }),
+            (CR, Node {
+                rules: vec![(311, 1, Break)],
+                children: vec![],
+            }),
+            (LF, Node {
+                rules: vec![(312, 1, Break)],
+                children: vec![],
+            }),
+            (Newline, Node {
+                rules: vec![(320, 0, Break)],
+                children: vec![],
+            }),
+            (CR, Node {
+                rules: vec![(321, 0, Break)],
+                children: vec![],
+            }),
+            (LF, Node {
+                rules: vec![(322, 0, Break)],
+                children: vec![],
+            }),
+            // TODO: WB4
+            (ALetter, Node {
+                rules: vec![],
+                children: vec![(ALetter, Node {
+                    rules: vec![(500, 1, NoBreak)],
+                    children: vec![],
+                })],
+            }),
+            (ALetter, Node {
+                rules: vec![],
+                children: vec![(Hebrew_Letter, Node {
+                    rules: vec![(501, 1, NoBreak)],
+                    children: vec![],
+                })],
+            }),
+            (Hebrew_Letter, Node {
+                rules: vec![],
+                children: vec![(ALetter, Node {
+                    rules: vec![(502, 1, NoBreak)],
+                    children: vec![],
+                })],
+            }),
+            (Hebrew_Letter, Node {
+                rules: vec![],
+                children: vec![(ALetter, Node {
+                    rules: vec![(503, 1, NoBreak)],
+                    children: vec![],
+                })],
+            }),
+        ],
     });
     for word in breaks {
         println!("word: {:?}", word);

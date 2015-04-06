@@ -13,10 +13,16 @@ struct WordBreaks<'a> {
     inner: WordBreaksInner<'a>,
 }
 
-#[derive(Show)]
+#[derive(PartialEq, Show)]
+enum NextNode<Category> {
+    Child(Node<Category>),
+    Loop,
+}
+
+#[derive(PartialEq, Show)]
 struct Node<Category> {
     rules: Vec<(usize, usize, Boundary)>,
-    children: Vec<(Category, Node<Category>)>,
+    children: Vec<(Category, NextNode<Category>)>,
 }
 
 struct WordBreaksInner<'a> {
@@ -104,29 +110,29 @@ impl<'a> WordBreaks<'a> {
 impl<'a> WordBreaksInner<'a> {
     fn front(&mut self, node: &Node<breaks::word_break::Category>) -> Option<&FutureInfo<breaks::word_break::Category>> {
         if self.future.is_empty() {
-            self.find_breaks(node, 0);
+            self.find_breaks(node, 0, 0);
         }
         self.future.front()
     }
 
     fn pop_front(&mut self, node: &Node<breaks::word_break::Category>) {
         self.future.pop_front();
-        self.find_breaks(node, 0);
+        self.find_breaks(node, 0, 0);
     }
 
     fn find_breaks(
-        &mut self, node: &Node<breaks::word_break::Category>, offset: usize)
+        &mut self, node: &Node<breaks::word_break::Category>, offset: usize, loops: usize)
     {
 /*
         println!("rules: {:?}", node.rules);
         println!("kids: {:?}", node.children);
         println!("offset: {}", offset);
         println!("future: {:?}", self.future);
-        println!("offset: {}", offset);
+        println!("loops: {}", loops);
 */
         for &(rule_number, position, boundary) in node.rules.iter() {
 //            println!("rule: {}\npos: {}\nbnd: {:?}", rule_number, position, boundary);
-            while self.future.len() <= position {
+            while self.future.len() <= position + loops {
                 match self.char_indices.next() {
                     None => break,
                     Some((char_offset, char)) =>
@@ -140,7 +146,7 @@ impl<'a> WordBreaksInner<'a> {
                         }),
                 }
             }
-            if self.future.get_mut(position).is_none() {
+            if self.future.get_mut(position + loops).is_none() {
                 self.future.push_back(FutureInfo {
                     char_info: None,
                     rule_info: Some(RuleInfo {
@@ -149,7 +155,7 @@ impl<'a> WordBreaksInner<'a> {
                     }),
                 });
             } else {
-                let fut = self.future.get_mut(position).unwrap();
+                let fut = self.future.get_mut(position + loops).unwrap();
                 match fut.rule_info {
                     Some(ref rule_info) if rule_info.rule_number <= rule_number =>
                         (),
@@ -163,8 +169,7 @@ impl<'a> WordBreaksInner<'a> {
         while self.future.len() <= offset {
             self.future.push_back(FutureInfo {
                 char_info: match self.char_indices.next() {
-                    None => {
-None},
+                    None => None,
                     Some((char_offset, char)) => Some(CharInfo {
                         char_offset: char_offset,
                         ch: char,
@@ -184,7 +189,17 @@ None},
                 }
             }
             if should_find_breaks {
-                self.find_breaks(child, offset + 1);
+                let (node, loops) = match *child {
+                    NextNode::Child(ref node) => (node, loops),
+                    NextNode::Loop => {
+                        self.future[offset].rule_info = Some(RuleInfo {
+                            rule_number: 0,
+                            boundary: Boundary::NoBreak,
+                        });
+                        (node, loops + 1)
+                    },
+                };
+                self.find_breaks(node, offset + 1, loops);
                 break;
             }
         }
@@ -195,281 +210,301 @@ fn main() {
     use uax29::breaks::word_break;
     use uax29::breaks::word_break::Category::*;
     use Boundary::*;
-    let mut breaks = WordBreaks::new("x:y", Node {
+    use NextNode::*;
+    let mut breaks = WordBreaks::new("x\u{300}y", Node {
         rules: vec![],
         children: vec![
-            (CR, Node {
-                rules: vec![],
-                children: vec![(LF, Node {
+            (CR, Child(Node {
+                rules: vec![(3101, 1, Break),
+                            (3201, 0, Break)],
+                children: vec![(LF, Child(Node {
                     rules: vec![(3000, 1, NoBreak)],
                     children: vec![],
-                })],
-            }),
-            (Newline, Node {
-                rules: vec![(3100, 1, Break)],
+                }))],
+            })),
+            (Newline, Child(Node {
+                rules: vec![(3100, 1, Break),
+                            (3200, 0, Break)],
                 children: vec![],
-            }),
-            (CR, Node {
-                rules: vec![(3101, 1, Break)],
+            })),
+            (LF, Child(Node {
+                rules: vec![(3102, 1, Break),
+                            (3202, 0, Break)],
                 children: vec![],
-            }),
-            (LF, Node {
-                rules: vec![(3102, 1, Break)],
-                children: vec![],
-            }),
-            (Newline, Node {
-                rules: vec![(3200, 0, Break)],
-                children: vec![],
-            }),
-            (CR, Node {
-                rules: vec![(3201, 0, Break)],
-                children: vec![],
-            }),
-            (LF, Node {
-                rules: vec![(3202, 0, Break)],
-                children: vec![],
-            }),
+            })),
             // TODO: WB4
-            (ALetter, Node {
+            (ALetter, Child(Node {
                 rules: vec![],
                 children: vec![
-                    (ALetter, Node {
+                    (Extend, Loop),
+                    (Format, Loop),
+                    (ALetter, Child(Node {
                         rules: vec![(5000, 1, NoBreak)],
                         children: vec![],
-                    }),
-                    (Hebrew_Letter, Node {
+                    })),
+                    (Hebrew_Letter, Child(Node {
                         rules: vec![(5001, 1, NoBreak)],
                         children: vec![],
-                    }),
-                    (MidLetter, Node {
+                    })),
+                    (MidLetter, Child(Node {
                         rules: vec![],
                         children: vec![
-                            (ALetter, Node {
+                            (Extend, Loop),
+                            (Format, Loop),
+                            (ALetter, Child(Node {
                                 rules: vec![(6000, 1, NoBreak),
                                             (7000, 2, NoBreak)],
                                 children: vec![],
-                            }),
-                            (Hebrew_Letter, Node {
+                            })),
+                            (Hebrew_Letter, Child(Node {
                                 rules: vec![(6001, 1, NoBreak),
                                             (7001, 2, NoBreak)],
                                 children: vec![],
-                            }),
+                            })),
                         ],
-                    }),
-                    (MidNumLet, Node {
+                    })),
+                    (MidNumLet, Child(Node {
                         rules: vec![],
                         children: vec![
-                            (ALetter, Node {
+                            (Extend, Loop),
+                            (Format, Loop),
+                            (ALetter, Child(Node {
                                 rules: vec![(6002, 1, NoBreak),
                                             (7002, 2, NoBreak)],
                                 children: vec![],
-                            }),
-                            (Hebrew_Letter, Node {
+                            })),
+                            (Hebrew_Letter, Child(Node {
                                 rules: vec![(6003, 1, NoBreak),
                                             (7003, 2, NoBreak)],
                                 children: vec![],
-                            }),
+                            })),
                         ],
-                    }),
-                    (Single_Quote, Node {
+                    })),
+                    (Single_Quote, Child(Node {
                         rules: vec![],
                         children: vec![
-                            (ALetter, Node {
+                        (Extend, Loop),
+                        (Format, Loop),
+                            (ALetter, Child(Node {
                                 rules: vec![(6004, 1, NoBreak),
                                             (7004, 2, NoBreak)],
                                 children: vec![],
-                            }),
-                            (Hebrew_Letter, Node {
+                            })),
+                            (Hebrew_Letter, Child(Node {
                                 rules: vec![(6005, 1, NoBreak),
                                             (7005, 2, NoBreak)],
                                 children: vec![],
-                            }),
+                            })),
                         ],
-                    }),
-                    (Numeric, Node {
+                    })),
+                    (Numeric, Child(Node {
                         rules: vec![(9000, 1, NoBreak)],
                         children: vec![],
-                    }),
-                    (ExtendNumLet, Node {
+                    })),
+                    (ExtendNumLet, Child(Node {
                         rules: vec![(13100, 1, NoBreak)],
                         children: vec![],
-                    }),
+                    })),
                 ],
-            }),
-            (Hebrew_Letter, Node {
+            })),
+            (Hebrew_Letter, Child(Node {
                 rules: vec![],
                 children: vec![
-                    (ALetter, Node {
+                    (Extend, Loop),
+                    (Format, Loop),
+                    (ALetter, Child(Node {
                         rules: vec![(502, 1, NoBreak)],
                         children: vec![],
-                    }),
-                    (ALetter, Node {
+                    })),
+                    (ALetter, Child(Node {
                         rules: vec![(503, 1, NoBreak)],
                         children: vec![],
-                    }),
-                    (MidLetter, Node {
+                    })),
+                    (MidLetter, Child(Node {
                         rules: vec![],
                         children: vec![
-                            (ALetter, Node {
+                        (Extend, Loop),
+                        (Format, Loop),
+                            (ALetter, Child(Node {
                                 rules: vec![(6006, 1, NoBreak),
                                             (7006, 2, NoBreak)],
                                 children: vec![],
-                            }),
-                            (Hebrew_Letter, Node {
+                            })),
+                            (Hebrew_Letter, Child(Node {
                                 rules: vec![(6007, 1, NoBreak),
                                             (7007, 2, NoBreak)],
                                 children: vec![],
-                            }),
+                            })),
                         ],
-                    }),
-                    (MidNumLet, Node {
+                    })),
+                    (MidNumLet, Child(Node {
                         rules: vec![],
                         children: vec![
-                            (ALetter, Node {
+                        (Extend, Loop),
+                        (Format, Loop),
+                            (ALetter, Child(Node {
                                 rules: vec![(6008, 1, NoBreak),
                                             (7008, 2, NoBreak)],
                                 children: vec![],
-                            }),
-                            (Hebrew_Letter, Node {
+                            })),
+                            (Hebrew_Letter, Child(Node {
                                 rules: vec![(6009, 1, NoBreak),
                                             (7009, 2, NoBreak)],
                                 children: vec![],
-                            }),
+                            })),
                         ],
-                    }),
-                    (Single_Quote, Node {
+                    })),
+                    (Single_Quote, Child(Node {
                         rules: vec![(7100, 1, NoBreak)],
                         children: vec![
-                            (ALetter, Node {
+                        (Extend, Loop),
+                        (Format, Loop),
+                            (ALetter, Child(Node {
                                 rules: vec![(6010, 1, NoBreak),
                                             (7010, 2, NoBreak)],
                                 children: vec![],
-                            }),
-                            (Hebrew_Letter, Node {
+                            })),
+                            (Hebrew_Letter, Child(Node {
                                 rules: vec![(6011, 1, NoBreak),
                                             (7011, 2, NoBreak)],
                                 children: vec![],
-                            }),
+                            })),
                         ],
-                    }),
-                    (Double_Quote, Node {
+                    })),
+                    (Double_Quote, Child(Node {
                         rules: vec![],
                         children: vec![
-                            (Hebrew_Letter, Node {
+                        (Extend, Loop),
+                        (Format, Loop),
+                            (Hebrew_Letter, Child(Node {
                                 rules: vec![(7200, 1, NoBreak),
                                             (7300, 2, NoBreak)],
                                 children: vec![],
-                            }),
+                            })),
                         ],
-                    }),
-                    (Numeric, Node {
+                    })),
+                    (Numeric, Child(Node {
                         rules: vec![(9001, 1, NoBreak)],
                         children: vec![],
-                    }),
-                    (ExtendNumLet, Node {
+                    })),
+                    (ExtendNumLet, Child(Node {
                         rules: vec![(13101, 1, NoBreak)],
                         children: vec![],
-                    }),
+                    })),
                 ],
-            }),
-            (Numeric, Node {
+            })),
+            (Numeric, Child(Node {
                 rules: vec![],
                 children: vec![
-                    (Numeric, Node {
+                    (Extend, Loop),
+                    (Format, Loop),
+                    (Numeric, Child(Node {
                         rules: vec![(8000, 1, NoBreak)],
                         children: vec![],
-                    }),
-                    (ALetter, Node {
+                    })),
+                    (ALetter, Child(Node {
                         rules: vec![(10000, 1, NoBreak)],
                         children: vec![],
-                    }),
-                    (Hebrew_Letter, Node {
+                    })),
+                    (Hebrew_Letter, Child(Node {
                         rules: vec![(10001, 1, NoBreak)],
                         children: vec![],
-                    }),
-                    (MidNum, Node {
+                    })),
+                    (MidNum, Child(Node {
                         rules: vec![],
                         children: vec![
-                            (Numeric, Node {
+                        (Extend, Loop),
+                        (Format, Loop),
+                            (Numeric, Child(Node {
                                 rules: vec![(11000, 1, NoBreak),
                                             (12000, 2, NoBreak)],
                                 children: vec![],
-                            }),
+                            })),
                         ],
-                    }),
-                    (MidNumLet, Node {
+                    })),
+                    (MidNumLet, Child(Node {
                         rules: vec![],
                         children: vec![
-                            (Numeric, Node {
+                        (Extend, Loop),
+                        (Format, Loop),
+                            (Numeric, Child(Node {
                                 rules: vec![(11001, 1, NoBreak),
                                             (12001, 2, NoBreak)],
                                 children: vec![],
-                            }),
+                            })),
                         ],
-                    }),
-                    (Single_Quote, Node {
+                    })),
+                    (Single_Quote, Child(Node {
                         rules: vec![],
                         children: vec![
-                            (Numeric, Node {
+                            (Extend, Loop),
+                            (Format, Loop),
+                            (Numeric, Child(Node {
                                 rules: vec![(11003, 1, NoBreak),
                                             (12003, 2, NoBreak)],
                                 children: vec![],
-                            }),
+                            })),
                         ],
-                    }),
-                    (ExtendNumLet, Node {
+                    })),
+                    (ExtendNumLet, Child(Node {
                         rules: vec![(13102, 1, NoBreak)],
                         children: vec![],
-                    }),
+                    })),
                 ],
-            }),
-            (Katakana, Node {
+            })),
+            (Katakana, Child(Node {
                 rules: vec![],
                 children: vec![
-                    (Katakana, Node {
+                    (Extend, Loop),
+                    (Format, Loop),
+                    (Katakana, Child(Node {
                         rules: vec![(13000, 1, NoBreak)],
                         children: vec![],
-                    }),
-                    (ExtendNumLet, Node {
+                    })),
+                    (ExtendNumLet, Child(Node {
                         rules: vec![(13103, 1, NoBreak)],
                         children: vec![],
-                    }),
+                    })),
                 ],
-            }),
-            (ExtendNumLet, Node {
+            })),
+            (ExtendNumLet, Child(Node {
                 rules: vec![],
                 children: vec![
-                    (ExtendNumLet, Node {
+                    (Extend, Loop),
+                    (Format, Loop),
+                    (ExtendNumLet, Child(Node {
                         rules: vec![(13104, 1, NoBreak)],
                         children: vec![],
-                    }),
-                    (ALetter, Node {
+                    })),
+                    (ALetter, Child(Node {
                         rules: vec![(13200, 1, NoBreak)],
                         children: vec![],
-                    }),
-                    (Hebrew_Letter, Node {
+                    })),
+                    (Hebrew_Letter, Child(Node {
                         rules: vec![(13201, 1, NoBreak)],
                         children: vec![],
-                    }),
-                    (Numeric, Node {
+                    })),
+                    (Numeric, Child(Node {
                         rules: vec![(13202, 1, NoBreak)],
                         children: vec![],
-                    }),
-                    (Katakana, Node {
+                    })),
+                    (Katakana, Child(Node {
                         rules: vec![(13203, 1, NoBreak)],
                         children: vec![],
-                    }),
+                    })),
                 ],
-            }),
-            (Regional_Indicator, Node {
+            })),
+            (Regional_Indicator, Child(Node {
                 rules: vec![],
                 children: vec![
-                    (Regional_Indicator, Node {
+                    (Extend, Loop),
+                    (Format, Loop),
+                    (Regional_Indicator, Child(Node {
                         rules: vec![(13300, 1, NoBreak)],
                         children: vec![],
-                    })
+                    }))
                 ],
-            }),
+            })),
             // WB14 is implicit.
         ],
     });

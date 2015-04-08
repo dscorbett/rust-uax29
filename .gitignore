@@ -1,3 +1,6 @@
+*~
+.*.swp
 target/
 SentenceBreakProperty.txt
 WordBreakProperty.txt
+WordBreakTest.txt

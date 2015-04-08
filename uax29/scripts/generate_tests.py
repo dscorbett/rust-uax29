@@ -40,7 +40,7 @@ def write_tests(tests, output_path):
 ''')
         for i, test in enumerate(tests):
             f.write('''#[test]
-fn test_{}() {{
+fn test_{:04}() {{
     let mut breaks = defaults::Breaks::new("{}",
         defaults::make_word_break_tree());
 '''

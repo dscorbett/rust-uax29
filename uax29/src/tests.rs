@@ -1,7 +1,7 @@
 use defaults;
 
 #[test]
-fn test_0() {
+fn test_0000() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -10,7 +10,7 @@ fn test_0() {
 }
 
 #[test]
-fn test_1() {
+fn test_0001() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -19,7 +19,7 @@ fn test_1() {
 }
 
 #[test]
-fn test_2() {
+fn test_0002() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -28,7 +28,7 @@ fn test_2() {
 }
 
 #[test]
-fn test_3() {
+fn test_0003() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -37,7 +37,7 @@ fn test_3() {
 }
 
 #[test]
-fn test_4() {
+fn test_0004() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -46,7 +46,7 @@ fn test_4() {
 }
 
 #[test]
-fn test_5() {
+fn test_0005() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -55,7 +55,7 @@ fn test_5() {
 }
 
 #[test]
-fn test_6() {
+fn test_0006() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -64,7 +64,7 @@ fn test_6() {
 }
 
 #[test]
-fn test_7() {
+fn test_0007() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -73,7 +73,7 @@ fn test_7() {
 }
 
 #[test]
-fn test_8() {
+fn test_0008() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -82,7 +82,7 @@ fn test_8() {
 }
 
 #[test]
-fn test_9() {
+fn test_0009() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -91,7 +91,7 @@ fn test_9() {
 }
 
 #[test]
-fn test_10() {
+fn test_0010() {
     let mut breaks = defaults::Breaks::new("\u{1}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -100,7 +100,7 @@ fn test_10() {
 }
 
 #[test]
-fn test_11() {
+fn test_0011() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -109,7 +109,7 @@ fn test_11() {
 }
 
 #[test]
-fn test_12() {
+fn test_0012() {
     let mut breaks = defaults::Breaks::new("\u{1}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -118,7 +118,7 @@ fn test_12() {
 }
 
 #[test]
-fn test_13() {
+fn test_0013() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -127,7 +127,7 @@ fn test_13() {
 }
 
 #[test]
-fn test_14() {
+fn test_0014() {
     let mut breaks = defaults::Breaks::new("\u{1},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -136,7 +136,7 @@ fn test_14() {
 }
 
 #[test]
-fn test_15() {
+fn test_0015() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -145,7 +145,7 @@ fn test_15() {
 }
 
 #[test]
-fn test_16() {
+fn test_0016() {
     let mut breaks = defaults::Breaks::new("\u{1}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -154,7 +154,7 @@ fn test_16() {
 }
 
 #[test]
-fn test_17() {
+fn test_0017() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -163,7 +163,7 @@ fn test_17() {
 }
 
 #[test]
-fn test_18() {
+fn test_0018() {
     let mut breaks = defaults::Breaks::new("\u{1}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -172,7 +172,7 @@ fn test_18() {
 }
 
 #[test]
-fn test_19() {
+fn test_0019() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -181,7 +181,7 @@ fn test_19() {
 }
 
 #[test]
-fn test_20() {
+fn test_0020() {
     let mut breaks = defaults::Breaks::new("\u{1}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -190,7 +190,7 @@ fn test_20() {
 }
 
 #[test]
-fn test_21() {
+fn test_0021() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -199,7 +199,7 @@ fn test_21() {
 }
 
 #[test]
-fn test_22() {
+fn test_0022() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -208,7 +208,7 @@ fn test_22() {
 }
 
 #[test]
-fn test_23() {
+fn test_0023() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -217,7 +217,7 @@ fn test_23() {
 }
 
 #[test]
-fn test_24() {
+fn test_0024() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -226,7 +226,7 @@ fn test_24() {
 }
 
 #[test]
-fn test_25() {
+fn test_0025() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -235,7 +235,7 @@ fn test_25() {
 }
 
 #[test]
-fn test_26() {
+fn test_0026() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -244,7 +244,7 @@ fn test_26() {
 }
 
 #[test]
-fn test_27() {
+fn test_0027() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -253,7 +253,7 @@ fn test_27() {
 }
 
 #[test]
-fn test_28() {
+fn test_0028() {
     let mut breaks = defaults::Breaks::new("\u{1}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -262,7 +262,7 @@ fn test_28() {
 }
 
 #[test]
-fn test_29() {
+fn test_0029() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -271,7 +271,7 @@ fn test_29() {
 }
 
 #[test]
-fn test_30() {
+fn test_0030() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{ad}"));
@@ -279,7 +279,7 @@ fn test_30() {
 }
 
 #[test]
-fn test_31() {
+fn test_0031() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}\u{ad}"));
@@ -287,7 +287,7 @@ fn test_31() {
 }
 
 #[test]
-fn test_32() {
+fn test_0032() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{300}"));
@@ -295,7 +295,7 @@ fn test_32() {
 }
 
 #[test]
-fn test_33() {
+fn test_0033() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}\u{300}"));
@@ -303,7 +303,7 @@ fn test_33() {
 }
 
 #[test]
-fn test_34() {
+fn test_0034() {
     let mut breaks = defaults::Breaks::new("\u{1}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -312,7 +312,7 @@ fn test_34() {
 }
 
 #[test]
-fn test_35() {
+fn test_0035() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -321,7 +321,7 @@ fn test_35() {
 }
 
 #[test]
-fn test_36() {
+fn test_0036() {
     let mut breaks = defaults::Breaks::new("\u{1}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -331,7 +331,7 @@ fn test_36() {
 }
 
 #[test]
-fn test_37() {
+fn test_0037() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -341,7 +341,7 @@ fn test_37() {
 }
 
 #[test]
-fn test_38() {
+fn test_0038() {
     let mut breaks = defaults::Breaks::new("\u{1}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -351,7 +351,7 @@ fn test_38() {
 }
 
 #[test]
-fn test_39() {
+fn test_0039() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -361,7 +361,7 @@ fn test_39() {
 }
 
 #[test]
-fn test_40() {
+fn test_0040() {
     let mut breaks = defaults::Breaks::new("\u{1}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -371,7 +371,7 @@ fn test_40() {
 }
 
 #[test]
-fn test_41() {
+fn test_0041() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -381,7 +381,7 @@ fn test_41() {
 }
 
 #[test]
-fn test_42() {
+fn test_0042() {
     let mut breaks = defaults::Breaks::new("\u{1}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -391,7 +391,7 @@ fn test_42() {
 }
 
 #[test]
-fn test_43() {
+fn test_0043() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -401,7 +401,7 @@ fn test_43() {
 }
 
 #[test]
-fn test_44() {
+fn test_0044() {
     let mut breaks = defaults::Breaks::new("\u{1}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -411,7 +411,7 @@ fn test_44() {
 }
 
 #[test]
-fn test_45() {
+fn test_0045() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -421,7 +421,7 @@ fn test_45() {
 }
 
 #[test]
-fn test_46() {
+fn test_0046() {
     let mut breaks = defaults::Breaks::new("\u{1}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -431,7 +431,7 @@ fn test_46() {
 }
 
 #[test]
-fn test_47() {
+fn test_0047() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -441,7 +441,7 @@ fn test_47() {
 }
 
 #[test]
-fn test_48() {
+fn test_0048() {
     let mut breaks = defaults::Breaks::new("\u{1}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -451,7 +451,7 @@ fn test_48() {
 }
 
 #[test]
-fn test_49() {
+fn test_0049() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -461,7 +461,7 @@ fn test_49() {
 }
 
 #[test]
-fn test_50() {
+fn test_0050() {
     let mut breaks = defaults::Breaks::new("\u{1}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}"));
@@ -471,7 +471,7 @@ fn test_50() {
 }
 
 #[test]
-fn test_51() {
+fn test_0051() {
     let mut breaks = defaults::Breaks::new("\u{1}\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1}\u{308}"));
@@ -481,7 +481,7 @@ fn test_51() {
 }
 
 #[test]
-fn test_52() {
+fn test_0052() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -490,7 +490,7 @@ fn test_52() {
 }
 
 #[test]
-fn test_53() {
+fn test_0053() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -500,7 +500,7 @@ fn test_53() {
 }
 
 #[test]
-fn test_54() {
+fn test_0054() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -509,7 +509,7 @@ fn test_54() {
 }
 
 #[test]
-fn test_55() {
+fn test_0055() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -519,7 +519,7 @@ fn test_55() {
 }
 
 #[test]
-fn test_56() {
+fn test_0056() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}\u{a}"));
@@ -527,7 +527,7 @@ fn test_56() {
 }
 
 #[test]
-fn test_57() {
+fn test_0057() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -537,7 +537,7 @@ fn test_57() {
 }
 
 #[test]
-fn test_58() {
+fn test_0058() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -546,7 +546,7 @@ fn test_58() {
 }
 
 #[test]
-fn test_59() {
+fn test_0059() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -556,7 +556,7 @@ fn test_59() {
 }
 
 #[test]
-fn test_60() {
+fn test_0060() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -565,7 +565,7 @@ fn test_60() {
 }
 
 #[test]
-fn test_61() {
+fn test_0061() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -575,7 +575,7 @@ fn test_61() {
 }
 
 #[test]
-fn test_62() {
+fn test_0062() {
     let mut breaks = defaults::Breaks::new("\u{d}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -584,7 +584,7 @@ fn test_62() {
 }
 
 #[test]
-fn test_63() {
+fn test_0063() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -594,7 +594,7 @@ fn test_63() {
 }
 
 #[test]
-fn test_64() {
+fn test_0064() {
     let mut breaks = defaults::Breaks::new("\u{d}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -603,7 +603,7 @@ fn test_64() {
 }
 
 #[test]
-fn test_65() {
+fn test_0065() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -613,7 +613,7 @@ fn test_65() {
 }
 
 #[test]
-fn test_66() {
+fn test_0066() {
     let mut breaks = defaults::Breaks::new("\u{d},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -622,7 +622,7 @@ fn test_66() {
 }
 
 #[test]
-fn test_67() {
+fn test_0067() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -632,7 +632,7 @@ fn test_67() {
 }
 
 #[test]
-fn test_68() {
+fn test_0068() {
     let mut breaks = defaults::Breaks::new("\u{d}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -641,7 +641,7 @@ fn test_68() {
 }
 
 #[test]
-fn test_69() {
+fn test_0069() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -651,7 +651,7 @@ fn test_69() {
 }
 
 #[test]
-fn test_70() {
+fn test_0070() {
     let mut breaks = defaults::Breaks::new("\u{d}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -660,7 +660,7 @@ fn test_70() {
 }
 
 #[test]
-fn test_71() {
+fn test_0071() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -670,7 +670,7 @@ fn test_71() {
 }
 
 #[test]
-fn test_72() {
+fn test_0072() {
     let mut breaks = defaults::Breaks::new("\u{d}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -679,7 +679,7 @@ fn test_72() {
 }
 
 #[test]
-fn test_73() {
+fn test_0073() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -689,7 +689,7 @@ fn test_73() {
 }
 
 #[test]
-fn test_74() {
+fn test_0074() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -698,7 +698,7 @@ fn test_74() {
 }
 
 #[test]
-fn test_75() {
+fn test_0075() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -708,7 +708,7 @@ fn test_75() {
 }
 
 #[test]
-fn test_76() {
+fn test_0076() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -717,7 +717,7 @@ fn test_76() {
 }
 
 #[test]
-fn test_77() {
+fn test_0077() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -727,7 +727,7 @@ fn test_77() {
 }
 
 #[test]
-fn test_78() {
+fn test_0078() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -736,7 +736,7 @@ fn test_78() {
 }
 
 #[test]
-fn test_79() {
+fn test_0079() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -746,7 +746,7 @@ fn test_79() {
 }
 
 #[test]
-fn test_80() {
+fn test_0080() {
     let mut breaks = defaults::Breaks::new("\u{d}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -755,7 +755,7 @@ fn test_80() {
 }
 
 #[test]
-fn test_81() {
+fn test_0081() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -765,7 +765,7 @@ fn test_81() {
 }
 
 #[test]
-fn test_82() {
+fn test_0082() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -774,7 +774,7 @@ fn test_82() {
 }
 
 #[test]
-fn test_83() {
+fn test_0083() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -783,7 +783,7 @@ fn test_83() {
 }
 
 #[test]
-fn test_84() {
+fn test_0084() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -792,7 +792,7 @@ fn test_84() {
 }
 
 #[test]
-fn test_85() {
+fn test_0085() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -801,7 +801,7 @@ fn test_85() {
 }
 
 #[test]
-fn test_86() {
+fn test_0086() {
     let mut breaks = defaults::Breaks::new("\u{d}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -810,7 +810,7 @@ fn test_86() {
 }
 
 #[test]
-fn test_87() {
+fn test_0087() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -820,7 +820,7 @@ fn test_87() {
 }
 
 #[test]
-fn test_88() {
+fn test_0088() {
     let mut breaks = defaults::Breaks::new("\u{d}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -830,7 +830,7 @@ fn test_88() {
 }
 
 #[test]
-fn test_89() {
+fn test_0089() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -841,7 +841,7 @@ fn test_89() {
 }
 
 #[test]
-fn test_90() {
+fn test_0090() {
     let mut breaks = defaults::Breaks::new("\u{d}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -851,7 +851,7 @@ fn test_90() {
 }
 
 #[test]
-fn test_91() {
+fn test_0091() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -862,7 +862,7 @@ fn test_91() {
 }
 
 #[test]
-fn test_92() {
+fn test_0092() {
     let mut breaks = defaults::Breaks::new("\u{d}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -872,7 +872,7 @@ fn test_92() {
 }
 
 #[test]
-fn test_93() {
+fn test_0093() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -883,7 +883,7 @@ fn test_93() {
 }
 
 #[test]
-fn test_94() {
+fn test_0094() {
     let mut breaks = defaults::Breaks::new("\u{d}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -893,7 +893,7 @@ fn test_94() {
 }
 
 #[test]
-fn test_95() {
+fn test_0095() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -904,7 +904,7 @@ fn test_95() {
 }
 
 #[test]
-fn test_96() {
+fn test_0096() {
     let mut breaks = defaults::Breaks::new("\u{d}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -914,7 +914,7 @@ fn test_96() {
 }
 
 #[test]
-fn test_97() {
+fn test_0097() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -925,7 +925,7 @@ fn test_97() {
 }
 
 #[test]
-fn test_98() {
+fn test_0098() {
     let mut breaks = defaults::Breaks::new("\u{d}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -935,7 +935,7 @@ fn test_98() {
 }
 
 #[test]
-fn test_99() {
+fn test_0099() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -946,7 +946,7 @@ fn test_99() {
 }
 
 #[test]
-fn test_100() {
+fn test_0100() {
     let mut breaks = defaults::Breaks::new("\u{d}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -956,7 +956,7 @@ fn test_100() {
 }
 
 #[test]
-fn test_101() {
+fn test_0101() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -967,7 +967,7 @@ fn test_101() {
 }
 
 #[test]
-fn test_102() {
+fn test_0102() {
     let mut breaks = defaults::Breaks::new("\u{d}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -977,7 +977,7 @@ fn test_102() {
 }
 
 #[test]
-fn test_103() {
+fn test_0103() {
     let mut breaks = defaults::Breaks::new("\u{d}\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{d}"));
@@ -988,7 +988,7 @@ fn test_103() {
 }
 
 #[test]
-fn test_104() {
+fn test_0104() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -997,7 +997,7 @@ fn test_104() {
 }
 
 #[test]
-fn test_105() {
+fn test_0105() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1007,7 +1007,7 @@ fn test_105() {
 }
 
 #[test]
-fn test_106() {
+fn test_0106() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1016,7 +1016,7 @@ fn test_106() {
 }
 
 #[test]
-fn test_107() {
+fn test_0107() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1026,7 +1026,7 @@ fn test_107() {
 }
 
 #[test]
-fn test_108() {
+fn test_0108() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1035,7 +1035,7 @@ fn test_108() {
 }
 
 #[test]
-fn test_109() {
+fn test_0109() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1045,7 +1045,7 @@ fn test_109() {
 }
 
 #[test]
-fn test_110() {
+fn test_0110() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1054,7 +1054,7 @@ fn test_110() {
 }
 
 #[test]
-fn test_111() {
+fn test_0111() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1064,7 +1064,7 @@ fn test_111() {
 }
 
 #[test]
-fn test_112() {
+fn test_0112() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1073,7 +1073,7 @@ fn test_112() {
 }
 
 #[test]
-fn test_113() {
+fn test_0113() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1083,7 +1083,7 @@ fn test_113() {
 }
 
 #[test]
-fn test_114() {
+fn test_0114() {
     let mut breaks = defaults::Breaks::new("\u{a}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1092,7 +1092,7 @@ fn test_114() {
 }
 
 #[test]
-fn test_115() {
+fn test_0115() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1102,7 +1102,7 @@ fn test_115() {
 }
 
 #[test]
-fn test_116() {
+fn test_0116() {
     let mut breaks = defaults::Breaks::new("\u{a}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1111,7 +1111,7 @@ fn test_116() {
 }
 
 #[test]
-fn test_117() {
+fn test_0117() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1121,7 +1121,7 @@ fn test_117() {
 }
 
 #[test]
-fn test_118() {
+fn test_0118() {
     let mut breaks = defaults::Breaks::new("\u{a},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1130,7 +1130,7 @@ fn test_118() {
 }
 
 #[test]
-fn test_119() {
+fn test_0119() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1140,7 +1140,7 @@ fn test_119() {
 }
 
 #[test]
-fn test_120() {
+fn test_0120() {
     let mut breaks = defaults::Breaks::new("\u{a}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1149,7 +1149,7 @@ fn test_120() {
 }
 
 #[test]
-fn test_121() {
+fn test_0121() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1159,7 +1159,7 @@ fn test_121() {
 }
 
 #[test]
-fn test_122() {
+fn test_0122() {
     let mut breaks = defaults::Breaks::new("\u{a}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1168,7 +1168,7 @@ fn test_122() {
 }
 
 #[test]
-fn test_123() {
+fn test_0123() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1178,7 +1178,7 @@ fn test_123() {
 }
 
 #[test]
-fn test_124() {
+fn test_0124() {
     let mut breaks = defaults::Breaks::new("\u{a}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1187,7 +1187,7 @@ fn test_124() {
 }
 
 #[test]
-fn test_125() {
+fn test_0125() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1197,7 +1197,7 @@ fn test_125() {
 }
 
 #[test]
-fn test_126() {
+fn test_0126() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1206,7 +1206,7 @@ fn test_126() {
 }
 
 #[test]
-fn test_127() {
+fn test_0127() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1216,7 +1216,7 @@ fn test_127() {
 }
 
 #[test]
-fn test_128() {
+fn test_0128() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1225,7 +1225,7 @@ fn test_128() {
 }
 
 #[test]
-fn test_129() {
+fn test_0129() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1235,7 +1235,7 @@ fn test_129() {
 }
 
 #[test]
-fn test_130() {
+fn test_0130() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1244,7 +1244,7 @@ fn test_130() {
 }
 
 #[test]
-fn test_131() {
+fn test_0131() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1254,7 +1254,7 @@ fn test_131() {
 }
 
 #[test]
-fn test_132() {
+fn test_0132() {
     let mut breaks = defaults::Breaks::new("\u{a}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1263,7 +1263,7 @@ fn test_132() {
 }
 
 #[test]
-fn test_133() {
+fn test_0133() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1273,7 +1273,7 @@ fn test_133() {
 }
 
 #[test]
-fn test_134() {
+fn test_0134() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1282,7 +1282,7 @@ fn test_134() {
 }
 
 #[test]
-fn test_135() {
+fn test_0135() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1291,7 +1291,7 @@ fn test_135() {
 }
 
 #[test]
-fn test_136() {
+fn test_0136() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1300,7 +1300,7 @@ fn test_136() {
 }
 
 #[test]
-fn test_137() {
+fn test_0137() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1309,7 +1309,7 @@ fn test_137() {
 }
 
 #[test]
-fn test_138() {
+fn test_0138() {
     let mut breaks = defaults::Breaks::new("\u{a}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1318,7 +1318,7 @@ fn test_138() {
 }
 
 #[test]
-fn test_139() {
+fn test_0139() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1328,7 +1328,7 @@ fn test_139() {
 }
 
 #[test]
-fn test_140() {
+fn test_0140() {
     let mut breaks = defaults::Breaks::new("\u{a}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1338,7 +1338,7 @@ fn test_140() {
 }
 
 #[test]
-fn test_141() {
+fn test_0141() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1349,7 +1349,7 @@ fn test_141() {
 }
 
 #[test]
-fn test_142() {
+fn test_0142() {
     let mut breaks = defaults::Breaks::new("\u{a}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1359,7 +1359,7 @@ fn test_142() {
 }
 
 #[test]
-fn test_143() {
+fn test_0143() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1370,7 +1370,7 @@ fn test_143() {
 }
 
 #[test]
-fn test_144() {
+fn test_0144() {
     let mut breaks = defaults::Breaks::new("\u{a}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1380,7 +1380,7 @@ fn test_144() {
 }
 
 #[test]
-fn test_145() {
+fn test_0145() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1391,7 +1391,7 @@ fn test_145() {
 }
 
 #[test]
-fn test_146() {
+fn test_0146() {
     let mut breaks = defaults::Breaks::new("\u{a}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1401,7 +1401,7 @@ fn test_146() {
 }
 
 #[test]
-fn test_147() {
+fn test_0147() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1412,7 +1412,7 @@ fn test_147() {
 }
 
 #[test]
-fn test_148() {
+fn test_0148() {
     let mut breaks = defaults::Breaks::new("\u{a}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1422,7 +1422,7 @@ fn test_148() {
 }
 
 #[test]
-fn test_149() {
+fn test_0149() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1433,7 +1433,7 @@ fn test_149() {
 }
 
 #[test]
-fn test_150() {
+fn test_0150() {
     let mut breaks = defaults::Breaks::new("\u{a}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1443,7 +1443,7 @@ fn test_150() {
 }
 
 #[test]
-fn test_151() {
+fn test_0151() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1454,7 +1454,7 @@ fn test_151() {
 }
 
 #[test]
-fn test_152() {
+fn test_0152() {
     let mut breaks = defaults::Breaks::new("\u{a}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1464,7 +1464,7 @@ fn test_152() {
 }
 
 #[test]
-fn test_153() {
+fn test_0153() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1475,7 +1475,7 @@ fn test_153() {
 }
 
 #[test]
-fn test_154() {
+fn test_0154() {
     let mut breaks = defaults::Breaks::new("\u{a}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1485,7 +1485,7 @@ fn test_154() {
 }
 
 #[test]
-fn test_155() {
+fn test_0155() {
     let mut breaks = defaults::Breaks::new("\u{a}\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{a}"));
@@ -1496,7 +1496,7 @@ fn test_155() {
 }
 
 #[test]
-fn test_156() {
+fn test_0156() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1505,7 +1505,7 @@ fn test_156() {
 }
 
 #[test]
-fn test_157() {
+fn test_0157() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1515,7 +1515,7 @@ fn test_157() {
 }
 
 #[test]
-fn test_158() {
+fn test_0158() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1524,7 +1524,7 @@ fn test_158() {
 }
 
 #[test]
-fn test_159() {
+fn test_0159() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1534,7 +1534,7 @@ fn test_159() {
 }
 
 #[test]
-fn test_160() {
+fn test_0160() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1543,7 +1543,7 @@ fn test_160() {
 }
 
 #[test]
-fn test_161() {
+fn test_0161() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1553,7 +1553,7 @@ fn test_161() {
 }
 
 #[test]
-fn test_162() {
+fn test_0162() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1562,7 +1562,7 @@ fn test_162() {
 }
 
 #[test]
-fn test_163() {
+fn test_0163() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1572,7 +1572,7 @@ fn test_163() {
 }
 
 #[test]
-fn test_164() {
+fn test_0164() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1581,7 +1581,7 @@ fn test_164() {
 }
 
 #[test]
-fn test_165() {
+fn test_0165() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1591,7 +1591,7 @@ fn test_165() {
 }
 
 #[test]
-fn test_166() {
+fn test_0166() {
     let mut breaks = defaults::Breaks::new("\u{b}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1600,7 +1600,7 @@ fn test_166() {
 }
 
 #[test]
-fn test_167() {
+fn test_0167() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1610,7 +1610,7 @@ fn test_167() {
 }
 
 #[test]
-fn test_168() {
+fn test_0168() {
     let mut breaks = defaults::Breaks::new("\u{b}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1619,7 +1619,7 @@ fn test_168() {
 }
 
 #[test]
-fn test_169() {
+fn test_0169() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1629,7 +1629,7 @@ fn test_169() {
 }
 
 #[test]
-fn test_170() {
+fn test_0170() {
     let mut breaks = defaults::Breaks::new("\u{b},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1638,7 +1638,7 @@ fn test_170() {
 }
 
 #[test]
-fn test_171() {
+fn test_0171() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1648,7 +1648,7 @@ fn test_171() {
 }
 
 #[test]
-fn test_172() {
+fn test_0172() {
     let mut breaks = defaults::Breaks::new("\u{b}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1657,7 +1657,7 @@ fn test_172() {
 }
 
 #[test]
-fn test_173() {
+fn test_0173() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1667,7 +1667,7 @@ fn test_173() {
 }
 
 #[test]
-fn test_174() {
+fn test_0174() {
     let mut breaks = defaults::Breaks::new("\u{b}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1676,7 +1676,7 @@ fn test_174() {
 }
 
 #[test]
-fn test_175() {
+fn test_0175() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1686,7 +1686,7 @@ fn test_175() {
 }
 
 #[test]
-fn test_176() {
+fn test_0176() {
     let mut breaks = defaults::Breaks::new("\u{b}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1695,7 +1695,7 @@ fn test_176() {
 }
 
 #[test]
-fn test_177() {
+fn test_0177() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1705,7 +1705,7 @@ fn test_177() {
 }
 
 #[test]
-fn test_178() {
+fn test_0178() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1714,7 +1714,7 @@ fn test_178() {
 }
 
 #[test]
-fn test_179() {
+fn test_0179() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1724,7 +1724,7 @@ fn test_179() {
 }
 
 #[test]
-fn test_180() {
+fn test_0180() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1733,7 +1733,7 @@ fn test_180() {
 }
 
 #[test]
-fn test_181() {
+fn test_0181() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1743,7 +1743,7 @@ fn test_181() {
 }
 
 #[test]
-fn test_182() {
+fn test_0182() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1752,7 +1752,7 @@ fn test_182() {
 }
 
 #[test]
-fn test_183() {
+fn test_0183() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1762,7 +1762,7 @@ fn test_183() {
 }
 
 #[test]
-fn test_184() {
+fn test_0184() {
     let mut breaks = defaults::Breaks::new("\u{b}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1771,7 +1771,7 @@ fn test_184() {
 }
 
 #[test]
-fn test_185() {
+fn test_0185() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1781,7 +1781,7 @@ fn test_185() {
 }
 
 #[test]
-fn test_186() {
+fn test_0186() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1790,7 +1790,7 @@ fn test_186() {
 }
 
 #[test]
-fn test_187() {
+fn test_0187() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1799,7 +1799,7 @@ fn test_187() {
 }
 
 #[test]
-fn test_188() {
+fn test_0188() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1808,7 +1808,7 @@ fn test_188() {
 }
 
 #[test]
-fn test_189() {
+fn test_0189() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1817,7 +1817,7 @@ fn test_189() {
 }
 
 #[test]
-fn test_190() {
+fn test_0190() {
     let mut breaks = defaults::Breaks::new("\u{b}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1826,7 +1826,7 @@ fn test_190() {
 }
 
 #[test]
-fn test_191() {
+fn test_0191() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1836,7 +1836,7 @@ fn test_191() {
 }
 
 #[test]
-fn test_192() {
+fn test_0192() {
     let mut breaks = defaults::Breaks::new("\u{b}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1846,7 +1846,7 @@ fn test_192() {
 }
 
 #[test]
-fn test_193() {
+fn test_0193() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1857,7 +1857,7 @@ fn test_193() {
 }
 
 #[test]
-fn test_194() {
+fn test_0194() {
     let mut breaks = defaults::Breaks::new("\u{b}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1867,7 +1867,7 @@ fn test_194() {
 }
 
 #[test]
-fn test_195() {
+fn test_0195() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1878,7 +1878,7 @@ fn test_195() {
 }
 
 #[test]
-fn test_196() {
+fn test_0196() {
     let mut breaks = defaults::Breaks::new("\u{b}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1888,7 +1888,7 @@ fn test_196() {
 }
 
 #[test]
-fn test_197() {
+fn test_0197() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1899,7 +1899,7 @@ fn test_197() {
 }
 
 #[test]
-fn test_198() {
+fn test_0198() {
     let mut breaks = defaults::Breaks::new("\u{b}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1909,7 +1909,7 @@ fn test_198() {
 }
 
 #[test]
-fn test_199() {
+fn test_0199() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1920,7 +1920,7 @@ fn test_199() {
 }
 
 #[test]
-fn test_200() {
+fn test_0200() {
     let mut breaks = defaults::Breaks::new("\u{b}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1930,7 +1930,7 @@ fn test_200() {
 }
 
 #[test]
-fn test_201() {
+fn test_0201() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1941,7 +1941,7 @@ fn test_201() {
 }
 
 #[test]
-fn test_202() {
+fn test_0202() {
     let mut breaks = defaults::Breaks::new("\u{b}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1951,7 +1951,7 @@ fn test_202() {
 }
 
 #[test]
-fn test_203() {
+fn test_0203() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1962,7 +1962,7 @@ fn test_203() {
 }
 
 #[test]
-fn test_204() {
+fn test_0204() {
     let mut breaks = defaults::Breaks::new("\u{b}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1972,7 +1972,7 @@ fn test_204() {
 }
 
 #[test]
-fn test_205() {
+fn test_0205() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1983,7 +1983,7 @@ fn test_205() {
 }
 
 #[test]
-fn test_206() {
+fn test_0206() {
     let mut breaks = defaults::Breaks::new("\u{b}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -1993,7 +1993,7 @@ fn test_206() {
 }
 
 #[test]
-fn test_207() {
+fn test_0207() {
     let mut breaks = defaults::Breaks::new("\u{b}\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{b}"));
@@ -2004,7 +2004,7 @@ fn test_207() {
 }
 
 #[test]
-fn test_208() {
+fn test_0208() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2013,7 +2013,7 @@ fn test_208() {
 }
 
 #[test]
-fn test_209() {
+fn test_0209() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2022,7 +2022,7 @@ fn test_209() {
 }
 
 #[test]
-fn test_210() {
+fn test_0210() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2031,7 +2031,7 @@ fn test_210() {
 }
 
 #[test]
-fn test_211() {
+fn test_0211() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2040,7 +2040,7 @@ fn test_211() {
 }
 
 #[test]
-fn test_212() {
+fn test_0212() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2049,7 +2049,7 @@ fn test_212() {
 }
 
 #[test]
-fn test_213() {
+fn test_0213() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2058,7 +2058,7 @@ fn test_213() {
 }
 
 #[test]
-fn test_214() {
+fn test_0214() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2067,7 +2067,7 @@ fn test_214() {
 }
 
 #[test]
-fn test_215() {
+fn test_0215() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2076,7 +2076,7 @@ fn test_215() {
 }
 
 #[test]
-fn test_216() {
+fn test_0216() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{3031}"));
@@ -2084,7 +2084,7 @@ fn test_216() {
 }
 
 #[test]
-fn test_217() {
+fn test_0217() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}\u{3031}"));
@@ -2092,7 +2092,7 @@ fn test_217() {
 }
 
 #[test]
-fn test_218() {
+fn test_0218() {
     let mut breaks = defaults::Breaks::new("\u{3031}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2101,7 +2101,7 @@ fn test_218() {
 }
 
 #[test]
-fn test_219() {
+fn test_0219() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2110,7 +2110,7 @@ fn test_219() {
 }
 
 #[test]
-fn test_220() {
+fn test_0220() {
     let mut breaks = defaults::Breaks::new("\u{3031}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2119,7 +2119,7 @@ fn test_220() {
 }
 
 #[test]
-fn test_221() {
+fn test_0221() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2128,7 +2128,7 @@ fn test_221() {
 }
 
 #[test]
-fn test_222() {
+fn test_0222() {
     let mut breaks = defaults::Breaks::new("\u{3031},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2137,7 +2137,7 @@ fn test_222() {
 }
 
 #[test]
-fn test_223() {
+fn test_0223() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2146,7 +2146,7 @@ fn test_223() {
 }
 
 #[test]
-fn test_224() {
+fn test_0224() {
     let mut breaks = defaults::Breaks::new("\u{3031}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2155,7 +2155,7 @@ fn test_224() {
 }
 
 #[test]
-fn test_225() {
+fn test_0225() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2164,7 +2164,7 @@ fn test_225() {
 }
 
 #[test]
-fn test_226() {
+fn test_0226() {
     let mut breaks = defaults::Breaks::new("\u{3031}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2173,7 +2173,7 @@ fn test_226() {
 }
 
 #[test]
-fn test_227() {
+fn test_0227() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2182,7 +2182,7 @@ fn test_227() {
 }
 
 #[test]
-fn test_228() {
+fn test_0228() {
     let mut breaks = defaults::Breaks::new("\u{3031}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}_"));
@@ -2190,7 +2190,7 @@ fn test_228() {
 }
 
 #[test]
-fn test_229() {
+fn test_0229() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}_"));
@@ -2198,7 +2198,7 @@ fn test_229() {
 }
 
 #[test]
-fn test_230() {
+fn test_0230() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2207,7 +2207,7 @@ fn test_230() {
 }
 
 #[test]
-fn test_231() {
+fn test_0231() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2216,7 +2216,7 @@ fn test_231() {
 }
 
 #[test]
-fn test_232() {
+fn test_0232() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2225,7 +2225,7 @@ fn test_232() {
 }
 
 #[test]
-fn test_233() {
+fn test_0233() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2234,7 +2234,7 @@ fn test_233() {
 }
 
 #[test]
-fn test_234() {
+fn test_0234() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2243,7 +2243,7 @@ fn test_234() {
 }
 
 #[test]
-fn test_235() {
+fn test_0235() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2252,7 +2252,7 @@ fn test_235() {
 }
 
 #[test]
-fn test_236() {
+fn test_0236() {
     let mut breaks = defaults::Breaks::new("\u{3031}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2261,7 +2261,7 @@ fn test_236() {
 }
 
 #[test]
-fn test_237() {
+fn test_0237() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2270,7 +2270,7 @@ fn test_237() {
 }
 
 #[test]
-fn test_238() {
+fn test_0238() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{ad}"));
@@ -2278,7 +2278,7 @@ fn test_238() {
 }
 
 #[test]
-fn test_239() {
+fn test_0239() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}\u{ad}"));
@@ -2286,7 +2286,7 @@ fn test_239() {
 }
 
 #[test]
-fn test_240() {
+fn test_0240() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{300}"));
@@ -2294,7 +2294,7 @@ fn test_240() {
 }
 
 #[test]
-fn test_241() {
+fn test_0241() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}\u{300}"));
@@ -2302,7 +2302,7 @@ fn test_241() {
 }
 
 #[test]
-fn test_242() {
+fn test_0242() {
     let mut breaks = defaults::Breaks::new("\u{3031}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2311,7 +2311,7 @@ fn test_242() {
 }
 
 #[test]
-fn test_243() {
+fn test_0243() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2320,7 +2320,7 @@ fn test_243() {
 }
 
 #[test]
-fn test_244() {
+fn test_0244() {
     let mut breaks = defaults::Breaks::new("\u{3031}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2330,7 +2330,7 @@ fn test_244() {
 }
 
 #[test]
-fn test_245() {
+fn test_0245() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2340,7 +2340,7 @@ fn test_245() {
 }
 
 #[test]
-fn test_246() {
+fn test_0246() {
     let mut breaks = defaults::Breaks::new("\u{3031}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2350,7 +2350,7 @@ fn test_246() {
 }
 
 #[test]
-fn test_247() {
+fn test_0247() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2360,7 +2360,7 @@ fn test_247() {
 }
 
 #[test]
-fn test_248() {
+fn test_0248() {
     let mut breaks = defaults::Breaks::new("\u{3031}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2370,7 +2370,7 @@ fn test_248() {
 }
 
 #[test]
-fn test_249() {
+fn test_0249() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2380,7 +2380,7 @@ fn test_249() {
 }
 
 #[test]
-fn test_250() {
+fn test_0250() {
     let mut breaks = defaults::Breaks::new("\u{3031}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2390,7 +2390,7 @@ fn test_250() {
 }
 
 #[test]
-fn test_251() {
+fn test_0251() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2400,7 +2400,7 @@ fn test_251() {
 }
 
 #[test]
-fn test_252() {
+fn test_0252() {
     let mut breaks = defaults::Breaks::new("\u{3031}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2410,7 +2410,7 @@ fn test_252() {
 }
 
 #[test]
-fn test_253() {
+fn test_0253() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2420,7 +2420,7 @@ fn test_253() {
 }
 
 #[test]
-fn test_254() {
+fn test_0254() {
     let mut breaks = defaults::Breaks::new("\u{3031}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2430,7 +2430,7 @@ fn test_254() {
 }
 
 #[test]
-fn test_255() {
+fn test_0255() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2440,7 +2440,7 @@ fn test_255() {
 }
 
 #[test]
-fn test_256() {
+fn test_0256() {
     let mut breaks = defaults::Breaks::new("\u{3031}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2450,7 +2450,7 @@ fn test_256() {
 }
 
 #[test]
-fn test_257() {
+fn test_0257() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2460,7 +2460,7 @@ fn test_257() {
 }
 
 #[test]
-fn test_258() {
+fn test_0258() {
     let mut breaks = defaults::Breaks::new("\u{3031}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}"));
@@ -2470,7 +2470,7 @@ fn test_258() {
 }
 
 #[test]
-fn test_259() {
+fn test_0259() {
     let mut breaks = defaults::Breaks::new("\u{3031}\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{3031}\u{308}"));
@@ -2480,7 +2480,7 @@ fn test_259() {
 }
 
 #[test]
-fn test_260() {
+fn test_0260() {
     let mut breaks = defaults::Breaks::new("A\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A"));
@@ -2489,7 +2489,7 @@ fn test_260() {
 }
 
 #[test]
-fn test_261() {
+fn test_0261() {
     let mut breaks = defaults::Breaks::new("A\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}"));
@@ -2498,7 +2498,7 @@ fn test_261() {
 }
 
 #[test]
-fn test_262() {
+fn test_0262() {
     let mut breaks = defaults::Breaks::new("A\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A"));
@@ -2507,7 +2507,7 @@ fn test_262() {
 }
 
 #[test]
-fn test_263() {
+fn test_0263() {
     let mut breaks = defaults::Breaks::new("A\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}"));
@@ -2516,7 +2516,7 @@ fn test_263() {
 }
 
 #[test]
-fn test_264() {
+fn test_0264() {
     let mut breaks = defaults::Breaks::new("A\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A"));
@@ -2525,7 +2525,7 @@ fn test_264() {
 }
 
 #[test]
-fn test_265() {
+fn test_0265() {
     let mut breaks = defaults::Breaks::new("A\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}"));
@@ -2534,7 +2534,7 @@ fn test_265() {
 }
 
 #[test]
-fn test_266() {
+fn test_0266() {
     let mut breaks = defaults::Breaks::new("A\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A"));
@@ -2543,7 +2543,7 @@ fn test_266() {
 }
 
 #[test]
-fn test_267() {
+fn test_0267() {
     let mut breaks = defaults::Breaks::new("A\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}"));
@@ -2552,7 +2552,7 @@ fn test_267() {
 }
 
 #[test]
-fn test_268() {
+fn test_0268() {
     let mut breaks = defaults::Breaks::new("A\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A"));
@@ -2561,7 +2561,7 @@ fn test_268() {
 }
 
 #[test]
-fn test_269() {
+fn test_0269() {
     let mut breaks = defaults::Breaks::new("A\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}"));
@@ -2570,7 +2570,7 @@ fn test_269() {
 }
 
 #[test]
-fn test_270() {
+fn test_0270() {
     let mut breaks = defaults::Breaks::new("AA",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("AA"));
@@ -2578,7 +2578,7 @@ fn test_270() {
 }
 
 #[test]
-fn test_271() {
+fn test_0271() {
     let mut breaks = defaults::Breaks::new("A\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}A"));
@@ -2586,7 +2586,7 @@ fn test_271() {
 }
 
 #[test]
-fn test_272() {
+fn test_0272() {
     let mut breaks = defaults::Breaks::new("A:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A"));
@@ -2595,7 +2595,7 @@ fn test_272() {
 }
 
 #[test]
-fn test_273() {
+fn test_0273() {
     let mut breaks = defaults::Breaks::new("A\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}"));
@@ -2604,7 +2604,7 @@ fn test_273() {
 }
 
 #[test]
-fn test_274() {
+fn test_0274() {
     let mut breaks = defaults::Breaks::new("A,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A"));
@@ -2613,7 +2613,7 @@ fn test_274() {
 }
 
 #[test]
-fn test_275() {
+fn test_0275() {
     let mut breaks = defaults::Breaks::new("A\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}"));
@@ -2622,7 +2622,7 @@ fn test_275() {
 }
 
 #[test]
-fn test_276() {
+fn test_0276() {
     let mut breaks = defaults::Breaks::new("A.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A"));
@@ -2631,7 +2631,7 @@ fn test_276() {
 }
 
 #[test]
-fn test_277() {
+fn test_0277() {
     let mut breaks = defaults::Breaks::new("A\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}"));
@@ -2640,7 +2640,7 @@ fn test_277() {
 }
 
 #[test]
-fn test_278() {
+fn test_0278() {
     let mut breaks = defaults::Breaks::new("A0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A0"));
@@ -2648,7 +2648,7 @@ fn test_278() {
 }
 
 #[test]
-fn test_279() {
+fn test_0279() {
     let mut breaks = defaults::Breaks::new("A\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}0"));
@@ -2656,7 +2656,7 @@ fn test_279() {
 }
 
 #[test]
-fn test_280() {
+fn test_0280() {
     let mut breaks = defaults::Breaks::new("A_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A_"));
@@ -2664,7 +2664,7 @@ fn test_280() {
 }
 
 #[test]
-fn test_281() {
+fn test_0281() {
     let mut breaks = defaults::Breaks::new("A\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}_"));
@@ -2672,7 +2672,7 @@ fn test_281() {
 }
 
 #[test]
-fn test_282() {
+fn test_0282() {
     let mut breaks = defaults::Breaks::new("A\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A"));
@@ -2681,7 +2681,7 @@ fn test_282() {
 }
 
 #[test]
-fn test_283() {
+fn test_0283() {
     let mut breaks = defaults::Breaks::new("A\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}"));
@@ -2690,7 +2690,7 @@ fn test_283() {
 }
 
 #[test]
-fn test_284() {
+fn test_0284() {
     let mut breaks = defaults::Breaks::new("A\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{5d0}"));
@@ -2698,7 +2698,7 @@ fn test_284() {
 }
 
 #[test]
-fn test_285() {
+fn test_0285() {
     let mut breaks = defaults::Breaks::new("A\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}\u{5d0}"));
@@ -2706,7 +2706,7 @@ fn test_285() {
 }
 
 #[test]
-fn test_286() {
+fn test_0286() {
     let mut breaks = defaults::Breaks::new("A\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A"));
@@ -2715,7 +2715,7 @@ fn test_286() {
 }
 
 #[test]
-fn test_287() {
+fn test_0287() {
     let mut breaks = defaults::Breaks::new("A\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}"));
@@ -2724,7 +2724,7 @@ fn test_287() {
 }
 
 #[test]
-fn test_288() {
+fn test_0288() {
     let mut breaks = defaults::Breaks::new("A'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A"));
@@ -2733,7 +2733,7 @@ fn test_288() {
 }
 
 #[test]
-fn test_289() {
+fn test_0289() {
     let mut breaks = defaults::Breaks::new("A\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}"));
@@ -2742,7 +2742,7 @@ fn test_289() {
 }
 
 #[test]
-fn test_290() {
+fn test_0290() {
     let mut breaks = defaults::Breaks::new("A\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{ad}"));
@@ -2750,7 +2750,7 @@ fn test_290() {
 }
 
 #[test]
-fn test_291() {
+fn test_0291() {
     let mut breaks = defaults::Breaks::new("A\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}\u{ad}"));
@@ -2758,7 +2758,7 @@ fn test_291() {
 }
 
 #[test]
-fn test_292() {
+fn test_0292() {
     let mut breaks = defaults::Breaks::new("A\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{300}"));
@@ -2766,7 +2766,7 @@ fn test_292() {
 }
 
 #[test]
-fn test_293() {
+fn test_0293() {
     let mut breaks = defaults::Breaks::new("A\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}\u{300}"));
@@ -2774,7 +2774,7 @@ fn test_293() {
 }
 
 #[test]
-fn test_294() {
+fn test_0294() {
     let mut breaks = defaults::Breaks::new("Aa\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("Aa\u{2060}"));
@@ -2782,7 +2782,7 @@ fn test_294() {
 }
 
 #[test]
-fn test_295() {
+fn test_0295() {
     let mut breaks = defaults::Breaks::new("A\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}a\u{2060}"));
@@ -2790,7 +2790,7 @@ fn test_295() {
 }
 
 #[test]
-fn test_296() {
+fn test_0296() {
     let mut breaks = defaults::Breaks::new("Aa:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("Aa"));
@@ -2799,7 +2799,7 @@ fn test_296() {
 }
 
 #[test]
-fn test_297() {
+fn test_0297() {
     let mut breaks = defaults::Breaks::new("A\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}a"));
@@ -2808,7 +2808,7 @@ fn test_297() {
 }
 
 #[test]
-fn test_298() {
+fn test_0298() {
     let mut breaks = defaults::Breaks::new("Aa'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("Aa"));
@@ -2817,7 +2817,7 @@ fn test_298() {
 }
 
 #[test]
-fn test_299() {
+fn test_0299() {
     let mut breaks = defaults::Breaks::new("A\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}a"));
@@ -2826,7 +2826,7 @@ fn test_299() {
 }
 
 #[test]
-fn test_300() {
+fn test_0300() {
     let mut breaks = defaults::Breaks::new("Aa'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("Aa"));
@@ -2835,7 +2835,7 @@ fn test_300() {
 }
 
 #[test]
-fn test_301() {
+fn test_0301() {
     let mut breaks = defaults::Breaks::new("A\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}a"));
@@ -2844,7 +2844,7 @@ fn test_301() {
 }
 
 #[test]
-fn test_302() {
+fn test_0302() {
     let mut breaks = defaults::Breaks::new("Aa,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("Aa"));
@@ -2853,7 +2853,7 @@ fn test_302() {
 }
 
 #[test]
-fn test_303() {
+fn test_0303() {
     let mut breaks = defaults::Breaks::new("A\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}a"));
@@ -2862,7 +2862,7 @@ fn test_303() {
 }
 
 #[test]
-fn test_304() {
+fn test_0304() {
     let mut breaks = defaults::Breaks::new("A1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A1"));
@@ -2871,7 +2871,7 @@ fn test_304() {
 }
 
 #[test]
-fn test_305() {
+fn test_0305() {
     let mut breaks = defaults::Breaks::new("A\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}1"));
@@ -2880,7 +2880,7 @@ fn test_305() {
 }
 
 #[test]
-fn test_306() {
+fn test_0306() {
     let mut breaks = defaults::Breaks::new("A1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A1"));
@@ -2889,7 +2889,7 @@ fn test_306() {
 }
 
 #[test]
-fn test_307() {
+fn test_0307() {
     let mut breaks = defaults::Breaks::new("A\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}1"));
@@ -2898,7 +2898,7 @@ fn test_307() {
 }
 
 #[test]
-fn test_308() {
+fn test_0308() {
     let mut breaks = defaults::Breaks::new("A1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A1"));
@@ -2907,7 +2907,7 @@ fn test_308() {
 }
 
 #[test]
-fn test_309() {
+fn test_0309() {
     let mut breaks = defaults::Breaks::new("A\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}1"));
@@ -2916,7 +2916,7 @@ fn test_309() {
 }
 
 #[test]
-fn test_310() {
+fn test_0310() {
     let mut breaks = defaults::Breaks::new("A1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A1"));
@@ -2925,7 +2925,7 @@ fn test_310() {
 }
 
 #[test]
-fn test_311() {
+fn test_0311() {
     let mut breaks = defaults::Breaks::new("A\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("A\u{308}1"));
@@ -2934,7 +2934,7 @@ fn test_311() {
 }
 
 #[test]
-fn test_312() {
+fn test_0312() {
     let mut breaks = defaults::Breaks::new(":\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -2943,7 +2943,7 @@ fn test_312() {
 }
 
 #[test]
-fn test_313() {
+fn test_0313() {
     let mut breaks = defaults::Breaks::new(":\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -2952,7 +2952,7 @@ fn test_313() {
 }
 
 #[test]
-fn test_314() {
+fn test_0314() {
     let mut breaks = defaults::Breaks::new(":\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -2961,7 +2961,7 @@ fn test_314() {
 }
 
 #[test]
-fn test_315() {
+fn test_0315() {
     let mut breaks = defaults::Breaks::new(":\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -2970,7 +2970,7 @@ fn test_315() {
 }
 
 #[test]
-fn test_316() {
+fn test_0316() {
     let mut breaks = defaults::Breaks::new(":\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -2979,7 +2979,7 @@ fn test_316() {
 }
 
 #[test]
-fn test_317() {
+fn test_0317() {
     let mut breaks = defaults::Breaks::new(":\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -2988,7 +2988,7 @@ fn test_317() {
 }
 
 #[test]
-fn test_318() {
+fn test_0318() {
     let mut breaks = defaults::Breaks::new(":\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -2997,7 +2997,7 @@ fn test_318() {
 }
 
 #[test]
-fn test_319() {
+fn test_0319() {
     let mut breaks = defaults::Breaks::new(":\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3006,7 +3006,7 @@ fn test_319() {
 }
 
 #[test]
-fn test_320() {
+fn test_0320() {
     let mut breaks = defaults::Breaks::new(":\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3015,7 +3015,7 @@ fn test_320() {
 }
 
 #[test]
-fn test_321() {
+fn test_0321() {
     let mut breaks = defaults::Breaks::new(":\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3024,7 +3024,7 @@ fn test_321() {
 }
 
 #[test]
-fn test_322() {
+fn test_0322() {
     let mut breaks = defaults::Breaks::new(":A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3033,7 +3033,7 @@ fn test_322() {
 }
 
 #[test]
-fn test_323() {
+fn test_0323() {
     let mut breaks = defaults::Breaks::new(":\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3042,7 +3042,7 @@ fn test_323() {
 }
 
 #[test]
-fn test_324() {
+fn test_0324() {
     let mut breaks = defaults::Breaks::new("::",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3051,7 +3051,7 @@ fn test_324() {
 }
 
 #[test]
-fn test_325() {
+fn test_0325() {
     let mut breaks = defaults::Breaks::new(":\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3060,7 +3060,7 @@ fn test_325() {
 }
 
 #[test]
-fn test_326() {
+fn test_0326() {
     let mut breaks = defaults::Breaks::new(":,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3069,7 +3069,7 @@ fn test_326() {
 }
 
 #[test]
-fn test_327() {
+fn test_0327() {
     let mut breaks = defaults::Breaks::new(":\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3078,7 +3078,7 @@ fn test_327() {
 }
 
 #[test]
-fn test_328() {
+fn test_0328() {
     let mut breaks = defaults::Breaks::new(":.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3087,7 +3087,7 @@ fn test_328() {
 }
 
 #[test]
-fn test_329() {
+fn test_0329() {
     let mut breaks = defaults::Breaks::new(":\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3096,7 +3096,7 @@ fn test_329() {
 }
 
 #[test]
-fn test_330() {
+fn test_0330() {
     let mut breaks = defaults::Breaks::new(":0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3105,7 +3105,7 @@ fn test_330() {
 }
 
 #[test]
-fn test_331() {
+fn test_0331() {
     let mut breaks = defaults::Breaks::new(":\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3114,7 +3114,7 @@ fn test_331() {
 }
 
 #[test]
-fn test_332() {
+fn test_0332() {
     let mut breaks = defaults::Breaks::new(":_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3123,7 +3123,7 @@ fn test_332() {
 }
 
 #[test]
-fn test_333() {
+fn test_0333() {
     let mut breaks = defaults::Breaks::new(":\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3132,7 +3132,7 @@ fn test_333() {
 }
 
 #[test]
-fn test_334() {
+fn test_0334() {
     let mut breaks = defaults::Breaks::new(":\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3141,7 +3141,7 @@ fn test_334() {
 }
 
 #[test]
-fn test_335() {
+fn test_0335() {
     let mut breaks = defaults::Breaks::new(":\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3150,7 +3150,7 @@ fn test_335() {
 }
 
 #[test]
-fn test_336() {
+fn test_0336() {
     let mut breaks = defaults::Breaks::new(":\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3159,7 +3159,7 @@ fn test_336() {
 }
 
 #[test]
-fn test_337() {
+fn test_0337() {
     let mut breaks = defaults::Breaks::new(":\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3168,7 +3168,7 @@ fn test_337() {
 }
 
 #[test]
-fn test_338() {
+fn test_0338() {
     let mut breaks = defaults::Breaks::new(":\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3177,7 +3177,7 @@ fn test_338() {
 }
 
 #[test]
-fn test_339() {
+fn test_0339() {
     let mut breaks = defaults::Breaks::new(":\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3186,7 +3186,7 @@ fn test_339() {
 }
 
 #[test]
-fn test_340() {
+fn test_0340() {
     let mut breaks = defaults::Breaks::new(":'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3195,7 +3195,7 @@ fn test_340() {
 }
 
 #[test]
-fn test_341() {
+fn test_0341() {
     let mut breaks = defaults::Breaks::new(":\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3204,7 +3204,7 @@ fn test_341() {
 }
 
 #[test]
-fn test_342() {
+fn test_0342() {
     let mut breaks = defaults::Breaks::new(":\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{ad}"));
@@ -3212,7 +3212,7 @@ fn test_342() {
 }
 
 #[test]
-fn test_343() {
+fn test_0343() {
     let mut breaks = defaults::Breaks::new(":\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}\u{ad}"));
@@ -3220,7 +3220,7 @@ fn test_343() {
 }
 
 #[test]
-fn test_344() {
+fn test_0344() {
     let mut breaks = defaults::Breaks::new(":\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{300}"));
@@ -3228,7 +3228,7 @@ fn test_344() {
 }
 
 #[test]
-fn test_345() {
+fn test_0345() {
     let mut breaks = defaults::Breaks::new(":\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}\u{300}"));
@@ -3236,7 +3236,7 @@ fn test_345() {
 }
 
 #[test]
-fn test_346() {
+fn test_0346() {
     let mut breaks = defaults::Breaks::new(":a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3245,7 +3245,7 @@ fn test_346() {
 }
 
 #[test]
-fn test_347() {
+fn test_0347() {
     let mut breaks = defaults::Breaks::new(":\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3254,7 +3254,7 @@ fn test_347() {
 }
 
 #[test]
-fn test_348() {
+fn test_0348() {
     let mut breaks = defaults::Breaks::new(":a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3264,7 +3264,7 @@ fn test_348() {
 }
 
 #[test]
-fn test_349() {
+fn test_0349() {
     let mut breaks = defaults::Breaks::new(":\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3274,7 +3274,7 @@ fn test_349() {
 }
 
 #[test]
-fn test_350() {
+fn test_0350() {
     let mut breaks = defaults::Breaks::new(":a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3284,7 +3284,7 @@ fn test_350() {
 }
 
 #[test]
-fn test_351() {
+fn test_0351() {
     let mut breaks = defaults::Breaks::new(":\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3294,7 +3294,7 @@ fn test_351() {
 }
 
 #[test]
-fn test_352() {
+fn test_0352() {
     let mut breaks = defaults::Breaks::new(":a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3304,7 +3304,7 @@ fn test_352() {
 }
 
 #[test]
-fn test_353() {
+fn test_0353() {
     let mut breaks = defaults::Breaks::new(":\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3314,7 +3314,7 @@ fn test_353() {
 }
 
 #[test]
-fn test_354() {
+fn test_0354() {
     let mut breaks = defaults::Breaks::new(":a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3324,7 +3324,7 @@ fn test_354() {
 }
 
 #[test]
-fn test_355() {
+fn test_0355() {
     let mut breaks = defaults::Breaks::new(":\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3334,7 +3334,7 @@ fn test_355() {
 }
 
 #[test]
-fn test_356() {
+fn test_0356() {
     let mut breaks = defaults::Breaks::new(":1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3344,7 +3344,7 @@ fn test_356() {
 }
 
 #[test]
-fn test_357() {
+fn test_0357() {
     let mut breaks = defaults::Breaks::new(":\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3354,7 +3354,7 @@ fn test_357() {
 }
 
 #[test]
-fn test_358() {
+fn test_0358() {
     let mut breaks = defaults::Breaks::new(":1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3364,7 +3364,7 @@ fn test_358() {
 }
 
 #[test]
-fn test_359() {
+fn test_0359() {
     let mut breaks = defaults::Breaks::new(":\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3374,7 +3374,7 @@ fn test_359() {
 }
 
 #[test]
-fn test_360() {
+fn test_0360() {
     let mut breaks = defaults::Breaks::new(":1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3384,7 +3384,7 @@ fn test_360() {
 }
 
 #[test]
-fn test_361() {
+fn test_0361() {
     let mut breaks = defaults::Breaks::new(":\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3394,7 +3394,7 @@ fn test_361() {
 }
 
 #[test]
-fn test_362() {
+fn test_0362() {
     let mut breaks = defaults::Breaks::new(":1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":"));
@@ -3404,7 +3404,7 @@ fn test_362() {
 }
 
 #[test]
-fn test_363() {
+fn test_0363() {
     let mut breaks = defaults::Breaks::new(":\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(":\u{308}"));
@@ -3414,7 +3414,7 @@ fn test_363() {
 }
 
 #[test]
-fn test_364() {
+fn test_0364() {
     let mut breaks = defaults::Breaks::new(",\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3423,7 +3423,7 @@ fn test_364() {
 }
 
 #[test]
-fn test_365() {
+fn test_0365() {
     let mut breaks = defaults::Breaks::new(",\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3432,7 +3432,7 @@ fn test_365() {
 }
 
 #[test]
-fn test_366() {
+fn test_0366() {
     let mut breaks = defaults::Breaks::new(",\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3441,7 +3441,7 @@ fn test_366() {
 }
 
 #[test]
-fn test_367() {
+fn test_0367() {
     let mut breaks = defaults::Breaks::new(",\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3450,7 +3450,7 @@ fn test_367() {
 }
 
 #[test]
-fn test_368() {
+fn test_0368() {
     let mut breaks = defaults::Breaks::new(",\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3459,7 +3459,7 @@ fn test_368() {
 }
 
 #[test]
-fn test_369() {
+fn test_0369() {
     let mut breaks = defaults::Breaks::new(",\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3468,7 +3468,7 @@ fn test_369() {
 }
 
 #[test]
-fn test_370() {
+fn test_0370() {
     let mut breaks = defaults::Breaks::new(",\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3477,7 +3477,7 @@ fn test_370() {
 }
 
 #[test]
-fn test_371() {
+fn test_0371() {
     let mut breaks = defaults::Breaks::new(",\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3486,7 +3486,7 @@ fn test_371() {
 }
 
 #[test]
-fn test_372() {
+fn test_0372() {
     let mut breaks = defaults::Breaks::new(",\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3495,7 +3495,7 @@ fn test_372() {
 }
 
 #[test]
-fn test_373() {
+fn test_0373() {
     let mut breaks = defaults::Breaks::new(",\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3504,7 +3504,7 @@ fn test_373() {
 }
 
 #[test]
-fn test_374() {
+fn test_0374() {
     let mut breaks = defaults::Breaks::new(",A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3513,7 +3513,7 @@ fn test_374() {
 }
 
 #[test]
-fn test_375() {
+fn test_0375() {
     let mut breaks = defaults::Breaks::new(",\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3522,7 +3522,7 @@ fn test_375() {
 }
 
 #[test]
-fn test_376() {
+fn test_0376() {
     let mut breaks = defaults::Breaks::new(",:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3531,7 +3531,7 @@ fn test_376() {
 }
 
 #[test]
-fn test_377() {
+fn test_0377() {
     let mut breaks = defaults::Breaks::new(",\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3540,7 +3540,7 @@ fn test_377() {
 }
 
 #[test]
-fn test_378() {
+fn test_0378() {
     let mut breaks = defaults::Breaks::new(",,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3549,7 +3549,7 @@ fn test_378() {
 }
 
 #[test]
-fn test_379() {
+fn test_0379() {
     let mut breaks = defaults::Breaks::new(",\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3558,7 +3558,7 @@ fn test_379() {
 }
 
 #[test]
-fn test_380() {
+fn test_0380() {
     let mut breaks = defaults::Breaks::new(",.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3567,7 +3567,7 @@ fn test_380() {
 }
 
 #[test]
-fn test_381() {
+fn test_0381() {
     let mut breaks = defaults::Breaks::new(",\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3576,7 +3576,7 @@ fn test_381() {
 }
 
 #[test]
-fn test_382() {
+fn test_0382() {
     let mut breaks = defaults::Breaks::new(",0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3585,7 +3585,7 @@ fn test_382() {
 }
 
 #[test]
-fn test_383() {
+fn test_0383() {
     let mut breaks = defaults::Breaks::new(",\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3594,7 +3594,7 @@ fn test_383() {
 }
 
 #[test]
-fn test_384() {
+fn test_0384() {
     let mut breaks = defaults::Breaks::new(",_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3603,7 +3603,7 @@ fn test_384() {
 }
 
 #[test]
-fn test_385() {
+fn test_0385() {
     let mut breaks = defaults::Breaks::new(",\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3612,7 +3612,7 @@ fn test_385() {
 }
 
 #[test]
-fn test_386() {
+fn test_0386() {
     let mut breaks = defaults::Breaks::new(",\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3621,7 +3621,7 @@ fn test_386() {
 }
 
 #[test]
-fn test_387() {
+fn test_0387() {
     let mut breaks = defaults::Breaks::new(",\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3630,7 +3630,7 @@ fn test_387() {
 }
 
 #[test]
-fn test_388() {
+fn test_0388() {
     let mut breaks = defaults::Breaks::new(",\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3639,7 +3639,7 @@ fn test_388() {
 }
 
 #[test]
-fn test_389() {
+fn test_0389() {
     let mut breaks = defaults::Breaks::new(",\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3648,7 +3648,7 @@ fn test_389() {
 }
 
 #[test]
-fn test_390() {
+fn test_0390() {
     let mut breaks = defaults::Breaks::new(",\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3657,7 +3657,7 @@ fn test_390() {
 }
 
 #[test]
-fn test_391() {
+fn test_0391() {
     let mut breaks = defaults::Breaks::new(",\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3666,7 +3666,7 @@ fn test_391() {
 }
 
 #[test]
-fn test_392() {
+fn test_0392() {
     let mut breaks = defaults::Breaks::new(",'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3675,7 +3675,7 @@ fn test_392() {
 }
 
 #[test]
-fn test_393() {
+fn test_0393() {
     let mut breaks = defaults::Breaks::new(",\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3684,7 +3684,7 @@ fn test_393() {
 }
 
 #[test]
-fn test_394() {
+fn test_0394() {
     let mut breaks = defaults::Breaks::new(",\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{ad}"));
@@ -3692,7 +3692,7 @@ fn test_394() {
 }
 
 #[test]
-fn test_395() {
+fn test_0395() {
     let mut breaks = defaults::Breaks::new(",\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}\u{ad}"));
@@ -3700,7 +3700,7 @@ fn test_395() {
 }
 
 #[test]
-fn test_396() {
+fn test_0396() {
     let mut breaks = defaults::Breaks::new(",\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{300}"));
@@ -3708,7 +3708,7 @@ fn test_396() {
 }
 
 #[test]
-fn test_397() {
+fn test_0397() {
     let mut breaks = defaults::Breaks::new(",\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}\u{300}"));
@@ -3716,7 +3716,7 @@ fn test_397() {
 }
 
 #[test]
-fn test_398() {
+fn test_0398() {
     let mut breaks = defaults::Breaks::new(",a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3725,7 +3725,7 @@ fn test_398() {
 }
 
 #[test]
-fn test_399() {
+fn test_0399() {
     let mut breaks = defaults::Breaks::new(",\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3734,7 +3734,7 @@ fn test_399() {
 }
 
 #[test]
-fn test_400() {
+fn test_0400() {
     let mut breaks = defaults::Breaks::new(",a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3744,7 +3744,7 @@ fn test_400() {
 }
 
 #[test]
-fn test_401() {
+fn test_0401() {
     let mut breaks = defaults::Breaks::new(",\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3754,7 +3754,7 @@ fn test_401() {
 }
 
 #[test]
-fn test_402() {
+fn test_0402() {
     let mut breaks = defaults::Breaks::new(",a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3764,7 +3764,7 @@ fn test_402() {
 }
 
 #[test]
-fn test_403() {
+fn test_0403() {
     let mut breaks = defaults::Breaks::new(",\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3774,7 +3774,7 @@ fn test_403() {
 }
 
 #[test]
-fn test_404() {
+fn test_0404() {
     let mut breaks = defaults::Breaks::new(",a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3784,7 +3784,7 @@ fn test_404() {
 }
 
 #[test]
-fn test_405() {
+fn test_0405() {
     let mut breaks = defaults::Breaks::new(",\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3794,7 +3794,7 @@ fn test_405() {
 }
 
 #[test]
-fn test_406() {
+fn test_0406() {
     let mut breaks = defaults::Breaks::new(",a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3804,7 +3804,7 @@ fn test_406() {
 }
 
 #[test]
-fn test_407() {
+fn test_0407() {
     let mut breaks = defaults::Breaks::new(",\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3814,7 +3814,7 @@ fn test_407() {
 }
 
 #[test]
-fn test_408() {
+fn test_0408() {
     let mut breaks = defaults::Breaks::new(",1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3824,7 +3824,7 @@ fn test_408() {
 }
 
 #[test]
-fn test_409() {
+fn test_0409() {
     let mut breaks = defaults::Breaks::new(",\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3834,7 +3834,7 @@ fn test_409() {
 }
 
 #[test]
-fn test_410() {
+fn test_0410() {
     let mut breaks = defaults::Breaks::new(",1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3844,7 +3844,7 @@ fn test_410() {
 }
 
 #[test]
-fn test_411() {
+fn test_0411() {
     let mut breaks = defaults::Breaks::new(",\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3854,7 +3854,7 @@ fn test_411() {
 }
 
 #[test]
-fn test_412() {
+fn test_0412() {
     let mut breaks = defaults::Breaks::new(",1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3864,7 +3864,7 @@ fn test_412() {
 }
 
 #[test]
-fn test_413() {
+fn test_0413() {
     let mut breaks = defaults::Breaks::new(",\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3874,7 +3874,7 @@ fn test_413() {
 }
 
 #[test]
-fn test_414() {
+fn test_0414() {
     let mut breaks = defaults::Breaks::new(",1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(","));
@@ -3884,7 +3884,7 @@ fn test_414() {
 }
 
 #[test]
-fn test_415() {
+fn test_0415() {
     let mut breaks = defaults::Breaks::new(",\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(",\u{308}"));
@@ -3894,7 +3894,7 @@ fn test_415() {
 }
 
 #[test]
-fn test_416() {
+fn test_0416() {
     let mut breaks = defaults::Breaks::new(".\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -3903,7 +3903,7 @@ fn test_416() {
 }
 
 #[test]
-fn test_417() {
+fn test_0417() {
     let mut breaks = defaults::Breaks::new(".\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -3912,7 +3912,7 @@ fn test_417() {
 }
 
 #[test]
-fn test_418() {
+fn test_0418() {
     let mut breaks = defaults::Breaks::new(".\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -3921,7 +3921,7 @@ fn test_418() {
 }
 
 #[test]
-fn test_419() {
+fn test_0419() {
     let mut breaks = defaults::Breaks::new(".\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -3930,7 +3930,7 @@ fn test_419() {
 }
 
 #[test]
-fn test_420() {
+fn test_0420() {
     let mut breaks = defaults::Breaks::new(".\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -3939,7 +3939,7 @@ fn test_420() {
 }
 
 #[test]
-fn test_421() {
+fn test_0421() {
     let mut breaks = defaults::Breaks::new(".\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -3948,7 +3948,7 @@ fn test_421() {
 }
 
 #[test]
-fn test_422() {
+fn test_0422() {
     let mut breaks = defaults::Breaks::new(".\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -3957,7 +3957,7 @@ fn test_422() {
 }
 
 #[test]
-fn test_423() {
+fn test_0423() {
     let mut breaks = defaults::Breaks::new(".\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -3966,7 +3966,7 @@ fn test_423() {
 }
 
 #[test]
-fn test_424() {
+fn test_0424() {
     let mut breaks = defaults::Breaks::new(".\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -3975,7 +3975,7 @@ fn test_424() {
 }
 
 #[test]
-fn test_425() {
+fn test_0425() {
     let mut breaks = defaults::Breaks::new(".\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -3984,7 +3984,7 @@ fn test_425() {
 }
 
 #[test]
-fn test_426() {
+fn test_0426() {
     let mut breaks = defaults::Breaks::new(".A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -3993,7 +3993,7 @@ fn test_426() {
 }
 
 #[test]
-fn test_427() {
+fn test_0427() {
     let mut breaks = defaults::Breaks::new(".\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4002,7 +4002,7 @@ fn test_427() {
 }
 
 #[test]
-fn test_428() {
+fn test_0428() {
     let mut breaks = defaults::Breaks::new(".:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4011,7 +4011,7 @@ fn test_428() {
 }
 
 #[test]
-fn test_429() {
+fn test_0429() {
     let mut breaks = defaults::Breaks::new(".\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4020,7 +4020,7 @@ fn test_429() {
 }
 
 #[test]
-fn test_430() {
+fn test_0430() {
     let mut breaks = defaults::Breaks::new(".,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4029,7 +4029,7 @@ fn test_430() {
 }
 
 #[test]
-fn test_431() {
+fn test_0431() {
     let mut breaks = defaults::Breaks::new(".\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4038,7 +4038,7 @@ fn test_431() {
 }
 
 #[test]
-fn test_432() {
+fn test_0432() {
     let mut breaks = defaults::Breaks::new("..",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4047,7 +4047,7 @@ fn test_432() {
 }
 
 #[test]
-fn test_433() {
+fn test_0433() {
     let mut breaks = defaults::Breaks::new(".\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4056,7 +4056,7 @@ fn test_433() {
 }
 
 #[test]
-fn test_434() {
+fn test_0434() {
     let mut breaks = defaults::Breaks::new(".0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4065,7 +4065,7 @@ fn test_434() {
 }
 
 #[test]
-fn test_435() {
+fn test_0435() {
     let mut breaks = defaults::Breaks::new(".\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4074,7 +4074,7 @@ fn test_435() {
 }
 
 #[test]
-fn test_436() {
+fn test_0436() {
     let mut breaks = defaults::Breaks::new("._",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4083,7 +4083,7 @@ fn test_436() {
 }
 
 #[test]
-fn test_437() {
+fn test_0437() {
     let mut breaks = defaults::Breaks::new(".\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4092,7 +4092,7 @@ fn test_437() {
 }
 
 #[test]
-fn test_438() {
+fn test_0438() {
     let mut breaks = defaults::Breaks::new(".\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4101,7 +4101,7 @@ fn test_438() {
 }
 
 #[test]
-fn test_439() {
+fn test_0439() {
     let mut breaks = defaults::Breaks::new(".\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4110,7 +4110,7 @@ fn test_439() {
 }
 
 #[test]
-fn test_440() {
+fn test_0440() {
     let mut breaks = defaults::Breaks::new(".\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4119,7 +4119,7 @@ fn test_440() {
 }
 
 #[test]
-fn test_441() {
+fn test_0441() {
     let mut breaks = defaults::Breaks::new(".\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4128,7 +4128,7 @@ fn test_441() {
 }
 
 #[test]
-fn test_442() {
+fn test_0442() {
     let mut breaks = defaults::Breaks::new(".\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4137,7 +4137,7 @@ fn test_442() {
 }
 
 #[test]
-fn test_443() {
+fn test_0443() {
     let mut breaks = defaults::Breaks::new(".\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4146,7 +4146,7 @@ fn test_443() {
 }
 
 #[test]
-fn test_444() {
+fn test_0444() {
     let mut breaks = defaults::Breaks::new(".'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4155,7 +4155,7 @@ fn test_444() {
 }
 
 #[test]
-fn test_445() {
+fn test_0445() {
     let mut breaks = defaults::Breaks::new(".\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4164,7 +4164,7 @@ fn test_445() {
 }
 
 #[test]
-fn test_446() {
+fn test_0446() {
     let mut breaks = defaults::Breaks::new(".\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{ad}"));
@@ -4172,7 +4172,7 @@ fn test_446() {
 }
 
 #[test]
-fn test_447() {
+fn test_0447() {
     let mut breaks = defaults::Breaks::new(".\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}\u{ad}"));
@@ -4180,7 +4180,7 @@ fn test_447() {
 }
 
 #[test]
-fn test_448() {
+fn test_0448() {
     let mut breaks = defaults::Breaks::new(".\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{300}"));
@@ -4188,7 +4188,7 @@ fn test_448() {
 }
 
 #[test]
-fn test_449() {
+fn test_0449() {
     let mut breaks = defaults::Breaks::new(".\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}\u{300}"));
@@ -4196,7 +4196,7 @@ fn test_449() {
 }
 
 #[test]
-fn test_450() {
+fn test_0450() {
     let mut breaks = defaults::Breaks::new(".a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4205,7 +4205,7 @@ fn test_450() {
 }
 
 #[test]
-fn test_451() {
+fn test_0451() {
     let mut breaks = defaults::Breaks::new(".\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4214,7 +4214,7 @@ fn test_451() {
 }
 
 #[test]
-fn test_452() {
+fn test_0452() {
     let mut breaks = defaults::Breaks::new(".a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4224,7 +4224,7 @@ fn test_452() {
 }
 
 #[test]
-fn test_453() {
+fn test_0453() {
     let mut breaks = defaults::Breaks::new(".\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4234,7 +4234,7 @@ fn test_453() {
 }
 
 #[test]
-fn test_454() {
+fn test_0454() {
     let mut breaks = defaults::Breaks::new(".a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4244,7 +4244,7 @@ fn test_454() {
 }
 
 #[test]
-fn test_455() {
+fn test_0455() {
     let mut breaks = defaults::Breaks::new(".\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4254,7 +4254,7 @@ fn test_455() {
 }
 
 #[test]
-fn test_456() {
+fn test_0456() {
     let mut breaks = defaults::Breaks::new(".a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4264,7 +4264,7 @@ fn test_456() {
 }
 
 #[test]
-fn test_457() {
+fn test_0457() {
     let mut breaks = defaults::Breaks::new(".\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4274,7 +4274,7 @@ fn test_457() {
 }
 
 #[test]
-fn test_458() {
+fn test_0458() {
     let mut breaks = defaults::Breaks::new(".a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4284,7 +4284,7 @@ fn test_458() {
 }
 
 #[test]
-fn test_459() {
+fn test_0459() {
     let mut breaks = defaults::Breaks::new(".\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4294,7 +4294,7 @@ fn test_459() {
 }
 
 #[test]
-fn test_460() {
+fn test_0460() {
     let mut breaks = defaults::Breaks::new(".1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4304,7 +4304,7 @@ fn test_460() {
 }
 
 #[test]
-fn test_461() {
+fn test_0461() {
     let mut breaks = defaults::Breaks::new(".\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4314,7 +4314,7 @@ fn test_461() {
 }
 
 #[test]
-fn test_462() {
+fn test_0462() {
     let mut breaks = defaults::Breaks::new(".1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4324,7 +4324,7 @@ fn test_462() {
 }
 
 #[test]
-fn test_463() {
+fn test_0463() {
     let mut breaks = defaults::Breaks::new(".\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4334,7 +4334,7 @@ fn test_463() {
 }
 
 #[test]
-fn test_464() {
+fn test_0464() {
     let mut breaks = defaults::Breaks::new(".1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4344,7 +4344,7 @@ fn test_464() {
 }
 
 #[test]
-fn test_465() {
+fn test_0465() {
     let mut breaks = defaults::Breaks::new(".\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4354,7 +4354,7 @@ fn test_465() {
 }
 
 #[test]
-fn test_466() {
+fn test_0466() {
     let mut breaks = defaults::Breaks::new(".1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("."));
@@ -4364,7 +4364,7 @@ fn test_466() {
 }
 
 #[test]
-fn test_467() {
+fn test_0467() {
     let mut breaks = defaults::Breaks::new(".\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some(".\u{308}"));
@@ -4374,7 +4374,7 @@ fn test_467() {
 }
 
 #[test]
-fn test_468() {
+fn test_0468() {
     let mut breaks = defaults::Breaks::new("0\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0"));
@@ -4383,7 +4383,7 @@ fn test_468() {
 }
 
 #[test]
-fn test_469() {
+fn test_0469() {
     let mut breaks = defaults::Breaks::new("0\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}"));
@@ -4392,7 +4392,7 @@ fn test_469() {
 }
 
 #[test]
-fn test_470() {
+fn test_0470() {
     let mut breaks = defaults::Breaks::new("0\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0"));
@@ -4401,7 +4401,7 @@ fn test_470() {
 }
 
 #[test]
-fn test_471() {
+fn test_0471() {
     let mut breaks = defaults::Breaks::new("0\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}"));
@@ -4410,7 +4410,7 @@ fn test_471() {
 }
 
 #[test]
-fn test_472() {
+fn test_0472() {
     let mut breaks = defaults::Breaks::new("0\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0"));
@@ -4419,7 +4419,7 @@ fn test_472() {
 }
 
 #[test]
-fn test_473() {
+fn test_0473() {
     let mut breaks = defaults::Breaks::new("0\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}"));
@@ -4428,7 +4428,7 @@ fn test_473() {
 }
 
 #[test]
-fn test_474() {
+fn test_0474() {
     let mut breaks = defaults::Breaks::new("0\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0"));
@@ -4437,7 +4437,7 @@ fn test_474() {
 }
 
 #[test]
-fn test_475() {
+fn test_0475() {
     let mut breaks = defaults::Breaks::new("0\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}"));
@@ -4446,7 +4446,7 @@ fn test_475() {
 }
 
 #[test]
-fn test_476() {
+fn test_0476() {
     let mut breaks = defaults::Breaks::new("0\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0"));
@@ -4455,7 +4455,7 @@ fn test_476() {
 }
 
 #[test]
-fn test_477() {
+fn test_0477() {
     let mut breaks = defaults::Breaks::new("0\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}"));
@@ -4464,7 +4464,7 @@ fn test_477() {
 }
 
 #[test]
-fn test_478() {
+fn test_0478() {
     let mut breaks = defaults::Breaks::new("0A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0A"));
@@ -4472,7 +4472,7 @@ fn test_478() {
 }
 
 #[test]
-fn test_479() {
+fn test_0479() {
     let mut breaks = defaults::Breaks::new("0\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}A"));
@@ -4480,7 +4480,7 @@ fn test_479() {
 }
 
 #[test]
-fn test_480() {
+fn test_0480() {
     let mut breaks = defaults::Breaks::new("0:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0"));
@@ -4489,7 +4489,7 @@ fn test_480() {
 }
 
 #[test]
-fn test_481() {
+fn test_0481() {
     let mut breaks = defaults::Breaks::new("0\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}"));
@@ -4498,7 +4498,7 @@ fn test_481() {
 }
 
 #[test]
-fn test_482() {
+fn test_0482() {
     let mut breaks = defaults::Breaks::new("0,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0"));
@@ -4507,7 +4507,7 @@ fn test_482() {
 }
 
 #[test]
-fn test_483() {
+fn test_0483() {
     let mut breaks = defaults::Breaks::new("0\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}"));
@@ -4516,7 +4516,7 @@ fn test_483() {
 }
 
 #[test]
-fn test_484() {
+fn test_0484() {
     let mut breaks = defaults::Breaks::new("0.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0"));
@@ -4525,7 +4525,7 @@ fn test_484() {
 }
 
 #[test]
-fn test_485() {
+fn test_0485() {
     let mut breaks = defaults::Breaks::new("0\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}"));
@@ -4534,7 +4534,7 @@ fn test_485() {
 }
 
 #[test]
-fn test_486() {
+fn test_0486() {
     let mut breaks = defaults::Breaks::new("00",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("00"));
@@ -4542,7 +4542,7 @@ fn test_486() {
 }
 
 #[test]
-fn test_487() {
+fn test_0487() {
     let mut breaks = defaults::Breaks::new("0\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}0"));
@@ -4550,7 +4550,7 @@ fn test_487() {
 }
 
 #[test]
-fn test_488() {
+fn test_0488() {
     let mut breaks = defaults::Breaks::new("0_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0_"));
@@ -4558,7 +4558,7 @@ fn test_488() {
 }
 
 #[test]
-fn test_489() {
+fn test_0489() {
     let mut breaks = defaults::Breaks::new("0\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}_"));
@@ -4566,7 +4566,7 @@ fn test_489() {
 }
 
 #[test]
-fn test_490() {
+fn test_0490() {
     let mut breaks = defaults::Breaks::new("0\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0"));
@@ -4575,7 +4575,7 @@ fn test_490() {
 }
 
 #[test]
-fn test_491() {
+fn test_0491() {
     let mut breaks = defaults::Breaks::new("0\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}"));
@@ -4584,7 +4584,7 @@ fn test_491() {
 }
 
 #[test]
-fn test_492() {
+fn test_0492() {
     let mut breaks = defaults::Breaks::new("0\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{5d0}"));
@@ -4592,7 +4592,7 @@ fn test_492() {
 }
 
 #[test]
-fn test_493() {
+fn test_0493() {
     let mut breaks = defaults::Breaks::new("0\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}\u{5d0}"));
@@ -4600,7 +4600,7 @@ fn test_493() {
 }
 
 #[test]
-fn test_494() {
+fn test_0494() {
     let mut breaks = defaults::Breaks::new("0\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0"));
@@ -4609,7 +4609,7 @@ fn test_494() {
 }
 
 #[test]
-fn test_495() {
+fn test_0495() {
     let mut breaks = defaults::Breaks::new("0\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}"));
@@ -4618,7 +4618,7 @@ fn test_495() {
 }
 
 #[test]
-fn test_496() {
+fn test_0496() {
     let mut breaks = defaults::Breaks::new("0'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0"));
@@ -4627,7 +4627,7 @@ fn test_496() {
 }
 
 #[test]
-fn test_497() {
+fn test_0497() {
     let mut breaks = defaults::Breaks::new("0\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}"));
@@ -4636,7 +4636,7 @@ fn test_497() {
 }
 
 #[test]
-fn test_498() {
+fn test_0498() {
     let mut breaks = defaults::Breaks::new("0\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{ad}"));
@@ -4644,7 +4644,7 @@ fn test_498() {
 }
 
 #[test]
-fn test_499() {
+fn test_0499() {
     let mut breaks = defaults::Breaks::new("0\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}\u{ad}"));
@@ -4652,7 +4652,7 @@ fn test_499() {
 }
 
 #[test]
-fn test_500() {
+fn test_0500() {
     let mut breaks = defaults::Breaks::new("0\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{300}"));
@@ -4660,7 +4660,7 @@ fn test_500() {
 }
 
 #[test]
-fn test_501() {
+fn test_0501() {
     let mut breaks = defaults::Breaks::new("0\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}\u{300}"));
@@ -4668,7 +4668,7 @@ fn test_501() {
 }
 
 #[test]
-fn test_502() {
+fn test_0502() {
     let mut breaks = defaults::Breaks::new("0a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0a\u{2060}"));
@@ -4676,7 +4676,7 @@ fn test_502() {
 }
 
 #[test]
-fn test_503() {
+fn test_0503() {
     let mut breaks = defaults::Breaks::new("0\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}a\u{2060}"));
@@ -4684,7 +4684,7 @@ fn test_503() {
 }
 
 #[test]
-fn test_504() {
+fn test_0504() {
     let mut breaks = defaults::Breaks::new("0a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0a"));
@@ -4693,7 +4693,7 @@ fn test_504() {
 }
 
 #[test]
-fn test_505() {
+fn test_0505() {
     let mut breaks = defaults::Breaks::new("0\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}a"));
@@ -4702,7 +4702,7 @@ fn test_505() {
 }
 
 #[test]
-fn test_506() {
+fn test_0506() {
     let mut breaks = defaults::Breaks::new("0a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0a"));
@@ -4711,7 +4711,7 @@ fn test_506() {
 }
 
 #[test]
-fn test_507() {
+fn test_0507() {
     let mut breaks = defaults::Breaks::new("0\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}a"));
@@ -4720,7 +4720,7 @@ fn test_507() {
 }
 
 #[test]
-fn test_508() {
+fn test_0508() {
     let mut breaks = defaults::Breaks::new("0a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0a"));
@@ -4729,7 +4729,7 @@ fn test_508() {
 }
 
 #[test]
-fn test_509() {
+fn test_0509() {
     let mut breaks = defaults::Breaks::new("0\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}a"));
@@ -4738,7 +4738,7 @@ fn test_509() {
 }
 
 #[test]
-fn test_510() {
+fn test_0510() {
     let mut breaks = defaults::Breaks::new("0a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0a"));
@@ -4747,7 +4747,7 @@ fn test_510() {
 }
 
 #[test]
-fn test_511() {
+fn test_0511() {
     let mut breaks = defaults::Breaks::new("0\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}a"));
@@ -4756,7 +4756,7 @@ fn test_511() {
 }
 
 #[test]
-fn test_512() {
+fn test_0512() {
     let mut breaks = defaults::Breaks::new("01:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("01"));
@@ -4765,7 +4765,7 @@ fn test_512() {
 }
 
 #[test]
-fn test_513() {
+fn test_0513() {
     let mut breaks = defaults::Breaks::new("0\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}1"));
@@ -4774,7 +4774,7 @@ fn test_513() {
 }
 
 #[test]
-fn test_514() {
+fn test_0514() {
     let mut breaks = defaults::Breaks::new("01'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("01"));
@@ -4783,7 +4783,7 @@ fn test_514() {
 }
 
 #[test]
-fn test_515() {
+fn test_0515() {
     let mut breaks = defaults::Breaks::new("0\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}1"));
@@ -4792,7 +4792,7 @@ fn test_515() {
 }
 
 #[test]
-fn test_516() {
+fn test_0516() {
     let mut breaks = defaults::Breaks::new("01,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("01"));
@@ -4801,7 +4801,7 @@ fn test_516() {
 }
 
 #[test]
-fn test_517() {
+fn test_0517() {
     let mut breaks = defaults::Breaks::new("0\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}1"));
@@ -4810,7 +4810,7 @@ fn test_517() {
 }
 
 #[test]
-fn test_518() {
+fn test_0518() {
     let mut breaks = defaults::Breaks::new("01.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("01"));
@@ -4819,7 +4819,7 @@ fn test_518() {
 }
 
 #[test]
-fn test_519() {
+fn test_0519() {
     let mut breaks = defaults::Breaks::new("0\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("0\u{308}1"));
@@ -4828,7 +4828,7 @@ fn test_519() {
 }
 
 #[test]
-fn test_520() {
+fn test_0520() {
     let mut breaks = defaults::Breaks::new("_\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_"));
@@ -4837,7 +4837,7 @@ fn test_520() {
 }
 
 #[test]
-fn test_521() {
+fn test_0521() {
     let mut breaks = defaults::Breaks::new("_\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}"));
@@ -4846,7 +4846,7 @@ fn test_521() {
 }
 
 #[test]
-fn test_522() {
+fn test_0522() {
     let mut breaks = defaults::Breaks::new("_\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_"));
@@ -4855,7 +4855,7 @@ fn test_522() {
 }
 
 #[test]
-fn test_523() {
+fn test_0523() {
     let mut breaks = defaults::Breaks::new("_\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}"));
@@ -4864,7 +4864,7 @@ fn test_523() {
 }
 
 #[test]
-fn test_524() {
+fn test_0524() {
     let mut breaks = defaults::Breaks::new("_\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_"));
@@ -4873,7 +4873,7 @@ fn test_524() {
 }
 
 #[test]
-fn test_525() {
+fn test_0525() {
     let mut breaks = defaults::Breaks::new("_\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}"));
@@ -4882,7 +4882,7 @@ fn test_525() {
 }
 
 #[test]
-fn test_526() {
+fn test_0526() {
     let mut breaks = defaults::Breaks::new("_\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_"));
@@ -4891,7 +4891,7 @@ fn test_526() {
 }
 
 #[test]
-fn test_527() {
+fn test_0527() {
     let mut breaks = defaults::Breaks::new("_\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}"));
@@ -4900,7 +4900,7 @@ fn test_527() {
 }
 
 #[test]
-fn test_528() {
+fn test_0528() {
     let mut breaks = defaults::Breaks::new("_\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{3031}"));
@@ -4908,7 +4908,7 @@ fn test_528() {
 }
 
 #[test]
-fn test_529() {
+fn test_0529() {
     let mut breaks = defaults::Breaks::new("_\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}\u{3031}"));
@@ -4916,7 +4916,7 @@ fn test_529() {
 }
 
 #[test]
-fn test_530() {
+fn test_0530() {
     let mut breaks = defaults::Breaks::new("_A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_A"));
@@ -4924,7 +4924,7 @@ fn test_530() {
 }
 
 #[test]
-fn test_531() {
+fn test_0531() {
     let mut breaks = defaults::Breaks::new("_\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}A"));
@@ -4932,7 +4932,7 @@ fn test_531() {
 }
 
 #[test]
-fn test_532() {
+fn test_0532() {
     let mut breaks = defaults::Breaks::new("_:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_"));
@@ -4941,7 +4941,7 @@ fn test_532() {
 }
 
 #[test]
-fn test_533() {
+fn test_0533() {
     let mut breaks = defaults::Breaks::new("_\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}"));
@@ -4950,7 +4950,7 @@ fn test_533() {
 }
 
 #[test]
-fn test_534() {
+fn test_0534() {
     let mut breaks = defaults::Breaks::new("_,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_"));
@@ -4959,7 +4959,7 @@ fn test_534() {
 }
 
 #[test]
-fn test_535() {
+fn test_0535() {
     let mut breaks = defaults::Breaks::new("_\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}"));
@@ -4968,7 +4968,7 @@ fn test_535() {
 }
 
 #[test]
-fn test_536() {
+fn test_0536() {
     let mut breaks = defaults::Breaks::new("_.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_"));
@@ -4977,7 +4977,7 @@ fn test_536() {
 }
 
 #[test]
-fn test_537() {
+fn test_0537() {
     let mut breaks = defaults::Breaks::new("_\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}"));
@@ -4986,7 +4986,7 @@ fn test_537() {
 }
 
 #[test]
-fn test_538() {
+fn test_0538() {
     let mut breaks = defaults::Breaks::new("_0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_0"));
@@ -4994,7 +4994,7 @@ fn test_538() {
 }
 
 #[test]
-fn test_539() {
+fn test_0539() {
     let mut breaks = defaults::Breaks::new("_\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}0"));
@@ -5002,7 +5002,7 @@ fn test_539() {
 }
 
 #[test]
-fn test_540() {
+fn test_0540() {
     let mut breaks = defaults::Breaks::new("__",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("__"));
@@ -5010,7 +5010,7 @@ fn test_540() {
 }
 
 #[test]
-fn test_541() {
+fn test_0541() {
     let mut breaks = defaults::Breaks::new("_\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}_"));
@@ -5018,7 +5018,7 @@ fn test_541() {
 }
 
 #[test]
-fn test_542() {
+fn test_0542() {
     let mut breaks = defaults::Breaks::new("_\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_"));
@@ -5027,7 +5027,7 @@ fn test_542() {
 }
 
 #[test]
-fn test_543() {
+fn test_0543() {
     let mut breaks = defaults::Breaks::new("_\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}"));
@@ -5036,7 +5036,7 @@ fn test_543() {
 }
 
 #[test]
-fn test_544() {
+fn test_0544() {
     let mut breaks = defaults::Breaks::new("_\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{5d0}"));
@@ -5044,7 +5044,7 @@ fn test_544() {
 }
 
 #[test]
-fn test_545() {
+fn test_0545() {
     let mut breaks = defaults::Breaks::new("_\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}\u{5d0}"));
@@ -5052,7 +5052,7 @@ fn test_545() {
 }
 
 #[test]
-fn test_546() {
+fn test_0546() {
     let mut breaks = defaults::Breaks::new("_\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_"));
@@ -5061,7 +5061,7 @@ fn test_546() {
 }
 
 #[test]
-fn test_547() {
+fn test_0547() {
     let mut breaks = defaults::Breaks::new("_\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}"));
@@ -5070,7 +5070,7 @@ fn test_547() {
 }
 
 #[test]
-fn test_548() {
+fn test_0548() {
     let mut breaks = defaults::Breaks::new("_'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_"));
@@ -5079,7 +5079,7 @@ fn test_548() {
 }
 
 #[test]
-fn test_549() {
+fn test_0549() {
     let mut breaks = defaults::Breaks::new("_\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}"));
@@ -5088,7 +5088,7 @@ fn test_549() {
 }
 
 #[test]
-fn test_550() {
+fn test_0550() {
     let mut breaks = defaults::Breaks::new("_\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{ad}"));
@@ -5096,7 +5096,7 @@ fn test_550() {
 }
 
 #[test]
-fn test_551() {
+fn test_0551() {
     let mut breaks = defaults::Breaks::new("_\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}\u{ad}"));
@@ -5104,7 +5104,7 @@ fn test_551() {
 }
 
 #[test]
-fn test_552() {
+fn test_0552() {
     let mut breaks = defaults::Breaks::new("_\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{300}"));
@@ -5112,7 +5112,7 @@ fn test_552() {
 }
 
 #[test]
-fn test_553() {
+fn test_0553() {
     let mut breaks = defaults::Breaks::new("_\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}\u{300}"));
@@ -5120,7 +5120,7 @@ fn test_553() {
 }
 
 #[test]
-fn test_554() {
+fn test_0554() {
     let mut breaks = defaults::Breaks::new("_a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_a\u{2060}"));
@@ -5128,7 +5128,7 @@ fn test_554() {
 }
 
 #[test]
-fn test_555() {
+fn test_0555() {
     let mut breaks = defaults::Breaks::new("_\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}a\u{2060}"));
@@ -5136,7 +5136,7 @@ fn test_555() {
 }
 
 #[test]
-fn test_556() {
+fn test_0556() {
     let mut breaks = defaults::Breaks::new("_a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_a"));
@@ -5145,7 +5145,7 @@ fn test_556() {
 }
 
 #[test]
-fn test_557() {
+fn test_0557() {
     let mut breaks = defaults::Breaks::new("_\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}a"));
@@ -5154,7 +5154,7 @@ fn test_557() {
 }
 
 #[test]
-fn test_558() {
+fn test_0558() {
     let mut breaks = defaults::Breaks::new("_a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_a"));
@@ -5163,7 +5163,7 @@ fn test_558() {
 }
 
 #[test]
-fn test_559() {
+fn test_0559() {
     let mut breaks = defaults::Breaks::new("_\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}a"));
@@ -5172,7 +5172,7 @@ fn test_559() {
 }
 
 #[test]
-fn test_560() {
+fn test_0560() {
     let mut breaks = defaults::Breaks::new("_a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_a"));
@@ -5181,7 +5181,7 @@ fn test_560() {
 }
 
 #[test]
-fn test_561() {
+fn test_0561() {
     let mut breaks = defaults::Breaks::new("_\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}a"));
@@ -5190,7 +5190,7 @@ fn test_561() {
 }
 
 #[test]
-fn test_562() {
+fn test_0562() {
     let mut breaks = defaults::Breaks::new("_a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_a"));
@@ -5199,7 +5199,7 @@ fn test_562() {
 }
 
 #[test]
-fn test_563() {
+fn test_0563() {
     let mut breaks = defaults::Breaks::new("_\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}a"));
@@ -5208,7 +5208,7 @@ fn test_563() {
 }
 
 #[test]
-fn test_564() {
+fn test_0564() {
     let mut breaks = defaults::Breaks::new("_1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_1"));
@@ -5217,7 +5217,7 @@ fn test_564() {
 }
 
 #[test]
-fn test_565() {
+fn test_0565() {
     let mut breaks = defaults::Breaks::new("_\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}1"));
@@ -5226,7 +5226,7 @@ fn test_565() {
 }
 
 #[test]
-fn test_566() {
+fn test_0566() {
     let mut breaks = defaults::Breaks::new("_1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_1"));
@@ -5235,7 +5235,7 @@ fn test_566() {
 }
 
 #[test]
-fn test_567() {
+fn test_0567() {
     let mut breaks = defaults::Breaks::new("_\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}1"));
@@ -5244,7 +5244,7 @@ fn test_567() {
 }
 
 #[test]
-fn test_568() {
+fn test_0568() {
     let mut breaks = defaults::Breaks::new("_1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_1"));
@@ -5253,7 +5253,7 @@ fn test_568() {
 }
 
 #[test]
-fn test_569() {
+fn test_0569() {
     let mut breaks = defaults::Breaks::new("_\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}1"));
@@ -5262,7 +5262,7 @@ fn test_569() {
 }
 
 #[test]
-fn test_570() {
+fn test_0570() {
     let mut breaks = defaults::Breaks::new("_1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_1"));
@@ -5271,7 +5271,7 @@ fn test_570() {
 }
 
 #[test]
-fn test_571() {
+fn test_0571() {
     let mut breaks = defaults::Breaks::new("_\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("_\u{308}1"));
@@ -5280,7 +5280,7 @@ fn test_571() {
 }
 
 #[test]
-fn test_572() {
+fn test_0572() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5289,7 +5289,7 @@ fn test_572() {
 }
 
 #[test]
-fn test_573() {
+fn test_0573() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5298,7 +5298,7 @@ fn test_573() {
 }
 
 #[test]
-fn test_574() {
+fn test_0574() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5307,7 +5307,7 @@ fn test_574() {
 }
 
 #[test]
-fn test_575() {
+fn test_0575() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5316,7 +5316,7 @@ fn test_575() {
 }
 
 #[test]
-fn test_576() {
+fn test_0576() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5325,7 +5325,7 @@ fn test_576() {
 }
 
 #[test]
-fn test_577() {
+fn test_0577() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5334,7 +5334,7 @@ fn test_577() {
 }
 
 #[test]
-fn test_578() {
+fn test_0578() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5343,7 +5343,7 @@ fn test_578() {
 }
 
 #[test]
-fn test_579() {
+fn test_0579() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5352,7 +5352,7 @@ fn test_579() {
 }
 
 #[test]
-fn test_580() {
+fn test_0580() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5361,7 +5361,7 @@ fn test_580() {
 }
 
 #[test]
-fn test_581() {
+fn test_0581() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5370,7 +5370,7 @@ fn test_581() {
 }
 
 #[test]
-fn test_582() {
+fn test_0582() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5379,7 +5379,7 @@ fn test_582() {
 }
 
 #[test]
-fn test_583() {
+fn test_0583() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5388,7 +5388,7 @@ fn test_583() {
 }
 
 #[test]
-fn test_584() {
+fn test_0584() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5397,7 +5397,7 @@ fn test_584() {
 }
 
 #[test]
-fn test_585() {
+fn test_0585() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5406,7 +5406,7 @@ fn test_585() {
 }
 
 #[test]
-fn test_586() {
+fn test_0586() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5415,7 +5415,7 @@ fn test_586() {
 }
 
 #[test]
-fn test_587() {
+fn test_0587() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5424,7 +5424,7 @@ fn test_587() {
 }
 
 #[test]
-fn test_588() {
+fn test_0588() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5433,7 +5433,7 @@ fn test_588() {
 }
 
 #[test]
-fn test_589() {
+fn test_0589() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5442,7 +5442,7 @@ fn test_589() {
 }
 
 #[test]
-fn test_590() {
+fn test_0590() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5451,7 +5451,7 @@ fn test_590() {
 }
 
 #[test]
-fn test_591() {
+fn test_0591() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5460,7 +5460,7 @@ fn test_591() {
 }
 
 #[test]
-fn test_592() {
+fn test_0592() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5469,7 +5469,7 @@ fn test_592() {
 }
 
 #[test]
-fn test_593() {
+fn test_0593() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5478,7 +5478,7 @@ fn test_593() {
 }
 
 #[test]
-fn test_594() {
+fn test_0594() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{1f1e6}"));
@@ -5486,7 +5486,7 @@ fn test_594() {
 }
 
 #[test]
-fn test_595() {
+fn test_0595() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}\u{1f1e6}"));
@@ -5494,7 +5494,7 @@ fn test_595() {
 }
 
 #[test]
-fn test_596() {
+fn test_0596() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5503,7 +5503,7 @@ fn test_596() {
 }
 
 #[test]
-fn test_597() {
+fn test_0597() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5512,7 +5512,7 @@ fn test_597() {
 }
 
 #[test]
-fn test_598() {
+fn test_0598() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5521,7 +5521,7 @@ fn test_598() {
 }
 
 #[test]
-fn test_599() {
+fn test_0599() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5530,7 +5530,7 @@ fn test_599() {
 }
 
 #[test]
-fn test_600() {
+fn test_0600() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5539,7 +5539,7 @@ fn test_600() {
 }
 
 #[test]
-fn test_601() {
+fn test_0601() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5548,7 +5548,7 @@ fn test_601() {
 }
 
 #[test]
-fn test_602() {
+fn test_0602() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{ad}"));
@@ -5556,7 +5556,7 @@ fn test_602() {
 }
 
 #[test]
-fn test_603() {
+fn test_0603() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}\u{ad}"));
@@ -5564,7 +5564,7 @@ fn test_603() {
 }
 
 #[test]
-fn test_604() {
+fn test_0604() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{300}"));
@@ -5572,7 +5572,7 @@ fn test_604() {
 }
 
 #[test]
-fn test_605() {
+fn test_0605() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}\u{300}"));
@@ -5580,7 +5580,7 @@ fn test_605() {
 }
 
 #[test]
-fn test_606() {
+fn test_0606() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5589,7 +5589,7 @@ fn test_606() {
 }
 
 #[test]
-fn test_607() {
+fn test_0607() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5598,7 +5598,7 @@ fn test_607() {
 }
 
 #[test]
-fn test_608() {
+fn test_0608() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5608,7 +5608,7 @@ fn test_608() {
 }
 
 #[test]
-fn test_609() {
+fn test_0609() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5618,7 +5618,7 @@ fn test_609() {
 }
 
 #[test]
-fn test_610() {
+fn test_0610() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5628,7 +5628,7 @@ fn test_610() {
 }
 
 #[test]
-fn test_611() {
+fn test_0611() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5638,7 +5638,7 @@ fn test_611() {
 }
 
 #[test]
-fn test_612() {
+fn test_0612() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5648,7 +5648,7 @@ fn test_612() {
 }
 
 #[test]
-fn test_613() {
+fn test_0613() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5658,7 +5658,7 @@ fn test_613() {
 }
 
 #[test]
-fn test_614() {
+fn test_0614() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5668,7 +5668,7 @@ fn test_614() {
 }
 
 #[test]
-fn test_615() {
+fn test_0615() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5678,7 +5678,7 @@ fn test_615() {
 }
 
 #[test]
-fn test_616() {
+fn test_0616() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5688,7 +5688,7 @@ fn test_616() {
 }
 
 #[test]
-fn test_617() {
+fn test_0617() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5698,7 +5698,7 @@ fn test_617() {
 }
 
 #[test]
-fn test_618() {
+fn test_0618() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5708,7 +5708,7 @@ fn test_618() {
 }
 
 #[test]
-fn test_619() {
+fn test_0619() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5718,7 +5718,7 @@ fn test_619() {
 }
 
 #[test]
-fn test_620() {
+fn test_0620() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5728,7 +5728,7 @@ fn test_620() {
 }
 
 #[test]
-fn test_621() {
+fn test_0621() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5738,7 +5738,7 @@ fn test_621() {
 }
 
 #[test]
-fn test_622() {
+fn test_0622() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}"));
@@ -5748,7 +5748,7 @@ fn test_622() {
 }
 
 #[test]
-fn test_623() {
+fn test_0623() {
     let mut breaks = defaults::Breaks::new("\u{1f1e6}\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{1f1e6}\u{308}"));
@@ -5758,7 +5758,7 @@ fn test_623() {
 }
 
 #[test]
-fn test_624() {
+fn test_0624() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}"));
@@ -5767,7 +5767,7 @@ fn test_624() {
 }
 
 #[test]
-fn test_625() {
+fn test_0625() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}"));
@@ -5776,7 +5776,7 @@ fn test_625() {
 }
 
 #[test]
-fn test_626() {
+fn test_0626() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}"));
@@ -5785,7 +5785,7 @@ fn test_626() {
 }
 
 #[test]
-fn test_627() {
+fn test_0627() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}"));
@@ -5794,7 +5794,7 @@ fn test_627() {
 }
 
 #[test]
-fn test_628() {
+fn test_0628() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}"));
@@ -5803,7 +5803,7 @@ fn test_628() {
 }
 
 #[test]
-fn test_629() {
+fn test_0629() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}"));
@@ -5812,7 +5812,7 @@ fn test_629() {
 }
 
 #[test]
-fn test_630() {
+fn test_0630() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}"));
@@ -5821,7 +5821,7 @@ fn test_630() {
 }
 
 #[test]
-fn test_631() {
+fn test_0631() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}"));
@@ -5830,7 +5830,7 @@ fn test_631() {
 }
 
 #[test]
-fn test_632() {
+fn test_0632() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}"));
@@ -5839,7 +5839,7 @@ fn test_632() {
 }
 
 #[test]
-fn test_633() {
+fn test_0633() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}"));
@@ -5848,7 +5848,7 @@ fn test_633() {
 }
 
 #[test]
-fn test_634() {
+fn test_0634() {
     let mut breaks = defaults::Breaks::new("\u{5d0}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}A"));
@@ -5856,7 +5856,7 @@ fn test_634() {
 }
 
 #[test]
-fn test_635() {
+fn test_0635() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}A"));
@@ -5864,7 +5864,7 @@ fn test_635() {
 }
 
 #[test]
-fn test_636() {
+fn test_0636() {
     let mut breaks = defaults::Breaks::new("\u{5d0}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}"));
@@ -5873,7 +5873,7 @@ fn test_636() {
 }
 
 #[test]
-fn test_637() {
+fn test_0637() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}"));
@@ -5882,7 +5882,7 @@ fn test_637() {
 }
 
 #[test]
-fn test_638() {
+fn test_0638() {
     let mut breaks = defaults::Breaks::new("\u{5d0},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}"));
@@ -5891,7 +5891,7 @@ fn test_638() {
 }
 
 #[test]
-fn test_639() {
+fn test_0639() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}"));
@@ -5900,7 +5900,7 @@ fn test_639() {
 }
 
 #[test]
-fn test_640() {
+fn test_0640() {
     let mut breaks = defaults::Breaks::new("\u{5d0}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}"));
@@ -5909,7 +5909,7 @@ fn test_640() {
 }
 
 #[test]
-fn test_641() {
+fn test_0641() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}"));
@@ -5918,7 +5918,7 @@ fn test_641() {
 }
 
 #[test]
-fn test_642() {
+fn test_0642() {
     let mut breaks = defaults::Breaks::new("\u{5d0}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}0"));
@@ -5926,7 +5926,7 @@ fn test_642() {
 }
 
 #[test]
-fn test_643() {
+fn test_0643() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}0"));
@@ -5934,7 +5934,7 @@ fn test_643() {
 }
 
 #[test]
-fn test_644() {
+fn test_0644() {
     let mut breaks = defaults::Breaks::new("\u{5d0}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}_"));
@@ -5942,7 +5942,7 @@ fn test_644() {
 }
 
 #[test]
-fn test_645() {
+fn test_0645() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}_"));
@@ -5950,7 +5950,7 @@ fn test_645() {
 }
 
 #[test]
-fn test_646() {
+fn test_0646() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}"));
@@ -5959,7 +5959,7 @@ fn test_646() {
 }
 
 #[test]
-fn test_647() {
+fn test_0647() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}"));
@@ -5968,7 +5968,7 @@ fn test_647() {
 }
 
 #[test]
-fn test_648() {
+fn test_0648() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{5d0}"));
@@ -5976,7 +5976,7 @@ fn test_648() {
 }
 
 #[test]
-fn test_649() {
+fn test_0649() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}\u{5d0}"));
@@ -5984,7 +5984,7 @@ fn test_649() {
 }
 
 #[test]
-fn test_650() {
+fn test_0650() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}"));
@@ -5993,7 +5993,7 @@ fn test_650() {
 }
 
 #[test]
-fn test_651() {
+fn test_0651() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}"));
@@ -6002,7 +6002,7 @@ fn test_651() {
 }
 
 #[test]
-fn test_652() {
+fn test_0652() {
     let mut breaks = defaults::Breaks::new("\u{5d0}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}'"));
@@ -6010,7 +6010,7 @@ fn test_652() {
 }
 
 #[test]
-fn test_653() {
+fn test_0653() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}'"));
@@ -6018,7 +6018,7 @@ fn test_653() {
 }
 
 #[test]
-fn test_654() {
+fn test_0654() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{ad}"));
@@ -6026,7 +6026,7 @@ fn test_654() {
 }
 
 #[test]
-fn test_655() {
+fn test_0655() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}\u{ad}"));
@@ -6034,7 +6034,7 @@ fn test_655() {
 }
 
 #[test]
-fn test_656() {
+fn test_0656() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{300}"));
@@ -6042,7 +6042,7 @@ fn test_656() {
 }
 
 #[test]
-fn test_657() {
+fn test_0657() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}\u{300}"));
@@ -6050,7 +6050,7 @@ fn test_657() {
 }
 
 #[test]
-fn test_658() {
+fn test_0658() {
     let mut breaks = defaults::Breaks::new("\u{5d0}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}a\u{2060}"));
@@ -6058,7 +6058,7 @@ fn test_658() {
 }
 
 #[test]
-fn test_659() {
+fn test_0659() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}a\u{2060}"));
@@ -6066,7 +6066,7 @@ fn test_659() {
 }
 
 #[test]
-fn test_660() {
+fn test_0660() {
     let mut breaks = defaults::Breaks::new("\u{5d0}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}a"));
@@ -6075,7 +6075,7 @@ fn test_660() {
 }
 
 #[test]
-fn test_661() {
+fn test_0661() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}a"));
@@ -6084,7 +6084,7 @@ fn test_661() {
 }
 
 #[test]
-fn test_662() {
+fn test_0662() {
     let mut breaks = defaults::Breaks::new("\u{5d0}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}a"));
@@ -6093,7 +6093,7 @@ fn test_662() {
 }
 
 #[test]
-fn test_663() {
+fn test_0663() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}a"));
@@ -6102,7 +6102,7 @@ fn test_663() {
 }
 
 #[test]
-fn test_664() {
+fn test_0664() {
     let mut breaks = defaults::Breaks::new("\u{5d0}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}a"));
@@ -6111,7 +6111,7 @@ fn test_664() {
 }
 
 #[test]
-fn test_665() {
+fn test_0665() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}a"));
@@ -6120,7 +6120,7 @@ fn test_665() {
 }
 
 #[test]
-fn test_666() {
+fn test_0666() {
     let mut breaks = defaults::Breaks::new("\u{5d0}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}a"));
@@ -6129,7 +6129,7 @@ fn test_666() {
 }
 
 #[test]
-fn test_667() {
+fn test_0667() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}a"));
@@ -6138,7 +6138,7 @@ fn test_667() {
 }
 
 #[test]
-fn test_668() {
+fn test_0668() {
     let mut breaks = defaults::Breaks::new("\u{5d0}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}1"));
@@ -6147,7 +6147,7 @@ fn test_668() {
 }
 
 #[test]
-fn test_669() {
+fn test_0669() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}1"));
@@ -6156,7 +6156,7 @@ fn test_669() {
 }
 
 #[test]
-fn test_670() {
+fn test_0670() {
     let mut breaks = defaults::Breaks::new("\u{5d0}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}1"));
@@ -6165,7 +6165,7 @@ fn test_670() {
 }
 
 #[test]
-fn test_671() {
+fn test_0671() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}1"));
@@ -6174,7 +6174,7 @@ fn test_671() {
 }
 
 #[test]
-fn test_672() {
+fn test_0672() {
     let mut breaks = defaults::Breaks::new("\u{5d0}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}1"));
@@ -6183,7 +6183,7 @@ fn test_672() {
 }
 
 #[test]
-fn test_673() {
+fn test_0673() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}1"));
@@ -6192,7 +6192,7 @@ fn test_673() {
 }
 
 #[test]
-fn test_674() {
+fn test_0674() {
     let mut breaks = defaults::Breaks::new("\u{5d0}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}1"));
@@ -6201,7 +6201,7 @@ fn test_674() {
 }
 
 #[test]
-fn test_675() {
+fn test_0675() {
     let mut breaks = defaults::Breaks::new("\u{5d0}\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{5d0}\u{308}1"));
@@ -6210,7 +6210,7 @@ fn test_675() {
 }
 
 #[test]
-fn test_676() {
+fn test_0676() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6219,7 +6219,7 @@ fn test_676() {
 }
 
 #[test]
-fn test_677() {
+fn test_0677() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6228,7 +6228,7 @@ fn test_677() {
 }
 
 #[test]
-fn test_678() {
+fn test_0678() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6237,7 +6237,7 @@ fn test_678() {
 }
 
 #[test]
-fn test_679() {
+fn test_0679() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6246,7 +6246,7 @@ fn test_679() {
 }
 
 #[test]
-fn test_680() {
+fn test_0680() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6255,7 +6255,7 @@ fn test_680() {
 }
 
 #[test]
-fn test_681() {
+fn test_0681() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6264,7 +6264,7 @@ fn test_681() {
 }
 
 #[test]
-fn test_682() {
+fn test_0682() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6273,7 +6273,7 @@ fn test_682() {
 }
 
 #[test]
-fn test_683() {
+fn test_0683() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6282,7 +6282,7 @@ fn test_683() {
 }
 
 #[test]
-fn test_684() {
+fn test_0684() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6291,7 +6291,7 @@ fn test_684() {
 }
 
 #[test]
-fn test_685() {
+fn test_0685() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6300,7 +6300,7 @@ fn test_685() {
 }
 
 #[test]
-fn test_686() {
+fn test_0686() {
     let mut breaks = defaults::Breaks::new("\u{22}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6309,7 +6309,7 @@ fn test_686() {
 }
 
 #[test]
-fn test_687() {
+fn test_0687() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6318,7 +6318,7 @@ fn test_687() {
 }
 
 #[test]
-fn test_688() {
+fn test_0688() {
     let mut breaks = defaults::Breaks::new("\u{22}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6327,7 +6327,7 @@ fn test_688() {
 }
 
 #[test]
-fn test_689() {
+fn test_0689() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6336,7 +6336,7 @@ fn test_689() {
 }
 
 #[test]
-fn test_690() {
+fn test_0690() {
     let mut breaks = defaults::Breaks::new("\u{22},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6345,7 +6345,7 @@ fn test_690() {
 }
 
 #[test]
-fn test_691() {
+fn test_0691() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6354,7 +6354,7 @@ fn test_691() {
 }
 
 #[test]
-fn test_692() {
+fn test_0692() {
     let mut breaks = defaults::Breaks::new("\u{22}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6363,7 +6363,7 @@ fn test_692() {
 }
 
 #[test]
-fn test_693() {
+fn test_0693() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6372,7 +6372,7 @@ fn test_693() {
 }
 
 #[test]
-fn test_694() {
+fn test_0694() {
     let mut breaks = defaults::Breaks::new("\u{22}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6381,7 +6381,7 @@ fn test_694() {
 }
 
 #[test]
-fn test_695() {
+fn test_0695() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6390,7 +6390,7 @@ fn test_695() {
 }
 
 #[test]
-fn test_696() {
+fn test_0696() {
     let mut breaks = defaults::Breaks::new("\u{22}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6399,7 +6399,7 @@ fn test_696() {
 }
 
 #[test]
-fn test_697() {
+fn test_0697() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6408,7 +6408,7 @@ fn test_697() {
 }
 
 #[test]
-fn test_698() {
+fn test_0698() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6417,7 +6417,7 @@ fn test_698() {
 }
 
 #[test]
-fn test_699() {
+fn test_0699() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6426,7 +6426,7 @@ fn test_699() {
 }
 
 #[test]
-fn test_700() {
+fn test_0700() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6435,7 +6435,7 @@ fn test_700() {
 }
 
 #[test]
-fn test_701() {
+fn test_0701() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6444,7 +6444,7 @@ fn test_701() {
 }
 
 #[test]
-fn test_702() {
+fn test_0702() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6453,7 +6453,7 @@ fn test_702() {
 }
 
 #[test]
-fn test_703() {
+fn test_0703() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6462,7 +6462,7 @@ fn test_703() {
 }
 
 #[test]
-fn test_704() {
+fn test_0704() {
     let mut breaks = defaults::Breaks::new("\u{22}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6471,7 +6471,7 @@ fn test_704() {
 }
 
 #[test]
-fn test_705() {
+fn test_0705() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6480,7 +6480,7 @@ fn test_705() {
 }
 
 #[test]
-fn test_706() {
+fn test_0706() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{ad}"));
@@ -6488,7 +6488,7 @@ fn test_706() {
 }
 
 #[test]
-fn test_707() {
+fn test_0707() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}\u{ad}"));
@@ -6496,7 +6496,7 @@ fn test_707() {
 }
 
 #[test]
-fn test_708() {
+fn test_0708() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{300}"));
@@ -6504,7 +6504,7 @@ fn test_708() {
 }
 
 #[test]
-fn test_709() {
+fn test_0709() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}\u{300}"));
@@ -6512,7 +6512,7 @@ fn test_709() {
 }
 
 #[test]
-fn test_710() {
+fn test_0710() {
     let mut breaks = defaults::Breaks::new("\u{22}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6521,7 +6521,7 @@ fn test_710() {
 }
 
 #[test]
-fn test_711() {
+fn test_0711() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6530,7 +6530,7 @@ fn test_711() {
 }
 
 #[test]
-fn test_712() {
+fn test_0712() {
     let mut breaks = defaults::Breaks::new("\u{22}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6540,7 +6540,7 @@ fn test_712() {
 }
 
 #[test]
-fn test_713() {
+fn test_0713() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6550,7 +6550,7 @@ fn test_713() {
 }
 
 #[test]
-fn test_714() {
+fn test_0714() {
     let mut breaks = defaults::Breaks::new("\u{22}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6560,7 +6560,7 @@ fn test_714() {
 }
 
 #[test]
-fn test_715() {
+fn test_0715() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6570,7 +6570,7 @@ fn test_715() {
 }
 
 #[test]
-fn test_716() {
+fn test_0716() {
     let mut breaks = defaults::Breaks::new("\u{22}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6580,7 +6580,7 @@ fn test_716() {
 }
 
 #[test]
-fn test_717() {
+fn test_0717() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6590,7 +6590,7 @@ fn test_717() {
 }
 
 #[test]
-fn test_718() {
+fn test_0718() {
     let mut breaks = defaults::Breaks::new("\u{22}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6600,7 +6600,7 @@ fn test_718() {
 }
 
 #[test]
-fn test_719() {
+fn test_0719() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6610,7 +6610,7 @@ fn test_719() {
 }
 
 #[test]
-fn test_720() {
+fn test_0720() {
     let mut breaks = defaults::Breaks::new("\u{22}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6620,7 +6620,7 @@ fn test_720() {
 }
 
 #[test]
-fn test_721() {
+fn test_0721() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6630,7 +6630,7 @@ fn test_721() {
 }
 
 #[test]
-fn test_722() {
+fn test_0722() {
     let mut breaks = defaults::Breaks::new("\u{22}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6640,7 +6640,7 @@ fn test_722() {
 }
 
 #[test]
-fn test_723() {
+fn test_0723() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6650,7 +6650,7 @@ fn test_723() {
 }
 
 #[test]
-fn test_724() {
+fn test_0724() {
     let mut breaks = defaults::Breaks::new("\u{22}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6660,7 +6660,7 @@ fn test_724() {
 }
 
 #[test]
-fn test_725() {
+fn test_0725() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6670,7 +6670,7 @@ fn test_725() {
 }
 
 #[test]
-fn test_726() {
+fn test_0726() {
     let mut breaks = defaults::Breaks::new("\u{22}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}"));
@@ -6680,7 +6680,7 @@ fn test_726() {
 }
 
 #[test]
-fn test_727() {
+fn test_0727() {
     let mut breaks = defaults::Breaks::new("\u{22}\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{22}\u{308}"));
@@ -6690,7 +6690,7 @@ fn test_727() {
 }
 
 #[test]
-fn test_728() {
+fn test_0728() {
     let mut breaks = defaults::Breaks::new("'\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -6699,7 +6699,7 @@ fn test_728() {
 }
 
 #[test]
-fn test_729() {
+fn test_0729() {
     let mut breaks = defaults::Breaks::new("'\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -6708,7 +6708,7 @@ fn test_729() {
 }
 
 #[test]
-fn test_730() {
+fn test_0730() {
     let mut breaks = defaults::Breaks::new("'\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -6717,7 +6717,7 @@ fn test_730() {
 }
 
 #[test]
-fn test_731() {
+fn test_0731() {
     let mut breaks = defaults::Breaks::new("'\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -6726,7 +6726,7 @@ fn test_731() {
 }
 
 #[test]
-fn test_732() {
+fn test_0732() {
     let mut breaks = defaults::Breaks::new("'\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -6735,7 +6735,7 @@ fn test_732() {
 }
 
 #[test]
-fn test_733() {
+fn test_0733() {
     let mut breaks = defaults::Breaks::new("'\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -6744,7 +6744,7 @@ fn test_733() {
 }
 
 #[test]
-fn test_734() {
+fn test_0734() {
     let mut breaks = defaults::Breaks::new("'\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -6753,7 +6753,7 @@ fn test_734() {
 }
 
 #[test]
-fn test_735() {
+fn test_0735() {
     let mut breaks = defaults::Breaks::new("'\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -6762,7 +6762,7 @@ fn test_735() {
 }
 
 #[test]
-fn test_736() {
+fn test_0736() {
     let mut breaks = defaults::Breaks::new("'\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -6771,7 +6771,7 @@ fn test_736() {
 }
 
 #[test]
-fn test_737() {
+fn test_0737() {
     let mut breaks = defaults::Breaks::new("'\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -6780,7 +6780,7 @@ fn test_737() {
 }
 
 #[test]
-fn test_738() {
+fn test_0738() {
     let mut breaks = defaults::Breaks::new("'A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -6789,7 +6789,7 @@ fn test_738() {
 }
 
 #[test]
-fn test_739() {
+fn test_0739() {
     let mut breaks = defaults::Breaks::new("'\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -6798,7 +6798,7 @@ fn test_739() {
 }
 
 #[test]
-fn test_740() {
+fn test_0740() {
     let mut breaks = defaults::Breaks::new("':",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -6807,7 +6807,7 @@ fn test_740() {
 }
 
 #[test]
-fn test_741() {
+fn test_0741() {
     let mut breaks = defaults::Breaks::new("'\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -6816,7 +6816,7 @@ fn test_741() {
 }
 
 #[test]
-fn test_742() {
+fn test_0742() {
     let mut breaks = defaults::Breaks::new("',",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -6825,7 +6825,7 @@ fn test_742() {
 }
 
 #[test]
-fn test_743() {
+fn test_0743() {
     let mut breaks = defaults::Breaks::new("'\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -6834,7 +6834,7 @@ fn test_743() {
 }
 
 #[test]
-fn test_744() {
+fn test_0744() {
     let mut breaks = defaults::Breaks::new("'.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -6843,7 +6843,7 @@ fn test_744() {
 }
 
 #[test]
-fn test_745() {
+fn test_0745() {
     let mut breaks = defaults::Breaks::new("'\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -6852,7 +6852,7 @@ fn test_745() {
 }
 
 #[test]
-fn test_746() {
+fn test_0746() {
     let mut breaks = defaults::Breaks::new("'0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -6861,7 +6861,7 @@ fn test_746() {
 }
 
 #[test]
-fn test_747() {
+fn test_0747() {
     let mut breaks = defaults::Breaks::new("'\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -6870,7 +6870,7 @@ fn test_747() {
 }
 
 #[test]
-fn test_748() {
+fn test_0748() {
     let mut breaks = defaults::Breaks::new("'_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -6879,7 +6879,7 @@ fn test_748() {
 }
 
 #[test]
-fn test_749() {
+fn test_0749() {
     let mut breaks = defaults::Breaks::new("'\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -6888,7 +6888,7 @@ fn test_749() {
 }
 
 #[test]
-fn test_750() {
+fn test_0750() {
     let mut breaks = defaults::Breaks::new("'\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -6897,7 +6897,7 @@ fn test_750() {
 }
 
 #[test]
-fn test_751() {
+fn test_0751() {
     let mut breaks = defaults::Breaks::new("'\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -6906,7 +6906,7 @@ fn test_751() {
 }
 
 #[test]
-fn test_752() {
+fn test_0752() {
     let mut breaks = defaults::Breaks::new("'\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -6915,7 +6915,7 @@ fn test_752() {
 }
 
 #[test]
-fn test_753() {
+fn test_0753() {
     let mut breaks = defaults::Breaks::new("'\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -6924,7 +6924,7 @@ fn test_753() {
 }
 
 #[test]
-fn test_754() {
+fn test_0754() {
     let mut breaks = defaults::Breaks::new("'\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -6933,7 +6933,7 @@ fn test_754() {
 }
 
 #[test]
-fn test_755() {
+fn test_0755() {
     let mut breaks = defaults::Breaks::new("'\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -6942,7 +6942,7 @@ fn test_755() {
 }
 
 #[test]
-fn test_756() {
+fn test_0756() {
     let mut breaks = defaults::Breaks::new("''",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -6951,7 +6951,7 @@ fn test_756() {
 }
 
 #[test]
-fn test_757() {
+fn test_0757() {
     let mut breaks = defaults::Breaks::new("'\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -6960,7 +6960,7 @@ fn test_757() {
 }
 
 #[test]
-fn test_758() {
+fn test_0758() {
     let mut breaks = defaults::Breaks::new("'\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{ad}"));
@@ -6968,7 +6968,7 @@ fn test_758() {
 }
 
 #[test]
-fn test_759() {
+fn test_0759() {
     let mut breaks = defaults::Breaks::new("'\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}\u{ad}"));
@@ -6976,7 +6976,7 @@ fn test_759() {
 }
 
 #[test]
-fn test_760() {
+fn test_0760() {
     let mut breaks = defaults::Breaks::new("'\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{300}"));
@@ -6984,7 +6984,7 @@ fn test_760() {
 }
 
 #[test]
-fn test_761() {
+fn test_0761() {
     let mut breaks = defaults::Breaks::new("'\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}\u{300}"));
@@ -6992,7 +6992,7 @@ fn test_761() {
 }
 
 #[test]
-fn test_762() {
+fn test_0762() {
     let mut breaks = defaults::Breaks::new("'a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -7001,7 +7001,7 @@ fn test_762() {
 }
 
 #[test]
-fn test_763() {
+fn test_0763() {
     let mut breaks = defaults::Breaks::new("'\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -7010,7 +7010,7 @@ fn test_763() {
 }
 
 #[test]
-fn test_764() {
+fn test_0764() {
     let mut breaks = defaults::Breaks::new("'a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -7020,7 +7020,7 @@ fn test_764() {
 }
 
 #[test]
-fn test_765() {
+fn test_0765() {
     let mut breaks = defaults::Breaks::new("'\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -7030,7 +7030,7 @@ fn test_765() {
 }
 
 #[test]
-fn test_766() {
+fn test_0766() {
     let mut breaks = defaults::Breaks::new("'a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -7040,7 +7040,7 @@ fn test_766() {
 }
 
 #[test]
-fn test_767() {
+fn test_0767() {
     let mut breaks = defaults::Breaks::new("'\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -7050,7 +7050,7 @@ fn test_767() {
 }
 
 #[test]
-fn test_768() {
+fn test_0768() {
     let mut breaks = defaults::Breaks::new("'a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -7060,7 +7060,7 @@ fn test_768() {
 }
 
 #[test]
-fn test_769() {
+fn test_0769() {
     let mut breaks = defaults::Breaks::new("'\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -7070,7 +7070,7 @@ fn test_769() {
 }
 
 #[test]
-fn test_770() {
+fn test_0770() {
     let mut breaks = defaults::Breaks::new("'a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -7080,7 +7080,7 @@ fn test_770() {
 }
 
 #[test]
-fn test_771() {
+fn test_0771() {
     let mut breaks = defaults::Breaks::new("'\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -7090,7 +7090,7 @@ fn test_771() {
 }
 
 #[test]
-fn test_772() {
+fn test_0772() {
     let mut breaks = defaults::Breaks::new("'1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -7100,7 +7100,7 @@ fn test_772() {
 }
 
 #[test]
-fn test_773() {
+fn test_0773() {
     let mut breaks = defaults::Breaks::new("'\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -7110,7 +7110,7 @@ fn test_773() {
 }
 
 #[test]
-fn test_774() {
+fn test_0774() {
     let mut breaks = defaults::Breaks::new("'1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -7120,7 +7120,7 @@ fn test_774() {
 }
 
 #[test]
-fn test_775() {
+fn test_0775() {
     let mut breaks = defaults::Breaks::new("'\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -7130,7 +7130,7 @@ fn test_775() {
 }
 
 #[test]
-fn test_776() {
+fn test_0776() {
     let mut breaks = defaults::Breaks::new("'1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -7140,7 +7140,7 @@ fn test_776() {
 }
 
 #[test]
-fn test_777() {
+fn test_0777() {
     let mut breaks = defaults::Breaks::new("'\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -7150,7 +7150,7 @@ fn test_777() {
 }
 
 #[test]
-fn test_778() {
+fn test_0778() {
     let mut breaks = defaults::Breaks::new("'1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'"));
@@ -7160,7 +7160,7 @@ fn test_778() {
 }
 
 #[test]
-fn test_779() {
+fn test_0779() {
     let mut breaks = defaults::Breaks::new("'\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("'\u{308}"));
@@ -7170,7 +7170,7 @@ fn test_779() {
 }
 
 #[test]
-fn test_780() {
+fn test_0780() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7179,7 +7179,7 @@ fn test_780() {
 }
 
 #[test]
-fn test_781() {
+fn test_0781() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7188,7 +7188,7 @@ fn test_781() {
 }
 
 #[test]
-fn test_782() {
+fn test_0782() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7197,7 +7197,7 @@ fn test_782() {
 }
 
 #[test]
-fn test_783() {
+fn test_0783() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7206,7 +7206,7 @@ fn test_783() {
 }
 
 #[test]
-fn test_784() {
+fn test_0784() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7215,7 +7215,7 @@ fn test_784() {
 }
 
 #[test]
-fn test_785() {
+fn test_0785() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7224,7 +7224,7 @@ fn test_785() {
 }
 
 #[test]
-fn test_786() {
+fn test_0786() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7233,7 +7233,7 @@ fn test_786() {
 }
 
 #[test]
-fn test_787() {
+fn test_0787() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7242,7 +7242,7 @@ fn test_787() {
 }
 
 #[test]
-fn test_788() {
+fn test_0788() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7251,7 +7251,7 @@ fn test_788() {
 }
 
 #[test]
-fn test_789() {
+fn test_0789() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7260,7 +7260,7 @@ fn test_789() {
 }
 
 #[test]
-fn test_790() {
+fn test_0790() {
     let mut breaks = defaults::Breaks::new("\u{ad}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7269,7 +7269,7 @@ fn test_790() {
 }
 
 #[test]
-fn test_791() {
+fn test_0791() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7278,7 +7278,7 @@ fn test_791() {
 }
 
 #[test]
-fn test_792() {
+fn test_0792() {
     let mut breaks = defaults::Breaks::new("\u{ad}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7287,7 +7287,7 @@ fn test_792() {
 }
 
 #[test]
-fn test_793() {
+fn test_0793() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7296,7 +7296,7 @@ fn test_793() {
 }
 
 #[test]
-fn test_794() {
+fn test_0794() {
     let mut breaks = defaults::Breaks::new("\u{ad},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7305,7 +7305,7 @@ fn test_794() {
 }
 
 #[test]
-fn test_795() {
+fn test_0795() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7314,7 +7314,7 @@ fn test_795() {
 }
 
 #[test]
-fn test_796() {
+fn test_0796() {
     let mut breaks = defaults::Breaks::new("\u{ad}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7323,7 +7323,7 @@ fn test_796() {
 }
 
 #[test]
-fn test_797() {
+fn test_0797() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7332,7 +7332,7 @@ fn test_797() {
 }
 
 #[test]
-fn test_798() {
+fn test_0798() {
     let mut breaks = defaults::Breaks::new("\u{ad}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7341,7 +7341,7 @@ fn test_798() {
 }
 
 #[test]
-fn test_799() {
+fn test_0799() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7350,7 +7350,7 @@ fn test_799() {
 }
 
 #[test]
-fn test_800() {
+fn test_0800() {
     let mut breaks = defaults::Breaks::new("\u{ad}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7359,7 +7359,7 @@ fn test_800() {
 }
 
 #[test]
-fn test_801() {
+fn test_0801() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7368,7 +7368,7 @@ fn test_801() {
 }
 
 #[test]
-fn test_802() {
+fn test_0802() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7377,7 +7377,7 @@ fn test_802() {
 }
 
 #[test]
-fn test_803() {
+fn test_0803() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7386,7 +7386,7 @@ fn test_803() {
 }
 
 #[test]
-fn test_804() {
+fn test_0804() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7395,7 +7395,7 @@ fn test_804() {
 }
 
 #[test]
-fn test_805() {
+fn test_0805() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7404,7 +7404,7 @@ fn test_805() {
 }
 
 #[test]
-fn test_806() {
+fn test_0806() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7413,7 +7413,7 @@ fn test_806() {
 }
 
 #[test]
-fn test_807() {
+fn test_0807() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7422,7 +7422,7 @@ fn test_807() {
 }
 
 #[test]
-fn test_808() {
+fn test_0808() {
     let mut breaks = defaults::Breaks::new("\u{ad}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7431,7 +7431,7 @@ fn test_808() {
 }
 
 #[test]
-fn test_809() {
+fn test_0809() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7440,7 +7440,7 @@ fn test_809() {
 }
 
 #[test]
-fn test_810() {
+fn test_0810() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{ad}"));
@@ -7448,7 +7448,7 @@ fn test_810() {
 }
 
 #[test]
-fn test_811() {
+fn test_0811() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}\u{ad}"));
@@ -7456,7 +7456,7 @@ fn test_811() {
 }
 
 #[test]
-fn test_812() {
+fn test_0812() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{300}"));
@@ -7464,7 +7464,7 @@ fn test_812() {
 }
 
 #[test]
-fn test_813() {
+fn test_0813() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}\u{300}"));
@@ -7472,7 +7472,7 @@ fn test_813() {
 }
 
 #[test]
-fn test_814() {
+fn test_0814() {
     let mut breaks = defaults::Breaks::new("\u{ad}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7481,7 +7481,7 @@ fn test_814() {
 }
 
 #[test]
-fn test_815() {
+fn test_0815() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7490,7 +7490,7 @@ fn test_815() {
 }
 
 #[test]
-fn test_816() {
+fn test_0816() {
     let mut breaks = defaults::Breaks::new("\u{ad}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7500,7 +7500,7 @@ fn test_816() {
 }
 
 #[test]
-fn test_817() {
+fn test_0817() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7510,7 +7510,7 @@ fn test_817() {
 }
 
 #[test]
-fn test_818() {
+fn test_0818() {
     let mut breaks = defaults::Breaks::new("\u{ad}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7520,7 +7520,7 @@ fn test_818() {
 }
 
 #[test]
-fn test_819() {
+fn test_0819() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7530,7 +7530,7 @@ fn test_819() {
 }
 
 #[test]
-fn test_820() {
+fn test_0820() {
     let mut breaks = defaults::Breaks::new("\u{ad}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7540,7 +7540,7 @@ fn test_820() {
 }
 
 #[test]
-fn test_821() {
+fn test_0821() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7550,7 +7550,7 @@ fn test_821() {
 }
 
 #[test]
-fn test_822() {
+fn test_0822() {
     let mut breaks = defaults::Breaks::new("\u{ad}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7560,7 +7560,7 @@ fn test_822() {
 }
 
 #[test]
-fn test_823() {
+fn test_0823() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7570,7 +7570,7 @@ fn test_823() {
 }
 
 #[test]
-fn test_824() {
+fn test_0824() {
     let mut breaks = defaults::Breaks::new("\u{ad}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7580,7 +7580,7 @@ fn test_824() {
 }
 
 #[test]
-fn test_825() {
+fn test_0825() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7590,7 +7590,7 @@ fn test_825() {
 }
 
 #[test]
-fn test_826() {
+fn test_0826() {
     let mut breaks = defaults::Breaks::new("\u{ad}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7600,7 +7600,7 @@ fn test_826() {
 }
 
 #[test]
-fn test_827() {
+fn test_0827() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7610,7 +7610,7 @@ fn test_827() {
 }
 
 #[test]
-fn test_828() {
+fn test_0828() {
     let mut breaks = defaults::Breaks::new("\u{ad}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7620,7 +7620,7 @@ fn test_828() {
 }
 
 #[test]
-fn test_829() {
+fn test_0829() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7630,7 +7630,7 @@ fn test_829() {
 }
 
 #[test]
-fn test_830() {
+fn test_0830() {
     let mut breaks = defaults::Breaks::new("\u{ad}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}"));
@@ -7640,7 +7640,7 @@ fn test_830() {
 }
 
 #[test]
-fn test_831() {
+fn test_0831() {
     let mut breaks = defaults::Breaks::new("\u{ad}\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{ad}\u{308}"));
@@ -7650,7 +7650,7 @@ fn test_831() {
 }
 
 #[test]
-fn test_832() {
+fn test_0832() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7659,7 +7659,7 @@ fn test_832() {
 }
 
 #[test]
-fn test_833() {
+fn test_0833() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7668,7 +7668,7 @@ fn test_833() {
 }
 
 #[test]
-fn test_834() {
+fn test_0834() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7677,7 +7677,7 @@ fn test_834() {
 }
 
 #[test]
-fn test_835() {
+fn test_0835() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7686,7 +7686,7 @@ fn test_835() {
 }
 
 #[test]
-fn test_836() {
+fn test_0836() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7695,7 +7695,7 @@ fn test_836() {
 }
 
 #[test]
-fn test_837() {
+fn test_0837() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7704,7 +7704,7 @@ fn test_837() {
 }
 
 #[test]
-fn test_838() {
+fn test_0838() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7713,7 +7713,7 @@ fn test_838() {
 }
 
 #[test]
-fn test_839() {
+fn test_0839() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7722,7 +7722,7 @@ fn test_839() {
 }
 
 #[test]
-fn test_840() {
+fn test_0840() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7731,7 +7731,7 @@ fn test_840() {
 }
 
 #[test]
-fn test_841() {
+fn test_0841() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7740,7 +7740,7 @@ fn test_841() {
 }
 
 #[test]
-fn test_842() {
+fn test_0842() {
     let mut breaks = defaults::Breaks::new("\u{300}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7749,7 +7749,7 @@ fn test_842() {
 }
 
 #[test]
-fn test_843() {
+fn test_0843() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7758,7 +7758,7 @@ fn test_843() {
 }
 
 #[test]
-fn test_844() {
+fn test_0844() {
     let mut breaks = defaults::Breaks::new("\u{300}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7767,7 +7767,7 @@ fn test_844() {
 }
 
 #[test]
-fn test_845() {
+fn test_0845() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7776,7 +7776,7 @@ fn test_845() {
 }
 
 #[test]
-fn test_846() {
+fn test_0846() {
     let mut breaks = defaults::Breaks::new("\u{300},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7785,7 +7785,7 @@ fn test_846() {
 }
 
 #[test]
-fn test_847() {
+fn test_0847() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7794,7 +7794,7 @@ fn test_847() {
 }
 
 #[test]
-fn test_848() {
+fn test_0848() {
     let mut breaks = defaults::Breaks::new("\u{300}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7803,7 +7803,7 @@ fn test_848() {
 }
 
 #[test]
-fn test_849() {
+fn test_0849() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7812,7 +7812,7 @@ fn test_849() {
 }
 
 #[test]
-fn test_850() {
+fn test_0850() {
     let mut breaks = defaults::Breaks::new("\u{300}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7821,7 +7821,7 @@ fn test_850() {
 }
 
 #[test]
-fn test_851() {
+fn test_0851() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7830,7 +7830,7 @@ fn test_851() {
 }
 
 #[test]
-fn test_852() {
+fn test_0852() {
     let mut breaks = defaults::Breaks::new("\u{300}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7839,7 +7839,7 @@ fn test_852() {
 }
 
 #[test]
-fn test_853() {
+fn test_0853() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7848,7 +7848,7 @@ fn test_853() {
 }
 
 #[test]
-fn test_854() {
+fn test_0854() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7857,7 +7857,7 @@ fn test_854() {
 }
 
 #[test]
-fn test_855() {
+fn test_0855() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7866,7 +7866,7 @@ fn test_855() {
 }
 
 #[test]
-fn test_856() {
+fn test_0856() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7875,7 +7875,7 @@ fn test_856() {
 }
 
 #[test]
-fn test_857() {
+fn test_0857() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7884,7 +7884,7 @@ fn test_857() {
 }
 
 #[test]
-fn test_858() {
+fn test_0858() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7893,7 +7893,7 @@ fn test_858() {
 }
 
 #[test]
-fn test_859() {
+fn test_0859() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7902,7 +7902,7 @@ fn test_859() {
 }
 
 #[test]
-fn test_860() {
+fn test_0860() {
     let mut breaks = defaults::Breaks::new("\u{300}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7911,7 +7911,7 @@ fn test_860() {
 }
 
 #[test]
-fn test_861() {
+fn test_0861() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7920,7 +7920,7 @@ fn test_861() {
 }
 
 #[test]
-fn test_862() {
+fn test_0862() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{ad}"));
@@ -7928,7 +7928,7 @@ fn test_862() {
 }
 
 #[test]
-fn test_863() {
+fn test_0863() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}\u{ad}"));
@@ -7936,7 +7936,7 @@ fn test_863() {
 }
 
 #[test]
-fn test_864() {
+fn test_0864() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{300}"));
@@ -7944,7 +7944,7 @@ fn test_864() {
 }
 
 #[test]
-fn test_865() {
+fn test_0865() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}\u{300}"));
@@ -7952,7 +7952,7 @@ fn test_865() {
 }
 
 #[test]
-fn test_866() {
+fn test_0866() {
     let mut breaks = defaults::Breaks::new("\u{300}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7961,7 +7961,7 @@ fn test_866() {
 }
 
 #[test]
-fn test_867() {
+fn test_0867() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7970,7 +7970,7 @@ fn test_867() {
 }
 
 #[test]
-fn test_868() {
+fn test_0868() {
     let mut breaks = defaults::Breaks::new("\u{300}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -7980,7 +7980,7 @@ fn test_868() {
 }
 
 #[test]
-fn test_869() {
+fn test_0869() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -7990,7 +7990,7 @@ fn test_869() {
 }
 
 #[test]
-fn test_870() {
+fn test_0870() {
     let mut breaks = defaults::Breaks::new("\u{300}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -8000,7 +8000,7 @@ fn test_870() {
 }
 
 #[test]
-fn test_871() {
+fn test_0871() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -8010,7 +8010,7 @@ fn test_871() {
 }
 
 #[test]
-fn test_872() {
+fn test_0872() {
     let mut breaks = defaults::Breaks::new("\u{300}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -8020,7 +8020,7 @@ fn test_872() {
 }
 
 #[test]
-fn test_873() {
+fn test_0873() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -8030,7 +8030,7 @@ fn test_873() {
 }
 
 #[test]
-fn test_874() {
+fn test_0874() {
     let mut breaks = defaults::Breaks::new("\u{300}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -8040,7 +8040,7 @@ fn test_874() {
 }
 
 #[test]
-fn test_875() {
+fn test_0875() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -8050,7 +8050,7 @@ fn test_875() {
 }
 
 #[test]
-fn test_876() {
+fn test_0876() {
     let mut breaks = defaults::Breaks::new("\u{300}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -8060,7 +8060,7 @@ fn test_876() {
 }
 
 #[test]
-fn test_877() {
+fn test_0877() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -8070,7 +8070,7 @@ fn test_877() {
 }
 
 #[test]
-fn test_878() {
+fn test_0878() {
     let mut breaks = defaults::Breaks::new("\u{300}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -8080,7 +8080,7 @@ fn test_878() {
 }
 
 #[test]
-fn test_879() {
+fn test_0879() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -8090,7 +8090,7 @@ fn test_879() {
 }
 
 #[test]
-fn test_880() {
+fn test_0880() {
     let mut breaks = defaults::Breaks::new("\u{300}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -8100,7 +8100,7 @@ fn test_880() {
 }
 
 #[test]
-fn test_881() {
+fn test_0881() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -8110,7 +8110,7 @@ fn test_881() {
 }
 
 #[test]
-fn test_882() {
+fn test_0882() {
     let mut breaks = defaults::Breaks::new("\u{300}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}"));
@@ -8120,7 +8120,7 @@ fn test_882() {
 }
 
 #[test]
-fn test_883() {
+fn test_0883() {
     let mut breaks = defaults::Breaks::new("\u{300}\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("\u{300}\u{308}"));
@@ -8130,7 +8130,7 @@ fn test_883() {
 }
 
 #[test]
-fn test_884() {
+fn test_0884() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}"));
@@ -8139,7 +8139,7 @@ fn test_884() {
 }
 
 #[test]
-fn test_885() {
+fn test_0885() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}"));
@@ -8148,7 +8148,7 @@ fn test_885() {
 }
 
 #[test]
-fn test_886() {
+fn test_0886() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}"));
@@ -8157,7 +8157,7 @@ fn test_886() {
 }
 
 #[test]
-fn test_887() {
+fn test_0887() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}"));
@@ -8166,7 +8166,7 @@ fn test_887() {
 }
 
 #[test]
-fn test_888() {
+fn test_0888() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}"));
@@ -8175,7 +8175,7 @@ fn test_888() {
 }
 
 #[test]
-fn test_889() {
+fn test_0889() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}"));
@@ -8184,7 +8184,7 @@ fn test_889() {
 }
 
 #[test]
-fn test_890() {
+fn test_0890() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}"));
@@ -8193,7 +8193,7 @@ fn test_890() {
 }
 
 #[test]
-fn test_891() {
+fn test_0891() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}"));
@@ -8202,7 +8202,7 @@ fn test_891() {
 }
 
 #[test]
-fn test_892() {
+fn test_0892() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}"));
@@ -8211,7 +8211,7 @@ fn test_892() {
 }
 
 #[test]
-fn test_893() {
+fn test_0893() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}"));
@@ -8220,7 +8220,7 @@ fn test_893() {
 }
 
 #[test]
-fn test_894() {
+fn test_0894() {
     let mut breaks = defaults::Breaks::new("a\u{2060}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}A"));
@@ -8228,7 +8228,7 @@ fn test_894() {
 }
 
 #[test]
-fn test_895() {
+fn test_0895() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}A"));
@@ -8236,7 +8236,7 @@ fn test_895() {
 }
 
 #[test]
-fn test_896() {
+fn test_0896() {
     let mut breaks = defaults::Breaks::new("a\u{2060}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}"));
@@ -8245,7 +8245,7 @@ fn test_896() {
 }
 
 #[test]
-fn test_897() {
+fn test_0897() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}"));
@@ -8254,7 +8254,7 @@ fn test_897() {
 }
 
 #[test]
-fn test_898() {
+fn test_0898() {
     let mut breaks = defaults::Breaks::new("a\u{2060},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}"));
@@ -8263,7 +8263,7 @@ fn test_898() {
 }
 
 #[test]
-fn test_899() {
+fn test_0899() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}"));
@@ -8272,7 +8272,7 @@ fn test_899() {
 }
 
 #[test]
-fn test_900() {
+fn test_0900() {
     let mut breaks = defaults::Breaks::new("a\u{2060}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}"));
@@ -8281,7 +8281,7 @@ fn test_900() {
 }
 
 #[test]
-fn test_901() {
+fn test_0901() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}"));
@@ -8290,7 +8290,7 @@ fn test_901() {
 }
 
 #[test]
-fn test_902() {
+fn test_0902() {
     let mut breaks = defaults::Breaks::new("a\u{2060}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}0"));
@@ -8298,7 +8298,7 @@ fn test_902() {
 }
 
 #[test]
-fn test_903() {
+fn test_0903() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}0"));
@@ -8306,7 +8306,7 @@ fn test_903() {
 }
 
 #[test]
-fn test_904() {
+fn test_0904() {
     let mut breaks = defaults::Breaks::new("a\u{2060}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}_"));
@@ -8314,7 +8314,7 @@ fn test_904() {
 }
 
 #[test]
-fn test_905() {
+fn test_0905() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}_"));
@@ -8322,7 +8322,7 @@ fn test_905() {
 }
 
 #[test]
-fn test_906() {
+fn test_0906() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}"));
@@ -8331,7 +8331,7 @@ fn test_906() {
 }
 
 #[test]
-fn test_907() {
+fn test_0907() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}"));
@@ -8340,7 +8340,7 @@ fn test_907() {
 }
 
 #[test]
-fn test_908() {
+fn test_0908() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{5d0}"));
@@ -8348,7 +8348,7 @@ fn test_908() {
 }
 
 #[test]
-fn test_909() {
+fn test_0909() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}\u{5d0}"));
@@ -8356,7 +8356,7 @@ fn test_909() {
 }
 
 #[test]
-fn test_910() {
+fn test_0910() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}"));
@@ -8365,7 +8365,7 @@ fn test_910() {
 }
 
 #[test]
-fn test_911() {
+fn test_0911() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}"));
@@ -8374,7 +8374,7 @@ fn test_911() {
 }
 
 #[test]
-fn test_912() {
+fn test_0912() {
     let mut breaks = defaults::Breaks::new("a\u{2060}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}"));
@@ -8383,7 +8383,7 @@ fn test_912() {
 }
 
 #[test]
-fn test_913() {
+fn test_0913() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}"));
@@ -8392,7 +8392,7 @@ fn test_913() {
 }
 
 #[test]
-fn test_914() {
+fn test_0914() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{ad}"));
@@ -8400,7 +8400,7 @@ fn test_914() {
 }
 
 #[test]
-fn test_915() {
+fn test_0915() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}\u{ad}"));
@@ -8408,7 +8408,7 @@ fn test_915() {
 }
 
 #[test]
-fn test_916() {
+fn test_0916() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{300}"));
@@ -8416,7 +8416,7 @@ fn test_916() {
 }
 
 #[test]
-fn test_917() {
+fn test_0917() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}\u{300}"));
@@ -8424,7 +8424,7 @@ fn test_917() {
 }
 
 #[test]
-fn test_918() {
+fn test_0918() {
     let mut breaks = defaults::Breaks::new("a\u{2060}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}a\u{2060}"));
@@ -8432,7 +8432,7 @@ fn test_918() {
 }
 
 #[test]
-fn test_919() {
+fn test_0919() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}a\u{2060}"));
@@ -8440,7 +8440,7 @@ fn test_919() {
 }
 
 #[test]
-fn test_920() {
+fn test_0920() {
     let mut breaks = defaults::Breaks::new("a\u{2060}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}a"));
@@ -8449,7 +8449,7 @@ fn test_920() {
 }
 
 #[test]
-fn test_921() {
+fn test_0921() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}a"));
@@ -8458,7 +8458,7 @@ fn test_921() {
 }
 
 #[test]
-fn test_922() {
+fn test_0922() {
     let mut breaks = defaults::Breaks::new("a\u{2060}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}a"));
@@ -8467,7 +8467,7 @@ fn test_922() {
 }
 
 #[test]
-fn test_923() {
+fn test_0923() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}a"));
@@ -8476,7 +8476,7 @@ fn test_923() {
 }
 
 #[test]
-fn test_924() {
+fn test_0924() {
     let mut breaks = defaults::Breaks::new("a\u{2060}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}a"));
@@ -8485,7 +8485,7 @@ fn test_924() {
 }
 
 #[test]
-fn test_925() {
+fn test_0925() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}a"));
@@ -8494,7 +8494,7 @@ fn test_925() {
 }
 
 #[test]
-fn test_926() {
+fn test_0926() {
     let mut breaks = defaults::Breaks::new("a\u{2060}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}a"));
@@ -8503,7 +8503,7 @@ fn test_926() {
 }
 
 #[test]
-fn test_927() {
+fn test_0927() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}a"));
@@ -8512,7 +8512,7 @@ fn test_927() {
 }
 
 #[test]
-fn test_928() {
+fn test_0928() {
     let mut breaks = defaults::Breaks::new("a\u{2060}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}1"));
@@ -8521,7 +8521,7 @@ fn test_928() {
 }
 
 #[test]
-fn test_929() {
+fn test_0929() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}1"));
@@ -8530,7 +8530,7 @@ fn test_929() {
 }
 
 #[test]
-fn test_930() {
+fn test_0930() {
     let mut breaks = defaults::Breaks::new("a\u{2060}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}1"));
@@ -8539,7 +8539,7 @@ fn test_930() {
 }
 
 #[test]
-fn test_931() {
+fn test_0931() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}1"));
@@ -8548,7 +8548,7 @@ fn test_931() {
 }
 
 #[test]
-fn test_932() {
+fn test_0932() {
     let mut breaks = defaults::Breaks::new("a\u{2060}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}1"));
@@ -8557,7 +8557,7 @@ fn test_932() {
 }
 
 #[test]
-fn test_933() {
+fn test_0933() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}1"));
@@ -8566,7 +8566,7 @@ fn test_933() {
 }
 
 #[test]
-fn test_934() {
+fn test_0934() {
     let mut breaks = defaults::Breaks::new("a\u{2060}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}1"));
@@ -8575,7 +8575,7 @@ fn test_934() {
 }
 
 #[test]
-fn test_935() {
+fn test_0935() {
     let mut breaks = defaults::Breaks::new("a\u{2060}\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a\u{2060}\u{308}1"));
@@ -8584,7 +8584,7 @@ fn test_935() {
 }
 
 #[test]
-fn test_936() {
+fn test_0936() {
     let mut breaks = defaults::Breaks::new("a:\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8594,7 +8594,7 @@ fn test_936() {
 }
 
 #[test]
-fn test_937() {
+fn test_0937() {
     let mut breaks = defaults::Breaks::new("a:\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8604,7 +8604,7 @@ fn test_937() {
 }
 
 #[test]
-fn test_938() {
+fn test_0938() {
     let mut breaks = defaults::Breaks::new("a:\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8614,7 +8614,7 @@ fn test_938() {
 }
 
 #[test]
-fn test_939() {
+fn test_0939() {
     let mut breaks = defaults::Breaks::new("a:\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8624,7 +8624,7 @@ fn test_939() {
 }
 
 #[test]
-fn test_940() {
+fn test_0940() {
     let mut breaks = defaults::Breaks::new("a:\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8634,7 +8634,7 @@ fn test_940() {
 }
 
 #[test]
-fn test_941() {
+fn test_0941() {
     let mut breaks = defaults::Breaks::new("a:\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8644,7 +8644,7 @@ fn test_941() {
 }
 
 #[test]
-fn test_942() {
+fn test_0942() {
     let mut breaks = defaults::Breaks::new("a:\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8654,7 +8654,7 @@ fn test_942() {
 }
 
 #[test]
-fn test_943() {
+fn test_0943() {
     let mut breaks = defaults::Breaks::new("a:\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8664,7 +8664,7 @@ fn test_943() {
 }
 
 #[test]
-fn test_944() {
+fn test_0944() {
     let mut breaks = defaults::Breaks::new("a:\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8674,7 +8674,7 @@ fn test_944() {
 }
 
 #[test]
-fn test_945() {
+fn test_0945() {
     let mut breaks = defaults::Breaks::new("a:\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8684,7 +8684,7 @@ fn test_945() {
 }
 
 #[test]
-fn test_946() {
+fn test_0946() {
     let mut breaks = defaults::Breaks::new("a:A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a:A"));
@@ -8692,7 +8692,7 @@ fn test_946() {
 }
 
 #[test]
-fn test_947() {
+fn test_0947() {
     let mut breaks = defaults::Breaks::new("a:\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a:\u{308}A"));
@@ -8700,7 +8700,7 @@ fn test_947() {
 }
 
 #[test]
-fn test_948() {
+fn test_0948() {
     let mut breaks = defaults::Breaks::new("a::",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8710,7 +8710,7 @@ fn test_948() {
 }
 
 #[test]
-fn test_949() {
+fn test_0949() {
     let mut breaks = defaults::Breaks::new("a:\u{308}:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8720,7 +8720,7 @@ fn test_949() {
 }
 
 #[test]
-fn test_950() {
+fn test_0950() {
     let mut breaks = defaults::Breaks::new("a:,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8730,7 +8730,7 @@ fn test_950() {
 }
 
 #[test]
-fn test_951() {
+fn test_0951() {
     let mut breaks = defaults::Breaks::new("a:\u{308},",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8740,7 +8740,7 @@ fn test_951() {
 }
 
 #[test]
-fn test_952() {
+fn test_0952() {
     let mut breaks = defaults::Breaks::new("a:.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8750,7 +8750,7 @@ fn test_952() {
 }
 
 #[test]
-fn test_953() {
+fn test_0953() {
     let mut breaks = defaults::Breaks::new("a:\u{308}.",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8760,7 +8760,7 @@ fn test_953() {
 }
 
 #[test]
-fn test_954() {
+fn test_0954() {
     let mut breaks = defaults::Breaks::new("a:0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8770,7 +8770,7 @@ fn test_954() {
 }
 
 #[test]
-fn test_955() {
+fn test_0955() {
     let mut breaks = defaults::Breaks::new("a:\u{308}0",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8780,7 +8780,7 @@ fn test_955() {
 }
 
 #[test]
-fn test_956() {
+fn test_0956() {
     let mut breaks = defaults::Breaks::new("a:_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8790,7 +8790,7 @@ fn test_956() {
 }
 
 #[test]
-fn test_957() {
+fn test_0957() {
     let mut breaks = defaults::Breaks::new("a:\u{308}_",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8800,7 +8800,7 @@ fn test_957() {
 }
 
 #[test]
-fn test_958() {
+fn test_0958() {
     let mut breaks = defaults::Breaks::new("a:\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8810,7 +8810,7 @@ fn test_958() {
 }
 
 #[test]
-fn test_959() {
+fn test_0959() {
     let mut breaks = defaults::Breaks::new("a:\u{308}\u{1f1e6}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8820,7 +8820,7 @@ fn test_959() {
 }
 
 #[test]
-fn test_960() {
+fn test_0960() {
     let mut breaks = defaults::Breaks::new("a:\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a:\u{5d0}"));
@@ -8828,7 +8828,7 @@ fn test_960() {
 }
 
 #[test]
-fn test_961() {
+fn test_0961() {
     let mut breaks = defaults::Breaks::new("a:\u{308}\u{5d0}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a:\u{308}\u{5d0}"));
@@ -8836,7 +8836,7 @@ fn test_961() {
 }
 
 #[test]
-fn test_962() {
+fn test_0962() {
     let mut breaks = defaults::Breaks::new("a:\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8846,7 +8846,7 @@ fn test_962() {
 }
 
 #[test]
-fn test_963() {
+fn test_0963() {
     let mut breaks = defaults::Breaks::new("a:\u{308}\u{22}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8856,7 +8856,7 @@ fn test_963() {
 }
 
 #[test]
-fn test_964() {
+fn test_0964() {
     let mut breaks = defaults::Breaks::new("a:'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8866,7 +8866,7 @@ fn test_964() {
 }
 
 #[test]
-fn test_965() {
+fn test_0965() {
     let mut breaks = defaults::Breaks::new("a:\u{308}'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8876,7 +8876,7 @@ fn test_965() {
 }
 
 #[test]
-fn test_966() {
+fn test_0966() {
     let mut breaks = defaults::Breaks::new("a:\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8885,7 +8885,7 @@ fn test_966() {
 }
 
 #[test]
-fn test_967() {
+fn test_0967() {
     let mut breaks = defaults::Breaks::new("a:\u{308}\u{ad}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8894,7 +8894,7 @@ fn test_967() {
 }
 
 #[test]
-fn test_968() {
+fn test_0968() {
     let mut breaks = defaults::Breaks::new("a:\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8903,7 +8903,7 @@ fn test_968() {
 }
 
 #[test]
-fn test_969() {
+fn test_0969() {
     let mut breaks = defaults::Breaks::new("a:\u{308}\u{300}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -8912,7 +8912,7 @@ fn test_969() {
 }
 
 #[test]
-fn test_970() {
+fn test_0970() {
     let mut breaks = defaults::Breaks::new("a:a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a:a\u{2060}"));
@@ -8920,7 +8920,7 @@ fn test_970() {
 }
 
 #[test]
-fn test_971() {
+fn test_0971() {
     let mut breaks = defaults::Breaks::new("a:\u{308}a\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a:\u{308}a\u{2060}"));
@@ -8928,7 +8928,7 @@ fn test_971() {
 }
 
 #[test]
-fn test_972() {
+fn test_0972() {
     let mut breaks = defaults::Breaks::new("a:a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a:a"));
@@ -8937,7 +8937,7 @@ fn test_972() {
 }
 
 #[test]
-fn test_973() {
+fn test_0973() {
     let mut breaks = defaults::Breaks::new("a:\u{308}a:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a:\u{308}a"));
@@ -8946,7 +8946,7 @@ fn test_973() {
 }
 
 #[test]
-fn test_974() {
+fn test_0974() {
     let mut breaks = defaults::Breaks::new("a:a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a:a"));
@@ -8955,7 +8955,7 @@ fn test_974() {
 }
 
 #[test]
-fn test_975() {
+fn test_0975() {
     let mut breaks = defaults::Breaks::new("a:\u{308}a'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a:\u{308}a"));
@@ -8964,7 +8964,7 @@ fn test_975() {
 }
 
 #[test]
-fn test_976() {
+fn test_0976() {
     let mut breaks = defaults::Breaks::new("a:a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a:a"));
@@ -8973,7 +8973,7 @@ fn test_976() {
 }
 
 #[test]
-fn test_977() {
+fn test_0977() {
     let mut breaks = defaults::Breaks::new("a:\u{308}a'\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a:\u{308}a"));
@@ -8982,7 +8982,7 @@ fn test_977() {
 }
 
 #[test]
-fn test_978() {
+fn test_0978() {
     let mut breaks = defaults::Breaks::new("a:a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a:a"));
@@ -8991,7 +8991,7 @@ fn test_978() {
 }
 
 #[test]
-fn test_979() {
+fn test_0979() {
     let mut breaks = defaults::Breaks::new("a:\u{308}a,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a:\u{308}a"));
@@ -9000,7 +9000,7 @@ fn test_979() {
 }
 
 #[test]
-fn test_980() {
+fn test_0980() {
     let mut breaks = defaults::Breaks::new("a:1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9011,7 +9011,7 @@ fn test_980() {
 }
 
 #[test]
-fn test_981() {
+fn test_0981() {
     let mut breaks = defaults::Breaks::new("a:\u{308}1:",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9022,7 +9022,7 @@ fn test_981() {
 }
 
 #[test]
-fn test_982() {
+fn test_0982() {
     let mut breaks = defaults::Breaks::new("a:1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9033,7 +9033,7 @@ fn test_982() {
 }
 
 #[test]
-fn test_983() {
+fn test_0983() {
     let mut breaks = defaults::Breaks::new("a:\u{308}1'",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9044,7 +9044,7 @@ fn test_983() {
 }
 
 #[test]
-fn test_984() {
+fn test_0984() {
     let mut breaks = defaults::Breaks::new("a:1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9055,7 +9055,7 @@ fn test_984() {
 }
 
 #[test]
-fn test_985() {
+fn test_0985() {
     let mut breaks = defaults::Breaks::new("a:\u{308}1,",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9066,7 +9066,7 @@ fn test_985() {
 }
 
 #[test]
-fn test_986() {
+fn test_0986() {
     let mut breaks = defaults::Breaks::new("a:1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9077,7 +9077,7 @@ fn test_986() {
 }
 
 #[test]
-fn test_987() {
+fn test_0987() {
     let mut breaks = defaults::Breaks::new("a:\u{308}1.\u{2060}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9088,7 +9088,7 @@ fn test_987() {
 }
 
 #[test]
-fn test_988() {
+fn test_0988() {
     let mut breaks = defaults::Breaks::new("a'\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9098,7 +9098,7 @@ fn test_988() {
 }
 
 #[test]
-fn test_989() {
+fn test_0989() {
     let mut breaks = defaults::Breaks::new("a'\u{308}\u{1}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9108,7 +9108,7 @@ fn test_989() {
 }
 
 #[test]
-fn test_990() {
+fn test_0990() {
     let mut breaks = defaults::Breaks::new("a'\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9118,7 +9118,7 @@ fn test_990() {
 }
 
 #[test]
-fn test_991() {
+fn test_0991() {
     let mut breaks = defaults::Breaks::new("a'\u{308}\u{d}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9128,7 +9128,7 @@ fn test_991() {
 }
 
 #[test]
-fn test_992() {
+fn test_0992() {
     let mut breaks = defaults::Breaks::new("a'\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9138,7 +9138,7 @@ fn test_992() {
 }
 
 #[test]
-fn test_993() {
+fn test_0993() {
     let mut breaks = defaults::Breaks::new("a'\u{308}\u{a}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9148,7 +9148,7 @@ fn test_993() {
 }
 
 #[test]
-fn test_994() {
+fn test_0994() {
     let mut breaks = defaults::Breaks::new("a'\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9158,7 +9158,7 @@ fn test_994() {
 }
 
 #[test]
-fn test_995() {
+fn test_0995() {
     let mut breaks = defaults::Breaks::new("a'\u{308}\u{b}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9168,7 +9168,7 @@ fn test_995() {
 }
 
 #[test]
-fn test_996() {
+fn test_0996() {
     let mut breaks = defaults::Breaks::new("a'\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9178,7 +9178,7 @@ fn test_996() {
 }
 
 #[test]
-fn test_997() {
+fn test_0997() {
     let mut breaks = defaults::Breaks::new("a'\u{308}\u{3031}",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a"));
@@ -9188,7 +9188,7 @@ fn test_997() {
 }
 
 #[test]
-fn test_998() {
+fn test_0998() {
     let mut breaks = defaults::Breaks::new("a'A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a'A"));
@@ -9196,7 +9196,7 @@ fn test_998() {
 }
 
 #[test]
-fn test_999() {
+fn test_0999() {
     let mut breaks = defaults::Breaks::new("a'\u{308}A",
         defaults::make_word_break_tree());
     assert_eq!(breaks.next(), Some("a'\u{308}A"));

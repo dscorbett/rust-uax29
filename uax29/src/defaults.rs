@@ -1,7 +1,7 @@
 use breaks;
 
 use std::collections::ring_buf;
-use std::str;
+use std::{fmt, str};
 
 pub struct Breaks<'a, Category> {
     tree: Node<Category>,
@@ -55,7 +55,7 @@ enum Boundary {
 #[cfg(test)]
 mod test_iterator_for_word_breaks {
     use super::{Boundary, NextNode, Node, Breaks};
-    use /*uax29::*/breaks::word_break::Category::*;
+    use breaks::word_break::Category::*;
 
     #[test]
     fn test_next() {
@@ -81,7 +81,7 @@ mod test_iterator_for_word_breaks {
     }
 }
 
-impl<'a, Category: /*uax29::*/breaks::FromChar + PartialEq> Iterator
+impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show> Iterator
     for Breaks<'a, Category>
 {
     type Item = &'a str;
@@ -105,7 +105,8 @@ impl<'a, Category: /*uax29::*/breaks::FromChar + PartialEq> Iterator
                         }),
                     };
                 self.index = char_offset;
-                boundary == Boundary::NoBreak || start_of_segment
+                (boundary == Boundary::NoBreak || start_of_segment) &&
+                    char_offset != self.inner.string.len()
             } {
                 self.inner.pop_front(&self.tree);
                 start_of_segment = false;
@@ -119,7 +120,7 @@ impl<'a, Category: /*uax29::*/breaks::FromChar + PartialEq> Iterator
     }
 }
 
-impl<'a, Category: /*uax29::*/breaks::FromChar + PartialEq> Breaks<'a, Category> {
+impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show> Breaks<'a, Category> {
     pub fn new(s: &'a str, tree: Node<Category>) -> Breaks<'a, Category> {
         Breaks {
             tree: tree,
@@ -138,8 +139,8 @@ mod test_word_breaks_inner {
     use std::collections::ring_buf;
     use super::{Boundary, BreaksInner, CharInfo, FutureInfo, NextNode, Node,
                 RuleInfo};
-    use /*uax29::*/breaks::word_break::Category;
-    use /*uax29::*/breaks::word_break::Category::*;
+    use breaks::word_break::Category;
+    use breaks::word_break::Category::*;
 
     #[test]
     fn test_front() {
@@ -284,7 +285,7 @@ mod test_word_breaks_inner {
     }
 }
 
-impl<'a, Category: /*uax29::*/breaks::FromChar + PartialEq>
+impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
     BreaksInner<'a, Category>
 {
     fn front(&mut self, node: &Node<Category>) -> Option<&FutureInfo<Category>> {
@@ -325,7 +326,7 @@ impl<'a, Category: /*uax29::*/breaks::FromChar + PartialEq>
                         char_info: Some(CharInfo {
                             char_offset: char_offset,
                             ch: char,
-                            category: /*uax29::*/breaks::FromChar::from_char(char),
+                            category: breaks::FromChar::from_char(char),
                         }),
                         rule_info: None,
                     }),
@@ -337,11 +338,16 @@ impl<'a, Category: /*uax29::*/breaks::FromChar + PartialEq>
         while self.future.len() <= offset {
             self.future.push_back(FutureInfo {
                 char_info: match self.char_indices.next() {
-                    None => None,
+                    None => Some(CharInfo {
+                        char_offset: self.string.len(),
+                        // These will not be used and don't matter:
+                        ch: 'x',
+                        category: breaks::FromChar::from_char('x'),
+                    }),
                     Some((char_offset, char)) => Some(CharInfo {
                         char_offset: char_offset,
                         ch: char,
-                        category: /*uax29::*/breaks::FromChar::from_char(char),
+                        category: breaks::FromChar::from_char(char),
                     }),
                 },
                 rule_info: None,
@@ -373,7 +379,7 @@ impl<'a, Category: /*uax29::*/breaks::FromChar + PartialEq>
         }
     }
 
-    fn handle_children(&mut self, node:&Node<Category>, offset: usize,
+    fn handle_children(&mut self, node: &Node<Category>, offset: usize,
                        loops: usize)
     {
         for &(ref category, ref child) in node.children.iter() {
@@ -698,10 +704,22 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                     (Category::Regional_Indicator, NextNode::Child(Node {
                         rules: vec![(13300, 1, Boundary::NoBreak)],
                         children: vec![],
-                    }))
+                    })),
                 ],
             })),
-            // WB14 is implicit.
+/*
+            (Category::Other, NextNode::Child(Node {
+                rules: vec![],
+                children: vec![
+                    (Category::Extend, NextNode::Loop),
+                    (Category::Format, NextNode::Loop),
+                    (Category::Other, NextNode::Child(Node {
+                        rules: vec![(14000, 1, Boundary::Break)],
+                        children: vec![],
+                    })),
+                ],
+            })),
+*/
         ],
     }
 }

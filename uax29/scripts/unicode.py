@@ -251,7 +251,7 @@ def emit_property_module(f, name, cat, missing):
     #[derive(Clone, Copy, PartialEq, Show)]
     pub enum Category {
 """ % name)
-    for cat_name in cat:
+    for cat_name in sorted(cat):
         f.write('        ' + cat_name + ',\n')
     if missing not in cat:
         f.write('        ' + missing + ',\n')

@@ -1,3 +1,4 @@
+
 #![allow(unstable)]
 #![feature(plugin)]
 
@@ -7,10 +8,10 @@ use std::collections::ring_buf;
 use std::str;
 use uax29::breaks;
 
-struct WordBreaks<'a> {
-    tree: Node<breaks::word_break::Category>,
+struct Breaks<'a, Category> {
+    tree: Node<Category>,
     index: usize,
-    inner: WordBreaksInner<'a>,
+    inner: BreaksInner<'a, Category>,
 }
 
 #[derive(PartialEq, Show)]
@@ -25,10 +26,10 @@ struct Node<Category> {
     children: Vec<(Category, NextNode<Category>)>,
 }
 
-struct WordBreaksInner<'a> {
+struct BreaksInner<'a, Category> {
     string: &'a str,
     char_indices: str::CharIndices<'a>,
-    future: ring_buf::RingBuf<FutureInfo<breaks::word_break::Category>>,
+    future: ring_buf::RingBuf<FutureInfo<Category>>,
 }
 
 #[derive(PartialEq, Show)]
@@ -58,7 +59,7 @@ enum Boundary {
 
 #[cfg(test)]
 mod test_iterator_for_word_breaks {
-    use super::{Boundary, NextNode, Node, WordBreaks};
+    use super::{Boundary, NextNode, Node, Breaks};
     use uax29::breaks::word_break::Category::*;
 
     #[test]
@@ -77,7 +78,7 @@ mod test_iterator_for_word_breaks {
                 }),
             )],
         };
-        let mut breaks = WordBreaks::new("a1bc2", tree);
+        let mut breaks = Breaks::new("a1bc2", tree);
         assert_eq!(breaks.next(), Some("a1"));
         assert_eq!(breaks.next(), Some("b"));
         assert_eq!(breaks.next(), Some("c2"));
@@ -85,7 +86,9 @@ mod test_iterator_for_word_breaks {
     }
 }
 
-impl<'a> Iterator for WordBreaks<'a> {
+impl<'a, Category: uax29::breaks::FromChar + PartialEq> Iterator
+    for Breaks<'a, Category>
+{
     type Item = &'a str;
 
     fn next(&mut self) -> Option<<Self as Iterator>::Item> {
@@ -121,14 +124,12 @@ impl<'a> Iterator for WordBreaks<'a> {
     }
 }
 
-impl<'a> WordBreaks<'a> {
-    fn new(s: &'a str, tree: Node<breaks::word_break::Category>)
-        -> WordBreaks<'a>
-    {
-        WordBreaks {
+impl<'a, Category: uax29::breaks::FromChar + PartialEq> Breaks<'a, Category> {
+    fn new(s: &'a str, tree: Node<Category>) -> Breaks<'a, Category> {
+        Breaks {
             tree: tree,
             index: 0,
-            inner: WordBreaksInner {
+            inner: BreaksInner {
                 string: s,
                 char_indices: s.char_indices(),
                 future: ring_buf::RingBuf::new(),
@@ -140,15 +141,15 @@ impl<'a> WordBreaks<'a> {
 #[cfg(test)]
 mod test_word_breaks_inner {
     use std::collections::ring_buf;
-    use super::{Boundary, CharInfo, FutureInfo, NextNode, Node, RuleInfo,
-                WordBreaksInner};
+    use super::{Boundary, BreaksInner, CharInfo, FutureInfo, NextNode, Node,
+                RuleInfo};
     use uax29::breaks::word_break::Category;
     use uax29::breaks::word_break::Category::*;
 
     #[test]
     fn test_front() {
         let s: &str = "\u{e9}1bc2";
-        let mut inner: WordBreaksInner = make_inner(s);
+        let mut inner: BreaksInner<Category> = make_inner(s);
         let future_info: FutureInfo<Category> =
             make_future_info(0, '\u{e9}', ALetter, None);
         let tree: Node<Category> = make_tree();
@@ -159,7 +160,7 @@ mod test_word_breaks_inner {
     #[test]
     fn test_pop_front() {
         let s: &str = "\u{e9}1bc2";
-        let mut inner: WordBreaksInner = make_inner(s);
+        let mut inner: BreaksInner<Category> = make_inner(s);
         let tree: Node<Category> = make_tree();
         inner.pop_front(&tree);
         assert_eq!(inner.future.front(),
@@ -174,7 +175,7 @@ mod test_word_breaks_inner {
     #[test]
     fn test_find_breaks() {
         let s: &str = "\u{e9}'\"\"'1bc2";
-        let mut inner: WordBreaksInner = make_inner(s);
+        let mut inner: BreaksInner<Category> = make_inner(s);
         let tree: Node<Category> = make_tree();
         let mut buf: ring_buf::RingBuf<FutureInfo<Category>> =
             ring_buf::RingBuf::new();
@@ -204,8 +205,8 @@ mod test_word_breaks_inner {
         assert_eq!(inner.future, buf);
     }
 
-    fn make_inner(s: &str) -> WordBreaksInner {
-        WordBreaksInner {
+    fn make_inner(s: &str) -> BreaksInner<Category> {
+        BreaksInner {
             string: s,
             char_indices: s.char_indices(),
             future: ring_buf::RingBuf::new(),
@@ -247,7 +248,7 @@ mod test_word_breaks_inner {
 
     #[test]
     fn test_get_enough_chars_for_rule() {
-        let mut inner: WordBreaksInner = make_inner("\u{e9}bcd");
+        let mut inner: BreaksInner<Category> = make_inner("\u{e9}bcd");
         let mut buf: ring_buf::RingBuf<FutureInfo<Category>> =
             ring_buf::RingBuf::new();
         buf.push_back(make_future_info(0, '\u{e9}', ALetter, None));
@@ -258,7 +259,7 @@ mod test_word_breaks_inner {
 
     #[test]
     fn test_add_rule_to_future_none() {
-        let mut inner: WordBreaksInner = make_inner("\u{e9}bcd");
+        let mut inner: BreaksInner<Category> = make_inner("\u{e9}bcd");
         let mut buf: ring_buf::RingBuf<FutureInfo<Category>> =
             ring_buf::RingBuf::new();
         buf.push_back(FutureInfo {
@@ -274,7 +275,7 @@ mod test_word_breaks_inner {
 
     #[test]
     fn test_add_rule_to_future_some() {
-        let mut inner: WordBreaksInner = make_inner("\u{e9}bcd");
+        let mut inner: BreaksInner<Category> = make_inner("\u{e9}bcd");
         let mut buf: ring_buf::RingBuf<FutureInfo<Category>> =
             ring_buf::RingBuf::new();
         buf.push_back(make_future_info(0, '\u{e9}', ALetter, None));
@@ -288,22 +289,23 @@ mod test_word_breaks_inner {
     }
 }
 
-impl<'a> WordBreaksInner<'a> {
-    fn front(&mut self, node: &Node<breaks::word_break::Category>) -> Option<&FutureInfo<breaks::word_break::Category>> {
+impl<'a, Category: uax29::breaks::FromChar + PartialEq>
+    BreaksInner<'a, Category>
+{
+    fn front(&mut self, node: &Node<Category>) -> Option<&FutureInfo<Category>> {
         if self.future.is_empty() {
             self.find_breaks(node, 0, 0);
         }
         self.future.front()
     }
 
-    fn pop_front(&mut self, node: &Node<breaks::word_break::Category>) {
+    fn pop_front(&mut self, node: &Node<Category>) {
         self.future.pop_front();
         self.find_breaks(node, 0, 0);
     }
 
-    fn find_breaks(&mut self, node: &Node<breaks::word_break::Category>,
-                   offset: usize, loops: usize)
-    {
+    fn find_breaks(
+        &mut self, node: &Node<Category>, offset: usize, loops: usize) {
 /*
         println!("rules: {:?}", node.rules);
         println!("kids: {:?}", node.children);
@@ -328,7 +330,7 @@ impl<'a> WordBreaksInner<'a> {
                         char_info: Some(CharInfo {
                             char_offset: char_offset,
                             ch: char,
-                            category: breaks::word_break::category(char),
+                            category: uax29::breaks::FromChar::from_char(char),
                         }),
                         rule_info: None,
                     }),
@@ -344,7 +346,7 @@ impl<'a> WordBreaksInner<'a> {
                     Some((char_offset, char)) => Some(CharInfo {
                         char_offset: char_offset,
                         ch: char,
-                        category: breaks::word_break::category(char),
+                        category: uax29::breaks::FromChar::from_char(char),
                     }),
                 },
                 rule_info: None,
@@ -376,16 +378,16 @@ impl<'a> WordBreaksInner<'a> {
         }
     }
 
-    fn handle_children(&mut self, node:&Node<breaks::word_break::Category>,
-                       offset: usize, loops: usize)
+    fn handle_children(&mut self, node:&Node<Category>, offset: usize,
+                       loops: usize)
     {
-        for &(category, ref child) in node.children.iter() {
+        for &(ref category, ref child) in node.children.iter() {
             let mut should_find_breaks = false;
             {
                 match self.future[offset].char_info {
                     None => (),
                     Some(ref char_info) =>
-                        should_find_breaks = char_info.category == category,
+                        should_find_breaks = char_info.category == *category,
                 }
             }
             if should_find_breaks {
@@ -411,7 +413,7 @@ fn main() {
     use uax29::breaks::word_break::Category::*;
     use Boundary::*;
     use NextNode::*;
-    let mut breaks = WordBreaks::new("x\u{300}y", Node {
+    let mut breaks = Breaks::new("x\u{300}y", Node {
         rules: vec![],
         children: vec![
             (CR, Child(Node {
@@ -432,7 +434,6 @@ fn main() {
                             (3202, 0, Break)],
                 children: vec![],
             })),
-            // TODO: WB4
             (ALetter, Child(Node {
                 rules: vec![],
                 children: vec![

@@ -3,6 +3,10 @@
 
 #![allow(warnings)]
 
+pub trait FromChar {
+    fn from_char(c: char) -> Self;
+}
+
 pub mod word_break {
     use std::slice::SliceExt;
     pub use self::Category::*;
@@ -42,8 +46,11 @@ pub mod word_break {
             Err(_) => Other,
         }
     }
-    pub fn category(c: char) -> Category {
-        bsearch_range_value_table(c, cat_table)
+
+    impl super::FromChar for Category {
+        fn from_char(c: char) -> Self {
+            bsearch_range_value_table(c, cat_table)
+        }
     }
 
     const cat_table: &'static [(char, char, Category)] = &[
@@ -669,8 +676,11 @@ pub mod sentence_break {
             Err(_) => Other,
         }
     }
-    pub fn category(c: char) -> Category {
-        bsearch_range_value_table(c, cat_table)
+
+    impl super::FromChar for Category {
+        fn from_char(c: char) -> Self {
+            bsearch_range_value_table(c, cat_table)
+        }
     }
 
     const cat_table: &'static [(char, char, Category)] = &[

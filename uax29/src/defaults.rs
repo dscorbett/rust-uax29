@@ -37,7 +37,7 @@ struct FutureInfo<Category> {
 struct CharInfo<Category> {
     char_offset: usize,
     ch: char,  // TODO: Remove this: it is just for debugging.
-    category: Category,
+    category: Option<Category>,
 }
 
 #[derive(PartialEq, Show)]
@@ -217,7 +217,7 @@ mod test_word_breaks_inner {
             char_info: Some(CharInfo {
                 char_offset: char_offset,
                 ch: ch,
-                category: category,
+                category: Some(category),
             }),
             rule_info: rule_info,
         }
@@ -328,7 +328,7 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
                         char_info: Some(CharInfo {
                             char_offset: char_offset,
                             ch: char,
-                            category: breaks::FromChar::from_char(char),
+                            category: Some(breaks::FromChar::from_char(char)),
                         }),
                         rule_info: None,
                     }),
@@ -344,9 +344,9 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
                 char_info: {
                 Some(CharInfo {
                         char_offset: self.string.len(),
-                        // These will not be used and don't matter:
+                        // This will not be used and doesn't matter:
                         ch: 'x',
-                        category: breaks::FromChar::from_char('x'),
+                        category: None,
                     })
 },
                 rule_info: Some(RuleInfo {
@@ -373,14 +373,14 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
                 char_info: match self.char_indices.next() {
                     None => Some(CharInfo {
                         char_offset: self.string.len(),
-                        // These will not be used and don't matter:
+                        // This will not be used and doesn't matter:
                         ch: 'x',
-                        category: breaks::FromChar::from_char('x'),
+                        category: None,
                     }),
                     Some((char_offset, char)) => Some(CharInfo {
                         char_offset: char_offset,
                         ch: char,
-                        category: breaks::FromChar::from_char(char),
+                        category: Some(breaks::FromChar::from_char(char)),
                     }),
                 },
                 rule_info: None,
@@ -397,7 +397,10 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
                 match self.future[offset].char_info {
                     None => (),
                     Some(ref char_info) =>
-                        should_find_breaks = char_info.category == *category,
+                        should_find_breaks = match char_info.category {
+                            None => false,
+                            Some(ref c) => *c == *category,
+                        },
                 }
             }
             if should_find_breaks {

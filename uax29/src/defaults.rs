@@ -29,6 +29,7 @@ struct BreaksInner<'a, Category> {
 
 #[derive(PartialEq, Show)]
 struct FutureInfo<Category> {
+    skip: bool,
     char_info: Option<CharInfo<Category>>,
     rule_info: Option<RuleInfo>,
 }
@@ -147,7 +148,7 @@ mod test_word_breaks_inner {
         let s: &str = "\u{e9}1bc2";
         let mut inner: BreaksInner<Category> = make_inner(s);
         let future_info: FutureInfo<Category> =
-            make_future_info(0, '\u{e9}', ALetter, None);
+            make_future_info(0, false, '\u{e9}', ALetter, None);
         let tree: Node<Category> = make_tree();
         assert_eq!(inner.front(&tree), Some(&future_info));
         assert_eq!(inner.front(&tree), Some(&future_info));
@@ -160,10 +161,10 @@ mod test_word_breaks_inner {
         let tree: Node<Category> = make_tree();
         inner.pop_front(&tree);
         assert_eq!(inner.future.front(),
-                   Some(&make_future_info(0, '\u{e9}', ALetter, None)));
+                   Some(&make_future_info(0, false, '\u{e9}', ALetter, None)));
         inner.pop_front(&tree);
         assert_eq!(inner.future.front(),
-                   Some(&make_future_info(2, '1', Numeric, Some(RuleInfo {
+                   Some(&make_future_info(2, false, '1', Numeric, Some(RuleInfo {
                         rule_number: 1, boundary: Boundary::NoBreak,
                    }))));
     }
@@ -175,28 +176,28 @@ mod test_word_breaks_inner {
         let tree: Node<Category> = make_tree();
         let mut buf: ring_buf::RingBuf<FutureInfo<Category>> =
             ring_buf::RingBuf::new();
-        buf.push_back(make_future_info(0, '\u{e9}', ALetter, None));
-        buf.push_back(make_future_info(2, '\'', Single_Quote, Some(RuleInfo {
+        buf.push_back(make_future_info(0, false, '\u{e9}', ALetter, None));
+        buf.push_back(make_future_info(2, true, '\'', Single_Quote, Some(RuleInfo {
             rule_number: 0,
             boundary: Boundary::NoBreak,
         })));
-        buf.push_back(make_future_info(3, '"', Double_Quote, Some(RuleInfo {
+        buf.push_back(make_future_info(3, true, '"', Double_Quote, Some(RuleInfo {
             rule_number: 0,
             boundary: Boundary::NoBreak,
         })));
-        buf.push_back(make_future_info(4, '"', Double_Quote, Some(RuleInfo {
+        buf.push_back(make_future_info(4, true, '"', Double_Quote, Some(RuleInfo {
             rule_number: 0,
             boundary: Boundary::NoBreak,
         })));
-        buf.push_back(make_future_info(5, '\'', Single_Quote, Some(RuleInfo {
+        buf.push_back(make_future_info(5, true, '\'', Single_Quote, Some(RuleInfo {
             rule_number: 0,
             boundary: Boundary::NoBreak,
         })));
-        buf.push_back(make_future_info(6, '1', Numeric, Some(RuleInfo {
+        buf.push_back(make_future_info(6, false, '1', Numeric, Some(RuleInfo {
             rule_number: 1,
             boundary: Boundary::NoBreak,
         })));
-        buf.push_back(make_future_info(7, 'b', ALetter, None));
+        buf.push_back(make_future_info(7, false, 'b', ALetter, None));
         inner.find_breaks(&tree, 0, 0);
         assert_eq!(inner.future, buf);
     }
@@ -209,11 +210,12 @@ mod test_word_breaks_inner {
         }
     }
 
-    fn make_future_info(char_offset: usize, ch: char, category: Category,
-        rule_info: Option<RuleInfo>)
+    fn make_future_info(char_offset: usize, skip: bool, ch: char,
+        category: Category, rule_info: Option<RuleInfo>)
         -> FutureInfo<Category>
     {
         FutureInfo {
+            skip: skip,
             char_info: Some(CharInfo {
                 char_offset: char_offset,
                 ch: ch,
@@ -247,8 +249,8 @@ mod test_word_breaks_inner {
         let mut inner: BreaksInner<Category> = make_inner("\u{e9}bcd");
         let mut buf: ring_buf::RingBuf<FutureInfo<Category>> =
             ring_buf::RingBuf::new();
-        buf.push_back(make_future_info(0, '\u{e9}', ALetter, None));
-        buf.push_back(make_future_info(2, 'b', ALetter, None));
+        buf.push_back(make_future_info(0, false, '\u{e9}', ALetter, None));
+        buf.push_back(make_future_info(2, false, 'b', ALetter, None));
         inner.get_enough_chars_for_rule(1);
         assert_eq!(inner.future, buf);
     }
@@ -260,6 +262,7 @@ mod test_word_breaks_inner {
         let mut buf: ring_buf::RingBuf<FutureInfo<Category>> =
             ring_buf::RingBuf::new();
         buf.push_back(FutureInfo {
+            skip: false,
             char_info: None,
             rule_info: Some(RuleInfo{
                 rule_number: 123,
@@ -276,8 +279,8 @@ mod test_word_breaks_inner {
         let mut inner: BreaksInner<Category> = make_inner("\u{e9}bcd");
         let mut buf: ring_buf::RingBuf<FutureInfo<Category>> =
             ring_buf::RingBuf::new();
-        buf.push_back(make_future_info(0, '\u{e9}', ALetter, None));
-        buf.push_back(make_future_info(2, 'b', ALetter, Some(RuleInfo{
+        buf.push_back(make_future_info(0, false, '\u{e9}', ALetter, None));
+        buf.push_back(make_future_info(2, false, 'b', ALetter, Some(RuleInfo{
             rule_number: 123,
             boundary: Boundary::Break,
         })));
@@ -304,16 +307,9 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
 
     fn find_breaks(
         &mut self, node: &Node<Category>, offset: usize, loops: usize) {
-/*
-        println!("rules: {:?}", node.rules);
-        println!("kids: {:?}", node.children);
-        println!("offset: {}", offset);
-        println!("future: {:?}", self.future);
-        println!("loops: {}", loops);
-*/
         for &(rule_number, position, boundary) in node.rules.iter() {
             self.get_enough_chars_for_rule(position + loops);
-            self.add_rule_to_future(rule_number, position + loops, boundary);
+            self.add_rule_to_future(rule_number, position, boundary);
         }
         self.get_enough_chars_for_children(offset);
         self.handle_children(node, offset, loops);
@@ -325,6 +321,7 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
                 None => break,
                 Some((char_offset, char)) =>
                     self.future.push_back(FutureInfo {
+                        skip: false,
                         char_info: Some(CharInfo {
                             char_offset: char_offset,
                             ch: char,
@@ -337,25 +334,36 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
     }
 
     fn add_rule_to_future(
-        &mut self, rule_number: usize, position: usize, boundary: Boundary)
+        &mut self, rule_number: usize, mut position: usize, boundary: Boundary)
     {
-        if self.future.get_mut(position).is_none() {
+        let mut real_position: usize = 0;
+        position += 1;
+        for future_info in self.future.iter() {
+            if position == 0 {
+                break;
+            }
+            if !future_info.skip {
+                position -= 1;
+            }
+            real_position  += 1;
+        }
+        real_position -= 1;
+        if self.future.get_mut(real_position).is_none() {
             self.future.push_back(FutureInfo {
-                char_info: {
-                Some(CharInfo {
-                        char_offset: self.string.len(),
-                        // This will not be used and doesn't matter:
-                        ch: 'x',
-                        category: None,
-                    })
-},
+                skip: false,
+                char_info: Some(CharInfo {
+                    char_offset: self.string.len(),
+                    // This will not be used and doesn't matter:
+                    ch: 'X',
+                    category: None,
+                }),
                 rule_info: Some(RuleInfo {
                     rule_number: rule_number,
                     boundary: boundary,
                 }),
             });
         } else {
-            let fut = self.future.get_mut(position).unwrap();
+            let fut = self.future.get_mut(real_position).unwrap();
             match fut.rule_info {
                 Some(ref rule_info) if rule_info.rule_number <= rule_number =>
                     (),
@@ -370,11 +378,12 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
     fn get_enough_chars_for_children(&mut self, offset: usize) {
         while self.future.len() <= offset {
             self.future.push_back(FutureInfo {
+                skip: false,
                 char_info: match self.char_indices.next() {
                     None => Some(CharInfo {
                         char_offset: self.string.len(),
                         // This will not be used and doesn't matter:
-                        ch: 'x',
+                        ch: 'Z',
                         category: None,
                     }),
                     Some((char_offset, char)) => Some(CharInfo {
@@ -407,6 +416,7 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
                 let (node, loops) = match *child {
                     NextNode::Child(ref node) => (node, loops),
                     NextNode::Loop => {
+                        self.future[offset].skip = true;
                         self.future[offset].rule_info = Some(RuleInfo {
                             rule_number: 0,
                             boundary: Boundary::NoBreak,
@@ -621,7 +631,7 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                         rules: vec![(5002, 1, Boundary::NoBreak)],
                         children: vec![],
                     })),
-                    (Category::ALetter, NextNode::Child(Node {
+                    (Category::Hebrew_Letter, NextNode::Child(Node {
                         rules: vec![(5003, 1, Boundary::NoBreak)],
                         children: vec![],
                     })),
@@ -806,8 +816,8 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                         (Category::Extend, NextNode::Loop),
                         (Category::Format, NextNode::Loop),
                             (Category::Numeric, NextNode::Child(Node {
-                                rules: vec![(11000, 1, Boundary::NoBreak),
-                                            (12000, 2, Boundary::NoBreak)],
+                                rules: vec![(11000, 2, Boundary::NoBreak),
+                                            (12000, 1, Boundary::NoBreak)],
                                 children: vec![],
                             })),
                             (Category::ALetter, any_node.clone()),

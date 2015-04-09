@@ -1,32 +1,90 @@
+//! Breaking according to UAX #29
+//!
+//! Unicode Standard Annex #29 (Unicode Text Segmentation) specifies how
+//! to split a string into graphemes, words, sentences, or other text
+//! elements. This module provides an iterator over a string by text
+//! elements.
+//!
+//! For example, this code creates an iterator over words.
+//!
+//! ```rust
+//! let mut breaks = uax29::defaults::Breaks::new(
+//!     "1.21 gigawatts.", uax29::defaults::make_word_break_tree());
+//! ```
+//!
+//! This would produce the string slices "1.21", " ", "gigawatts", and
+//! ".".
+//!
+//! `make_word_break_tree` creates a representation of the default
+//! word-breaking specification. Clients may create their own
+//! specifications using `Node`, `NextNode`, and `Boundary` (q.v.).
+//! There is no explicit representation of the pseudo-property value
+//! Any, nor of ignore rules. This is merely an inconvenience: every
+//! specification can be rewritten to exclude them.
+
 use breaks;
 
 use std::collections::ring_buf;
 use std::{fmt, str};
 
+/// An iterator over the pieces of a string broken in accordance with
+/// UAX #29.
 pub struct Breaks<'a, Category> {
     tree: Node<Category>,
     index: usize,
     inner: BreaksInner<'a, Category>,
 }
 
-#[derive(Clone, PartialEq, Show)]
-enum NextNode<Category> {
-    Child(Node<Category>),
-    Loop,
-}
-
+/// A tree of states.
+///
+/// `rules` is a vector of rules to apply, where a rule is a tuple of
+/// the number of the rule (where lower numbers have higher precedence),
+/// the index of the character in this rule that the boundary precedes,
+/// and the boundary type.
+///
+/// For example, the rule X ÷ Y Z with number 25 would be `(25, 1,
+/// Boundary::Break)`, and X Y × Z with number 26 would be `(26, 2,
+/// Boundary::NoBeak)`.
+///
+/// `children` is a vector of tuples of categories and the child states
+/// they lead to. For example, the state corresponding to X in X ÷ Y
+/// would have a child `(Y, y_node)`, where `y_node` is the state node
+/// corresponding to Y.
+///
+/// A node can have an edge to itself, so this is not really a tree.
+/// It is, however, nearly a tree, since arbitrary loops are not
+/// allowed.
 #[derive(Clone, PartialEq, Show)]
 pub struct Node<Category> {
     rules: Vec<(usize, usize, Boundary)>,
     children: Vec<(Category, NextNode<Category>)>,
 }
 
+/// The type of connection to a child node.
+#[derive(Clone, PartialEq, Show)]
+pub enum NextNode<Category> {
+    /// A connection to another node (the usual case).
+    Child(Node<Category>),
+    /// A self-loop. Other kinds of loops are impossible.
+    Loop,
+}
+
+/// The inner part of `Breaks`.
+///
+/// This only exists as an implementation detail. There is no principled
+/// reason this shouldn't be part of `Breaks`.
+// The reason it can't be part of `Breaks` is that `next` needs both
+// `index` and `string` at the same time, and the borrow checker didn't
+// allow it.
 struct BreaksInner<'a, Category> {
     string: &'a str,
     char_indices: str::CharIndices<'a>,
     future: ring_buf::RingBuf<FutureInfo<Category>>,
 }
 
+/// Information about a future character: whether it is skipped by
+/// rewrite rules (e.g. WB4), its position in the string and its break
+/// property value (if known), and whether to break before it (if known).
 #[derive(PartialEq, Show)]
 struct FutureInfo<Category> {
     skip: bool,
@@ -34,22 +92,31 @@ struct FutureInfo<Category> {
     rule_info: Option<RuleInfo>,
 }
 
+/// Information about a character: its position in a string and its
+/// break property value.
+///
+/// The fake "end of text" character gets a `char_offset` of the length
+/// of the string and a `category` of None.
 #[derive(PartialEq, Show)]
 struct CharInfo<Category> {
     char_offset: usize,
-    ch: char,  // TODO: Remove this: it is just for debugging.
     category: Option<Category>,
 }
 
+/// Information about the boundary before a character: what rule applies
+/// and the boundary type.
 #[derive(PartialEq, Show)]
 struct RuleInfo {
     rule_number: usize,
     boundary: Boundary,
 }
 
+/// A boundary type.
 #[derive(Clone, Copy, PartialEq, Show)]
-enum Boundary {
+pub enum Boundary {
+    /// A break before a character.
     Break,
+    /// A non-break before a character.
     NoBreak,
 }
 
@@ -121,7 +188,9 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show> Iterator
     }
 }
 
-impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show> Breaks<'a, Category> {
+impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show> Breaks<'a, Category>
+{
+    /// Constructs a new `Breaks`.
     pub fn new(s: &'a str, tree: Node<Category>) -> Breaks<'a, Category> {
         Breaks {
             tree: tree,
@@ -148,7 +217,7 @@ mod test_word_breaks_inner {
         let s: &str = "\u{e9}1bc2";
         let mut inner: BreaksInner<Category> = make_inner(s);
         let future_info: FutureInfo<Category> =
-            make_future_info(0, false, '\u{e9}', ALetter, None);
+            make_future_info(0, false, ALetter, None);
         let tree: Node<Category> = make_tree();
         assert_eq!(inner.front(&tree), Some(&future_info));
         assert_eq!(inner.front(&tree), Some(&future_info));
@@ -161,10 +230,10 @@ mod test_word_breaks_inner {
         let tree: Node<Category> = make_tree();
         inner.pop_front(&tree);
         assert_eq!(inner.future.front(),
-                   Some(&make_future_info(0, false, '\u{e9}', ALetter, None)));
+                   Some(&make_future_info(0, false, ALetter, None)));
         inner.pop_front(&tree);
         assert_eq!(inner.future.front(),
-                   Some(&make_future_info(2, false, '1', Numeric, Some(RuleInfo {
+                   Some(&make_future_info(2, false, Numeric, Some(RuleInfo {
                         rule_number: 1, boundary: Boundary::NoBreak,
                    }))));
     }
@@ -176,28 +245,28 @@ mod test_word_breaks_inner {
         let tree: Node<Category> = make_tree();
         let mut buf: ring_buf::RingBuf<FutureInfo<Category>> =
             ring_buf::RingBuf::new();
-        buf.push_back(make_future_info(0, false, '\u{e9}', ALetter, None));
-        buf.push_back(make_future_info(2, true, '\'', Single_Quote, Some(RuleInfo {
+        buf.push_back(make_future_info(0, false, ALetter, None));
+        buf.push_back(make_future_info(2, true, Single_Quote, Some(RuleInfo {
             rule_number: 0,
             boundary: Boundary::NoBreak,
         })));
-        buf.push_back(make_future_info(3, true, '"', Double_Quote, Some(RuleInfo {
+        buf.push_back(make_future_info(3, true, Double_Quote, Some(RuleInfo {
             rule_number: 0,
             boundary: Boundary::NoBreak,
         })));
-        buf.push_back(make_future_info(4, true, '"', Double_Quote, Some(RuleInfo {
+        buf.push_back(make_future_info(4, true, Double_Quote, Some(RuleInfo {
             rule_number: 0,
             boundary: Boundary::NoBreak,
         })));
-        buf.push_back(make_future_info(5, true, '\'', Single_Quote, Some(RuleInfo {
+        buf.push_back(make_future_info(5, true, Single_Quote, Some(RuleInfo {
             rule_number: 0,
             boundary: Boundary::NoBreak,
         })));
-        buf.push_back(make_future_info(6, false, '1', Numeric, Some(RuleInfo {
+        buf.push_back(make_future_info(6, false, Numeric, Some(RuleInfo {
             rule_number: 1,
             boundary: Boundary::NoBreak,
         })));
-        buf.push_back(make_future_info(7, false, 'b', ALetter, None));
+        buf.push_back(make_future_info(7, false, ALetter, None));
         inner.find_breaks(&tree, 0, 0);
         assert_eq!(inner.future, buf);
     }
@@ -210,15 +279,13 @@ mod test_word_breaks_inner {
         }
     }
 
-    fn make_future_info(char_offset: usize, skip: bool, ch: char,
-        category: Category, rule_info: Option<RuleInfo>)
-        -> FutureInfo<Category>
+    fn make_future_info(char_offset: usize, skip: bool, category: Category,
+        rule_info: Option<RuleInfo>) -> FutureInfo<Category>
     {
         FutureInfo {
             skip: skip,
             char_info: Some(CharInfo {
                 char_offset: char_offset,
-                ch: ch,
                 category: Some(category),
             }),
             rule_info: rule_info,
@@ -249,8 +316,8 @@ mod test_word_breaks_inner {
         let mut inner: BreaksInner<Category> = make_inner("\u{e9}bcd");
         let mut buf: ring_buf::RingBuf<FutureInfo<Category>> =
             ring_buf::RingBuf::new();
-        buf.push_back(make_future_info(0, false, '\u{e9}', ALetter, None));
-        buf.push_back(make_future_info(2, false, 'b', ALetter, None));
+        buf.push_back(make_future_info(0, false, ALetter, None));
+        buf.push_back(make_future_info(2, false, ALetter, None));
         inner.get_enough_chars_for_rule(1);
         assert_eq!(inner.future, buf);
     }
@@ -279,8 +346,8 @@ mod test_word_breaks_inner {
         let mut inner: BreaksInner<Category> = make_inner("\u{e9}bcd");
         let mut buf: ring_buf::RingBuf<FutureInfo<Category>> =
             ring_buf::RingBuf::new();
-        buf.push_back(make_future_info(0, false, '\u{e9}', ALetter, None));
-        buf.push_back(make_future_info(2, false, 'b', ALetter, Some(RuleInfo{
+        buf.push_back(make_future_info(0, false, ALetter, None));
+        buf.push_back(make_future_info(2, false, ALetter, Some(RuleInfo{
             rule_number: 123,
             boundary: Boundary::Break,
         })));
@@ -293,6 +360,10 @@ mod test_word_breaks_inner {
 impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
     BreaksInner<'a, Category>
 {
+    /// Provides a reference to the front element.
+    ///
+    /// If the sequence is empty, it tries to get more elements first.
+    /// If there are no more elements to be gotten, returns `None`.
     fn front(&mut self, node: &Node<Category>) -> Option<&FutureInfo<Category>> {
         if self.future.is_empty() {
             self.find_breaks(node, 0, 0);
@@ -300,11 +371,14 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
         self.future.front()
     }
 
+    /// Removes the first element and gets more elements.
     fn pop_front(&mut self, node: &Node<Category>) {
         self.future.pop_front();
         self.find_breaks(node, 0, 0);
     }
 
+    /// Gets all elements corresponding to future characters whose
+    /// breaking status might depend on the current character.
     fn find_breaks(
         &mut self, node: &Node<Category>, offset: usize, loops: usize) {
         for &(rule_number, position, boundary) in node.rules.iter() {
@@ -315,6 +389,11 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
         self.handle_children(node, offset, loops);
     }
 
+    /// Gets elements such that there are a given number of elements in
+    /// the future buffer.
+    ///
+    /// May get one more character than `position`, to ensure that the
+    /// rule applies.
     fn get_enough_chars_for_rule(&mut self, position: usize) {
         while self.future.len() <= position {
             match self.char_indices.next() {
@@ -324,7 +403,6 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
                         skip: false,
                         char_info: Some(CharInfo {
                             char_offset: char_offset,
-                            ch: char,
                             category: Some(breaks::FromChar::from_char(char)),
                         }),
                         rule_info: None,
@@ -333,6 +411,12 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
         }
     }
 
+    /// Adds a rule at a given position, ignoring skipped characters.
+    ///
+    /// Grows the future buffer if it is too small.
+    ///
+    /// Does not add the rule if the character at the given position is
+    /// already subject to a higher-ranked rule.
     fn add_rule_to_future(
         &mut self, rule_number: usize, mut position: usize, boundary: Boundary)
     {
@@ -353,8 +437,6 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
                 skip: false,
                 char_info: Some(CharInfo {
                     char_offset: self.string.len(),
-                    // This will not be used and doesn't matter:
-                    ch: 'X',
                     category: None,
                 }),
                 rule_info: Some(RuleInfo {
@@ -375,6 +457,11 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
         }
     }
 
+    /// Gets elements such that there are a given number of elements in
+    /// the future buffer.
+    ///
+    /// May get one more character than `offset`, to ensure that the
+    /// rule applies.
     fn get_enough_chars_for_children(&mut self, offset: usize) {
         while self.future.len() <= offset {
             self.future.push_back(FutureInfo {
@@ -382,13 +469,10 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
                 char_info: match self.char_indices.next() {
                     None => Some(CharInfo {
                         char_offset: self.string.len(),
-                        // This will not be used and doesn't matter:
-                        ch: 'Z',
                         category: None,
                     }),
                     Some((char_offset, char)) => Some(CharInfo {
                         char_offset: char_offset,
-                        ch: char,
                         category: Some(breaks::FromChar::from_char(char)),
                     }),
                 },
@@ -397,6 +481,8 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
         }
     }
 
+    /// Populates the future buffer with respect to the current state
+    /// node and an index into the future buffer to add rules to.
     fn handle_children(&mut self, node: &Node<Category>, offset: usize,
                        loops: usize)
     {
@@ -431,6 +517,8 @@ impl<'a, Category: breaks::FromChar + PartialEq + fmt::Show>
     }
 }
 
+/// Creates a node corresponding to the default specification of UAX
+/// \#29.
 pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
     use breaks::word_break::Category;
     let any_node = NextNode::Child(Node {
@@ -459,7 +547,6 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                     (Category::Format, any_node.clone()),
                     (Category::Hebrew_Letter, any_node.clone()),
                     (Category::Katakana, any_node.clone()),
-                    (Category::LF, any_node.clone()),
                     (Category::MidLetter, any_node.clone()),
                     (Category::MidNum, any_node.clone()),
                     (Category::MidNumLet, any_node.clone()),
@@ -508,13 +595,9 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                                             (7001, 2, Boundary::NoBreak)],
                                 children: vec![],
                             })),
-                            (Category::ALetter, any_node.clone()),
                             (Category::CR, any_node.clone()),
                             (Category::Double_Quote, any_node.clone()),
-                            (Category::Extend, any_node.clone()),
                             (Category::ExtendNumLet, any_node.clone()),
-                            (Category::Format, any_node.clone()),
-                            (Category::Hebrew_Letter, any_node.clone()),
                             (Category::Katakana, any_node.clone()),
                             (Category::LF, any_node.clone()),
                             (Category::MidLetter, any_node.clone()),
@@ -542,13 +625,9 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                                             (7003, 2, Boundary::NoBreak)],
                                 children: vec![],
                             })),
-                            (Category::ALetter, any_node.clone()),
                             (Category::CR, any_node.clone()),
                             (Category::Double_Quote, any_node.clone()),
-                            (Category::Extend, any_node.clone()),
                             (Category::ExtendNumLet, any_node.clone()),
-                            (Category::Format, any_node.clone()),
-                            (Category::Hebrew_Letter, any_node.clone()),
                             (Category::Katakana, any_node.clone()),
                             (Category::LF, any_node.clone()),
                             (Category::MidLetter, any_node.clone()),
@@ -564,8 +643,8 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                     (Category::Single_Quote, NextNode::Child(Node {
                         rules: vec![],
                         children: vec![
-                        (Category::Extend, NextNode::Loop),
-                        (Category::Format, NextNode::Loop),
+                            (Category::Extend, NextNode::Loop),
+                            (Category::Format, NextNode::Loop),
                             (Category::ALetter, NextNode::Child(Node {
                                 rules: vec![(6004, 1, Boundary::NoBreak),
                                             (7004, 2, Boundary::NoBreak)],
@@ -576,13 +655,9 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                                             (7005, 2, Boundary::NoBreak)],
                                 children: vec![],
                             })),
-                            (Category::ALetter, any_node.clone()),
                             (Category::CR, any_node.clone()),
                             (Category::Double_Quote, any_node.clone()),
-                            (Category::Extend, any_node.clone()),
                             (Category::ExtendNumLet, any_node.clone()),
-                            (Category::Format, any_node.clone()),
-                            (Category::Hebrew_Letter, any_node.clone()),
                             (Category::Katakana, any_node.clone()),
                             (Category::LF, any_node.clone()),
                             (Category::MidLetter, any_node.clone()),
@@ -603,22 +678,13 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                         rules: vec![(13100, 1, Boundary::NoBreak)],
                         children: vec![],
                     })),
-                    (Category::ALetter, any_node.clone()),
                     (Category::CR, any_node.clone()),
                     (Category::Double_Quote, any_node.clone()),
-                    (Category::Extend, any_node.clone()),
-                    (Category::ExtendNumLet, any_node.clone()),
-                    (Category::Format, any_node.clone()),
-                    (Category::Hebrew_Letter, any_node.clone()),
                     (Category::Katakana, any_node.clone()),
                     (Category::LF, any_node.clone()),
-                    (Category::MidLetter, any_node.clone()),
                     (Category::MidNum, any_node.clone()),
-                    (Category::MidNumLet, any_node.clone()),
                     (Category::Newline, any_node.clone()),
-                    (Category::Numeric, any_node.clone()),
                     (Category::Regional_Indicator, any_node.clone()),
-                    (Category::Single_Quote, any_node.clone()),
                     (Category::Other, any_node.clone()),
                 ],
             })),
@@ -638,8 +704,8 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                     (Category::MidLetter, NextNode::Child(Node {
                         rules: vec![],
                         children: vec![
-                        (Category::Extend, NextNode::Loop),
-                        (Category::Format, NextNode::Loop),
+                            (Category::Extend, NextNode::Loop),
+                            (Category::Format, NextNode::Loop),
                             (Category::ALetter, NextNode::Child(Node {
                                 rules: vec![(6006, 1, Boundary::NoBreak),
                                             (7006, 2, Boundary::NoBreak)],
@@ -650,13 +716,9 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                                             (7007, 2, Boundary::NoBreak)],
                                 children: vec![],
                             })),
-                            (Category::ALetter, any_node.clone()),
                             (Category::CR, any_node.clone()),
                             (Category::Double_Quote, any_node.clone()),
-                            (Category::Extend, any_node.clone()),
                             (Category::ExtendNumLet, any_node.clone()),
-                            (Category::Format, any_node.clone()),
-                            (Category::Hebrew_Letter, any_node.clone()),
                             (Category::Katakana, any_node.clone()),
                             (Category::LF, any_node.clone()),
                             (Category::MidLetter, any_node.clone()),
@@ -684,13 +746,9 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                                             (7009, 2, Boundary::NoBreak)],
                                 children: vec![],
                             })),
-                            (Category::ALetter, any_node.clone()),
                             (Category::CR, any_node.clone()),
                             (Category::Double_Quote, any_node.clone()),
-                            (Category::Extend, any_node.clone()),
                             (Category::ExtendNumLet, any_node.clone()),
-                            (Category::Format, any_node.clone()),
-                            (Category::Hebrew_Letter, any_node.clone()),
                             (Category::Katakana, any_node.clone()),
                             (Category::LF, any_node.clone()),
                             (Category::MidLetter, any_node.clone()),
@@ -706,8 +764,8 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                     (Category::Single_Quote, NextNode::Child(Node {
                         rules: vec![(7100, 1, Boundary::NoBreak)],
                         children: vec![
-                        (Category::Extend, NextNode::Loop),
-                        (Category::Format, NextNode::Loop),
+                            (Category::Extend, NextNode::Loop),
+                            (Category::Format, NextNode::Loop),
                             (Category::ALetter, NextNode::Child(Node {
                                 rules: vec![(6010, 1, Boundary::NoBreak),
                                             (7010, 2, Boundary::NoBreak)],
@@ -718,13 +776,9 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                                             (7011, 2, Boundary::NoBreak)],
                                 children: vec![],
                             })),
-                            (Category::ALetter, any_node.clone()),
                             (Category::CR, any_node.clone()),
                             (Category::Double_Quote, any_node.clone()),
-                            (Category::Extend, any_node.clone()),
                             (Category::ExtendNumLet, any_node.clone()),
-                            (Category::Format, any_node.clone()),
-                            (Category::Hebrew_Letter, any_node.clone()),
                             (Category::Katakana, any_node.clone()),
                             (Category::LF, any_node.clone()),
                             (Category::MidLetter, any_node.clone()),
@@ -740,20 +794,16 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                     (Category::Double_Quote, NextNode::Child(Node {
                         rules: vec![],
                         children: vec![
-                        (Category::Extend, NextNode::Loop),
-                        (Category::Format, NextNode::Loop),
+                            (Category::Extend, NextNode::Loop),
+                            (Category::Format, NextNode::Loop),
                             (Category::Hebrew_Letter, NextNode::Child(Node {
                                 rules: vec![(7200, 1, Boundary::NoBreak),
                                             (7300, 2, Boundary::NoBreak)],
                                 children: vec![],
                             })),
-                            (Category::ALetter, any_node.clone()),
                             (Category::CR, any_node.clone()),
                             (Category::Double_Quote, any_node.clone()),
-                            (Category::Extend, any_node.clone()),
                             (Category::ExtendNumLet, any_node.clone()),
-                            (Category::Format, any_node.clone()),
-                            (Category::Hebrew_Letter, any_node.clone()),
                             (Category::Katakana, any_node.clone()),
                             (Category::LF, any_node.clone()),
                             (Category::MidLetter, any_node.clone()),
@@ -774,22 +824,12 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                         rules: vec![(13101, 1, Boundary::NoBreak)],
                         children: vec![],
                     })),
-                    (Category::ALetter, any_node.clone()),
                     (Category::CR, any_node.clone()),
-                    (Category::Double_Quote, any_node.clone()),
-                    (Category::Extend, any_node.clone()),
-                    (Category::ExtendNumLet, any_node.clone()),
-                    (Category::Format, any_node.clone()),
-                    (Category::Hebrew_Letter, any_node.clone()),
                     (Category::Katakana, any_node.clone()),
                     (Category::LF, any_node.clone()),
-                    (Category::MidLetter, any_node.clone()),
                     (Category::MidNum, any_node.clone()),
-                    (Category::MidNumLet, any_node.clone()),
                     (Category::Newline, any_node.clone()),
-                    (Category::Numeric, any_node.clone()),
                     (Category::Regional_Indicator, any_node.clone()),
-                    (Category::Single_Quote, any_node.clone()),
                     (Category::Other, any_node.clone()),
                 ],
             })),
@@ -813,8 +853,8 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                     (Category::MidNum, NextNode::Child(Node {
                         rules: vec![],
                         children: vec![
-                        (Category::Extend, NextNode::Loop),
-                        (Category::Format, NextNode::Loop),
+                            (Category::Extend, NextNode::Loop),
+                            (Category::Format, NextNode::Loop),
                             (Category::Numeric, NextNode::Child(Node {
                                 rules: vec![(11000, 2, Boundary::NoBreak),
                                             (12000, 1, Boundary::NoBreak)],
@@ -823,9 +863,7 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                             (Category::ALetter, any_node.clone()),
                             (Category::CR, any_node.clone()),
                             (Category::Double_Quote, any_node.clone()),
-                            (Category::Extend, any_node.clone()),
                             (Category::ExtendNumLet, any_node.clone()),
-                            (Category::Format, any_node.clone()),
                             (Category::Hebrew_Letter, any_node.clone()),
                             (Category::Katakana, any_node.clone()),
                             (Category::LF, any_node.clone()),
@@ -833,7 +871,6 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                             (Category::MidNum, any_node.clone()),
                             (Category::MidNumLet, any_node.clone()),
                             (Category::Newline, any_node.clone()),
-                            (Category::Numeric, any_node.clone()),
                             (Category::Regional_Indicator, any_node.clone()),
                             (Category::Single_Quote, any_node.clone()),
                             (Category::Other, any_node.clone()),
@@ -842,8 +879,8 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                     (Category::MidNumLet, NextNode::Child(Node {
                         rules: vec![],
                         children: vec![
-                        (Category::Extend, NextNode::Loop),
-                        (Category::Format, NextNode::Loop),
+                            (Category::Extend, NextNode::Loop),
+                            (Category::Format, NextNode::Loop),
                             (Category::Numeric, NextNode::Child(Node {
                                 rules: vec![(11001, 1, Boundary::NoBreak),
                                             (12001, 2, Boundary::NoBreak)],
@@ -852,9 +889,7 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                             (Category::ALetter, any_node.clone()),
                             (Category::CR, any_node.clone()),
                             (Category::Double_Quote, any_node.clone()),
-                            (Category::Extend, any_node.clone()),
                             (Category::ExtendNumLet, any_node.clone()),
-                            (Category::Format, any_node.clone()),
                             (Category::Hebrew_Letter, any_node.clone()),
                             (Category::Katakana, any_node.clone()),
                             (Category::LF, any_node.clone()),
@@ -862,7 +897,6 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                             (Category::MidNum, any_node.clone()),
                             (Category::MidNumLet, any_node.clone()),
                             (Category::Newline, any_node.clone()),
-                            (Category::Numeric, any_node.clone()),
                             (Category::Regional_Indicator, any_node.clone()),
                             (Category::Single_Quote, any_node.clone()),
                             (Category::Other, any_node.clone()),
@@ -881,9 +915,7 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                             (Category::ALetter, any_node.clone()),
                             (Category::CR, any_node.clone()),
                             (Category::Double_Quote, any_node.clone()),
-                            (Category::Extend, any_node.clone()),
                             (Category::ExtendNumLet, any_node.clone()),
-                            (Category::Format, any_node.clone()),
                             (Category::Hebrew_Letter, any_node.clone()),
                             (Category::Katakana, any_node.clone()),
                             (Category::LF, any_node.clone()),
@@ -891,7 +923,6 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                             (Category::MidNum, any_node.clone()),
                             (Category::MidNumLet, any_node.clone()),
                             (Category::Newline, any_node.clone()),
-                            (Category::Numeric, any_node.clone()),
                             (Category::Regional_Indicator, any_node.clone()),
                             (Category::Single_Quote, any_node.clone()),
                             (Category::Other, any_node.clone()),
@@ -901,22 +932,13 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                         rules: vec![(13102, 1, Boundary::NoBreak)],
                         children: vec![],
                     })),
-                    (Category::ALetter, any_node.clone()),
                     (Category::CR, any_node.clone()),
                     (Category::Double_Quote, any_node.clone()),
-                    (Category::Extend, any_node.clone()),
-                    (Category::ExtendNumLet, any_node.clone()),
-                    (Category::Format, any_node.clone()),
-                    (Category::Hebrew_Letter, any_node.clone()),
                     (Category::Katakana, any_node.clone()),
                     (Category::LF, any_node.clone()),
                     (Category::MidLetter, any_node.clone()),
-                    (Category::MidNum, any_node.clone()),
-                    (Category::MidNumLet, any_node.clone()),
                     (Category::Newline, any_node.clone()),
-                    (Category::Numeric, any_node.clone()),
                     (Category::Regional_Indicator, any_node.clone()),
-                    (Category::Single_Quote, any_node.clone()),
                     (Category::Other, any_node.clone()),
                 ],
             })),
@@ -936,11 +958,7 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                     (Category::ALetter, any_node.clone()),
                     (Category::CR, any_node.clone()),
                     (Category::Double_Quote, any_node.clone()),
-                    (Category::Extend, any_node.clone()),
-                    (Category::ExtendNumLet, any_node.clone()),
-                    (Category::Format, any_node.clone()),
                     (Category::Hebrew_Letter, any_node.clone()),
-                    (Category::Katakana, any_node.clone()),
                     (Category::LF, any_node.clone()),
                     (Category::MidLetter, any_node.clone()),
                     (Category::MidNum, any_node.clone()),
@@ -977,20 +995,13 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                         rules: vec![(13203, 1, Boundary::NoBreak)],
                         children: vec![],
                     })),
-                    (Category::ALetter, any_node.clone()),
                     (Category::CR, any_node.clone()),
                     (Category::Double_Quote, any_node.clone()),
-                    (Category::Extend, any_node.clone()),
-                    (Category::ExtendNumLet, any_node.clone()),
-                    (Category::Format, any_node.clone()),
-                    (Category::Hebrew_Letter, any_node.clone()),
-                    (Category::Katakana, any_node.clone()),
                     (Category::LF, any_node.clone()),
                     (Category::MidLetter, any_node.clone()),
                     (Category::MidNum, any_node.clone()),
                     (Category::MidNumLet, any_node.clone()),
                     (Category::Newline, any_node.clone()),
-                    (Category::Numeric, any_node.clone()),
                     (Category::Regional_Indicator, any_node.clone()),
                     (Category::Single_Quote, any_node.clone()),
                     (Category::Other, any_node.clone()),
@@ -1008,9 +1019,7 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                     (Category::ALetter, any_node.clone()),
                     (Category::CR, any_node.clone()),
                     (Category::Double_Quote, any_node.clone()),
-                    (Category::Extend, any_node.clone()),
                     (Category::ExtendNumLet, any_node.clone()),
-                    (Category::Format, any_node.clone()),
                     (Category::Hebrew_Letter, any_node.clone()),
                     (Category::Katakana, any_node.clone()),
                     (Category::LF, any_node.clone()),
@@ -1019,26 +1028,16 @@ pub fn make_word_break_tree() -> Node<breaks::word_break::Category> {
                     (Category::MidNumLet, any_node.clone()),
                     (Category::Newline, any_node.clone()),
                     (Category::Numeric, any_node.clone()),
-                    (Category::Regional_Indicator, any_node.clone()),
                     (Category::Single_Quote, any_node.clone()),
                     (Category::Other, any_node.clone()),
                 ],
             })),
-            (Category::ALetter, any_node.clone()),
-            (Category::CR, any_node.clone()),
             (Category::Double_Quote, any_node.clone()),
             (Category::Extend, any_node.clone()),
-            (Category::ExtendNumLet, any_node.clone()),
             (Category::Format, any_node.clone()),
-            (Category::Hebrew_Letter, any_node.clone()),
-            (Category::Katakana, any_node.clone()),
-            (Category::LF, any_node.clone()),
             (Category::MidLetter, any_node.clone()),
             (Category::MidNum, any_node.clone()),
             (Category::MidNumLet, any_node.clone()),
-            (Category::Newline, any_node.clone()),
-            (Category::Numeric, any_node.clone()),
-            (Category::Regional_Indicator, any_node.clone()),
             (Category::Single_Quote, any_node.clone()),
             (Category::Other, any_node.clone()),
         ],

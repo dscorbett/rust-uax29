@@ -1,5 +1,6 @@
 *~
 .*.swp
+fmt/fmt
 target/
 SentenceBreakProperty.txt
 WordBreakProperty.txt

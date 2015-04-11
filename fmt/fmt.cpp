@@ -7,63 +7,16 @@
 //#include "fmt.h"
 #include "../unicode/utf.h"
 #include "../unicode/utf.cpp"
-
-struct word_breaker;
+#include "../unicode/word_break.h"
 
 int main(int argc, char *argv[]) {
-    // quick and dirty
-    void* handle = dlopen("./wordbreaker.dylib", RTLD_LAZY);
-    std::cout << "about to create handle" << std::endl;
-    if (!handle) {
-        std::cerr << "Cannot open library: " << dlerror() << '\n';
-        return 1;
-    }
-/*
-    typedef int32_t (*treble_t)(int32_t);
-    typedef circle* (*create_circle_t)(int32_t, int32_t, int32_t, char*);
-    typedef int32_t (*circle_diameter_t)(circle*);
-    typedef char* (*circle_name_t)(circle*);
-*/
-    typedef word_breaker* (*create_word_breaker_t)(char*);
-    typedef char* (*next_word_t)(word_breaker*);
-
-    dlerror();
-    /*
-    create_circle_t create_circle = (create_circle_t) dlsym(handle, "create_circle");
-    circle_diameter_t circle_diameter = (circle_diameter_t) dlsym(handle, "circle_diameter");
-    circle_name_t circle_name = (circle_name_t) dlsym(handle, "circle_name");
-*/
-    create_word_breaker_t create_word_breaker = (create_word_breaker_t) dlsym(handle, "create_word_breaker");
-    next_word_t next_word = (next_word_t) dlsym(handle, "next_word");
-
-    const char* dlsym_error = dlerror();
-    if (dlsym_error) {
-        std::cerr << "Cannot load symbol" << dlsym_error <<
-            '\n';
-        dlclose(handle);
-        return 1;
-    }
-/*
-    std::cout <<"calling treble from rust generated dylib" << std::endl;
-    std::cout << treble(4) << std::endl;
-    std::cout <<"testing out circle" << std::endl;
-    std::cout << circle_diameter(create_circle(1, 2, 3, "foobar")) << std::endl;
-    std::cout <<"name is" <<std::endl;
-    std::cout << circle_name(create_circle(1, 2, 3, "barbaz")) << std::endl;
-*/
-    std::cout <<"calling dylib function" << std::endl;
-    word_breaker* _wb = create_word_breaker("1.21 gigawatts.");
-    std::cout << next_word(_wb) << std::endl;
-    std::cout << next_word(_wb) << std::endl;
-    std::cout << next_word(_wb) << std::endl;
-    
 
 
-
-
-
-
-
+    word_break wb("1.21 gigawatts."); // convert std::string to char* str.c_str()
+    std::cout << wb.next() << std::endl;
+    std::cout << wb.next() << std::endl;
+    std::cout << wb.next() << std::endl;
+    std::cout << wb.next() << std::endl;
 
 
     if (argc != 3) {

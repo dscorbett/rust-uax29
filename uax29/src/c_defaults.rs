@@ -1,5 +1,5 @@
 //! This module provides a wrapper for the word break iterator over a string
-//! This iterator follows the 
+//! This iterator follows the default word-breaking specification.
 
 //#![crate_type = "dylib"]
 extern crate libc;
@@ -8,14 +8,10 @@ use std::{mem, sync, ptr};
 use defaults;
 use breaks::word_break::Category;
 
-//static GLOBAL_LOCK: sync::StaticMutex = sync::MUTEX_INIT;
-//static mut client_startup_hook: Option<fn () -> Option<()>> = None;
 pub type WordBreakerPtr = *const ();
 
-///
 #[no_mangle]
 pub unsafe extern "C" fn create_word_breaker(txt: *const libc::c_char) -> WordBreakerPtr {
-	//let _guard = GLOBAL_LOCK.lock().unwrap();
 	let buf = c_str_to_bytes(&txt);
 	let input = String::from_utf8(buf.to_vec()).unwrap();
 	let wb = Box::new(defaults::Breaks::new(input.as_slice(),
@@ -25,7 +21,6 @@ pub unsafe extern "C" fn create_word_breaker(txt: *const libc::c_char) -> WordBr
 
 #[no_mangle]
 pub unsafe extern "C" fn next_word(wb: WordBreakerPtr) -> *const libc::c_char {
-	//let _guard = GLOBAL_LOCK.lock().unwrap();
 	let wb: &mut defaults::Breaks<Category> = mem::transmute(wb);
 	match wb.next() {
 		Some(s) => CString::from_slice(s.as_bytes()).as_ptr(),
@@ -58,28 +53,3 @@ mod test_cpp_wrapper {
         String::from_utf8(buf.to_vec()).unwrap()
     }
 }
-
-
-/*
-#[no_mangle]
-pub unsafe extern "C" fn set_startup_hook(hook: fn () -> Option<()>) {
-    let _guard = GLOBAL_LOCK.lock().unwrap();
-
-    unsafe {
-        client_startup_hook = Some(hook);
-        externals::rl_startup_hook = startup_shim;
-    }
-}
-
-extern fn startup_shim() -> c_int {
-    match unsafe { client_startup_hook } {
-        Some(hook) => {
-            match hook() {
-                Some(()) => 0,
-                None     => -1,
-            }
-        }
-        None       => -1,
-    }
-}
-*/

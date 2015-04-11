@@ -19,7 +19,7 @@ pub unsafe extern "C" fn create_word_breaker(txt: *const libc::c_char)
     let buf = c_str_to_bytes(&txt);
     let input = String::from_utf8(buf.to_vec()).unwrap();
     let wb = Box::new(defaults::Breaks::new(input.as_slice(),
-       defaults::make_word_break_tree()));
+                                            defaults::make_word_break_tree()));
     mem::transmute(wb)
 }
 

@@ -23,11 +23,14 @@ int main(int argc, char *argv[]) {
 
     for (const char *next = wb.next(); next != NULL; next = wb.next()) {
         std::string current_word(next);
-        line_width = line_width + utf::get_length(current_word, encoding);
+        size_t word_length = utf::get_length(current_word, encoding);
+        line_width = line_width + word_length;
         const uint32_t code_point = utf::get_char(current_word, 0, encoding);
-        if (line_width > max_width || utf::is_newline(code_point)) {
+        if (utf::is_newline(code_point)) {
+            line_width = word_length - 1;
+        } else if (line_width > max_width) {
             std::cout << std::endl;
-            line_width = 0;
+            line_width = word_length;
         }
         std::cout << current_word;
     }

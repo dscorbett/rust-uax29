@@ -3,7 +3,7 @@ SHELL := /bin/bash
 all: fmt
 
 fmt:
-	g++ fmt.cpp -I ../unicode  -o fmt
+	g++ fmt.cpp -o fmt
 
 clean:
 	rm -f fmt *~

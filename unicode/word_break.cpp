@@ -7,35 +7,35 @@
 #define DLL_WORD_BREAKER "create_word_breaker"
 #define DLL_NEXT "next_word"
 
-word_break::word_break(const char* str){
+word_break::word_break(const char *str) {
     dll_handle = dlopen(DLL_PATH, RTLD_LAZY);
     if (!dll_handle) {
-        std::cerr << "Cannot open dll: " << dlerror() << '\n';
+        std::cerr << "Cannot open dll: " << dlerror() << std::endl;
     }
-    fn_create_word_breaker = 
+    fn_create_word_breaker =
         (create_wb_t) dlsym(dll_handle, DLL_WORD_BREAKER);
-    fn_next_word = 
+    fn_next_word =
         (next_word_t) dlsym(dll_handle, DLL_NEXT);
-        
-    const char* dlsym_error = dlerror();
+
+    const char *dlsym_error = dlerror();
     if (dlsym_error) {
-        std::cerr << "Cannot load dll symbol" << dlsym_error << '\n';
+        std::cerr << "Cannot load dll symbol" << dlsym_error << std::endl;
         dlclose(dll_handle);
     }
     r_handle = fn_create_word_breaker(str);
 }
 
-const char* word_break::next(){
+const char *word_break::next() {
     return fn_next_word(r_handle);
 }
 
-void word_break::close_dll(){
+void word_break::close_dll() {
     dlclose(dll_handle);
     fn_create_word_breaker = NULL;
     fn_next_word = NULL;
     r_handle = NULL;
 }
 
-word_break::~word_break(){
+word_break::~word_break() {
     close_dll();
 }

@@ -2,7 +2,8 @@
 
 name = "uax29"
 version = "0.0.1"
-authors = ["David Corbett <corbett.dav@husky.neu.edu>"]
+authors = ["David Corbett <corbett.dav@husky.neu.edu>",
+           "Mimi Lin <hloople@gmail.com>"]
 
 [lib]
 name = "uax29"

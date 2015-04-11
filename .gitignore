@@ -1,5 +1,6 @@
 *~
 .*.swp
+*.dylib
 fmt/fmt
 target/
 SentenceBreakProperty.txt

@@ -4,6 +4,7 @@
 #include <streambuf>
 #include <string>
 #include <dlfcn.h>
+//#include "fmt.h"
 #include "../unicode/utf.h"
 #include "../unicode/utf.cpp"
 #include "../unicode/word_break.h"
@@ -26,7 +27,8 @@ int main(int argc, char *argv[]) {
     while(next != NULL) {
         std::string current_word(next);
         line_width = line_width + utf::get_length(current_word, encoding);
-        if(line_width > max_width) {
+        const uint32_t code_point = utf::get_char(current_word, 0, encoding);
+        if(line_width > max_width || utf::is_newline(code_point)) {
             std::cout << "\n";
             line_width = 0;
         }

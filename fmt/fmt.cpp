@@ -34,4 +34,6 @@ int main(int argc, char *argv[]) {
         }
         std::cout << current_word;
     }
+
+    return 0;
 }

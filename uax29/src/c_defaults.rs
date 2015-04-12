@@ -12,6 +12,7 @@ use defaults;
 static GLOBAL_LOCK: sync::StaticMutex = sync::MUTEX_INIT;
 
 lazy_static! {
+    static ref STRINGS: sync::RwLock<Vec<String>> = sync::RwLock::new(vec![]);
     static ref WORD_BREAKS: sync::RwLock<Vec<Box<()>>> =
         sync::RwLock::new(vec![]);
 }
@@ -23,6 +24,9 @@ pub unsafe extern "C" fn create_word_breaker(txt: *const libc::c_char)
     let _guard = GLOBAL_LOCK.lock().unwrap();
     let buf = ffi::c_str_to_bytes(&txt);
     let input = String::from_utf8(buf.to_vec()).unwrap();
+    let mut vec_guard = STRINGS.write().unwrap();
+    vec_guard.push(input);
+    let input = vec_guard.last().unwrap();
     let wb = Box::new(defaults::Breaks::new(input.as_slice(),
                                             defaults::make_word_break_tree()));
     let mut vec_guard = WORD_BREAKS.write().unwrap();
@@ -55,13 +59,13 @@ mod test_cpp_wrapper {
     #[test]
     fn test_iterate() {
         unsafe {
-        let txt = ffi::CString::from_slice("1.21 gigawatts.".as_bytes());
-        let p: WordBreakerPtr = create_word_breaker(txt.as_ptr());
-        assert_eq!(c_char_to_str(next_word(p)), "1.21");
-        assert_eq!(c_char_to_str(next_word(p)), " ");
-        assert_eq!(c_char_to_str(next_word(p)), "gigawatts");
-        assert_eq!(c_char_to_str(next_word(p)), ".");
-        assert_eq!(next_word(p), ptr::null());
+            let txt = ffi::CString::from_slice("1.21 gigawatts.".as_bytes());
+            let p: WordBreakerPtr = create_word_breaker(txt.as_ptr());
+            assert_eq!(c_char_to_str(next_word(p)), "1.21");
+            assert_eq!(c_char_to_str(next_word(p)), " ");
+            assert_eq!(c_char_to_str(next_word(p)), "gigawatts");
+            assert_eq!(c_char_to_str(next_word(p)), ".");
+            assert_eq!(next_word(p), ptr::null());
         }
     }
 

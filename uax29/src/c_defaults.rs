@@ -4,30 +4,43 @@
 
 extern crate libc;
 
-use std::ffi::{CString, c_str_to_bytes};
-use std::{mem, ptr};
+use std::{ffi, mem, ptr, sync};
 
 use breaks::word_break::Category;
 use defaults;
 
-pub type WordBreakerPtr = *const ();
+static GLOBAL_LOCK: sync::StaticMutex = sync::MUTEX_INIT;
 
-#[no_mangle]
-pub unsafe extern "C" fn create_word_breaker(txt: *const libc::c_char)
-    -> WordBreakerPtr
-{
-    let buf = c_str_to_bytes(&txt);
-    let input = String::from_utf8(buf.to_vec()).unwrap();
-    let wb = Box::new(defaults::Breaks::new(input.as_slice(),
-                                            defaults::make_word_break_tree()));
-    mem::transmute(wb)
+lazy_static! {
+    static ref WORD_BREAKS: sync::RwLock<Vec<Box<()>>> =
+        sync::RwLock::new(vec![]);
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn next_word(wb: WordBreakerPtr) -> *const libc::c_char {
-    let wb: &mut defaults::Breaks<Category> = mem::transmute(wb);
+pub unsafe extern "C" fn create_word_breaker(txt: *const libc::c_char)
+    -> libc::c_ulong
+{
+    let _guard = GLOBAL_LOCK.lock().unwrap();
+    let buf = ffi::c_str_to_bytes(&txt);
+    let input = String::from_utf8(buf.to_vec()).unwrap();
+    let wb = Box::new(defaults::Breaks::new(input.as_slice(),
+                                            defaults::make_word_break_tree()));
+    let mut vec_guard = WORD_BREAKS.write().unwrap();
+    vec_guard.push(
+        mem::transmute::<Box<defaults::Breaks<Category>>, Box<()>>(wb));
+    vec_guard.len() as libc::c_ulong - 1
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn next_word(wb: libc::c_ulong) -> *const libc::c_char {
+    let _guard = GLOBAL_LOCK.lock().unwrap();
+    let mut vec_guard = WORD_BREAKS.write().unwrap();
+    let boxed: &mut Box<()> = vec_guard.get_mut(wb as usize).unwrap();
+    let mut wb: &mut Box<defaults::Breaks<Category>> =
+        mem::transmute::<&mut Box<()>, &mut Box<defaults::Breaks<Category>>>(
+        boxed);
     match wb.next() {
-        Some(s) => CString::from_slice(s.as_bytes()).as_ptr(),
+        Some(s) => ffi::CString::from_slice(s.as_bytes()).as_ptr(),
         None => ptr::null()
     }
 }
@@ -36,14 +49,13 @@ pub unsafe extern "C" fn next_word(wb: WordBreakerPtr) -> *const libc::c_char {
 mod test_cpp_wrapper {
     extern crate libc;
 
-    use std::ffi::{CString, c_str_to_bytes};
-    use std::ptr;
+    use std::{ffi, ptr};
     use super::{create_word_breaker, next_word, WordBreakerPtr};
 
     #[test]
     fn test_iterate() {
         unsafe {
-        let txt = CString::from_slice("1.21 gigawatts.".as_bytes());
+        let txt = ffi::CString::from_slice("1.21 gigawatts.".as_bytes());
         let p: WordBreakerPtr = create_word_breaker(txt.as_ptr());
         assert_eq!(c_char_to_str(next_word(p)), "1.21");
         assert_eq!(c_char_to_str(next_word(p)), " ");
@@ -54,7 +66,7 @@ mod test_cpp_wrapper {
     }
 
     unsafe fn c_char_to_str(txt: *const libc::c_char) -> String {
-        let buf = c_str_to_bytes(&txt);
+        let buf = ffi::c_str_to_bytes(&txt);
         String::from_utf8(buf.to_vec()).unwrap()
     }
 }

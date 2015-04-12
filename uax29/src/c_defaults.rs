@@ -54,13 +54,13 @@ mod test_cpp_wrapper {
     extern crate libc;
 
     use std::{ffi, ptr};
-    use super::{create_word_breaker, next_word, WordBreakerPtr};
+    use super::{create_word_breaker, next_word};
 
     #[test]
     fn test_iterate() {
         unsafe {
             let txt = ffi::CString::from_slice("1.21 gigawatts.".as_bytes());
-            let p: WordBreakerPtr = create_word_breaker(txt.as_ptr());
+            let p: libc::c_ulong = create_word_breaker(txt.as_ptr());
             assert_eq!(c_char_to_str(next_word(p)), "1.21");
             assert_eq!(c_char_to_str(next_word(p)), " ");
             assert_eq!(c_char_to_str(next_word(p)), "gigawatts");
